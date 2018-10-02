@@ -1,0 +1,1380 @@
+object SDIAppForm: TSDIAppForm
+  Left = 197
+  Top = 111
+  Align = alTop
+  Caption = 'SDI Application'
+  ClientHeight = 628
+  ClientWidth = 1176
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'System'
+  Font.Style = []
+  Menu = MainMenu1
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 16
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 1176
+    Height = 145
+    Align = alTop
+    Caption = 'Panel1'
+    TabOrder = 0
+    ExplicitWidth = 1119
+    object SearchBox1: TSearchBox
+      Left = 56
+      Top = 16
+      Width = 121
+      Height = 24
+      TabOrder = 0
+      Text = 'SearchBox1'
+    end
+  end
+  object pcEmail: TPageControl
+    Left = 0
+    Top = 145
+    Width = 1176
+    Height = 432
+    ActivePage = Owners
+    Align = alTop
+    TabOrder = 1
+    TabPosition = tpBottom
+    object Directors: TTabSheet
+      Caption = 'Directors'
+      Highlighted = True
+      ExplicitWidth = 1111
+      ExplicitHeight = 323
+      object sbDirectors: TStatusBar
+        Left = 0
+        Top = 384
+        Width = 1168
+        Height = 19
+        Panels = <
+          item
+            Text = 'Record x of y'
+            Width = 200
+          end
+          item
+            Text = 'Panel 2'
+            Width = 50
+          end>
+        ExplicitTop = 304
+        ExplicitWidth = 1111
+      end
+      object Panel2: TPanel
+        Left = 0
+        Top = 0
+        Width = 1168
+        Height = 384
+        Align = alClient
+        BevelInner = bvRaised
+        BevelKind = bkSoft
+        Caption = 'Panel2'
+        Color = 33792
+        ParentBackground = False
+        TabOrder = 1
+        ExplicitWidth = 1111
+        ExplicitHeight = 304
+        object DBGrid1: TDBGrid
+          Left = 32
+          Top = 87
+          Width = 977
+          Height = 249
+          Color = 33792
+          DataSource = dsDirectors
+          DefaultDrawing = False
+          DrawingStyle = gdsClassic
+          FixedColor = 7143276
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'System'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clBlack
+          TitleFont.Height = -13
+          TitleFont.Name = 'System'
+          TitleFont.Style = []
+          StyleElements = [seClient, seBorder]
+          OnDrawColumnCell = DBGrid1DrawColumnCell
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'ID'
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'ownerId'
+              Title.Caption = 'Owner Id'
+              Width = 80
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'directorSection'
+              Title.Caption = 'Director Section'
+              Width = 80
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'startDate'
+              Title.Caption = 'Start Date'
+              Width = 80
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'stopDate'
+              Title.Caption = 'Stop Date'
+              Width = 80
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'emailAcct'
+              Title.Caption = 'Email Acct'
+              Width = 250
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'sortOrder'
+              Title.Caption = 'Sort Order'
+              Width = 80
+              Visible = True
+            end>
+        end
+        object dbNavDirectors: TDBNavigator
+          Left = 339
+          Top = 59
+          Width = 350
+          Height = 30
+          DataSource = dsDirectors
+          TabOrder = 1
+        end
+        object StatusBar2: TStatusBar
+          Left = 2
+          Top = 359
+          Width = 1160
+          Height = 19
+          Panels = <
+            item
+              Width = 150
+            end
+            item
+              Width = 150
+            end
+            item
+              Width = 150
+            end>
+          ExplicitLeft = 88
+          ExplicitTop = 360
+          ExplicitWidth = 0
+        end
+      end
+    end
+    object TabSheet4: TTabSheet
+      Caption = 'Email Accts'
+      ImageIndex = 3
+      ExplicitWidth = 1111
+      ExplicitHeight = 323
+      object DBGrid4: TDBGrid
+        Left = 52
+        Top = 87
+        Width = 1057
+        Height = 273
+        DataSource = dsEmailAccts
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -13
+        TitleFont.Name = 'System'
+        TitleFont.Style = []
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'ID'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'acct'
+            Title.Caption = 'Email Acct'
+            Width = 250
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'section'
+            Title.Caption = 'Section'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'dateCreated'
+            Title.Caption = 'Date Created'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'dateRetired'
+            Title.Caption = 'Date Retired'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'Domain'
+            Width = 150
+            Visible = True
+          end>
+      end
+      object dbNavEmailAccts: TDBNavigator
+        Left = 416
+        Top = 48
+        Width = 350
+        Height = 33
+        DataSource = dsEmailAccts
+        TabOrder = 1
+      end
+      object StatusBar3: TStatusBar
+        Left = 0
+        Top = 384
+        Width = 1168
+        Height = 19
+        Panels = <
+          item
+            Text = 'Record x of y'
+            Width = 200
+          end
+          item
+            Text = 'Panel 2'
+            Width = 50
+          end>
+        ExplicitTop = 304
+        ExplicitWidth = 1111
+      end
+    end
+    object Houses: TTabSheet
+      Caption = 'Houses'
+      ImageIndex = 1
+      ExplicitWidth = 1111
+      ExplicitHeight = 323
+      object Panel3: TPanel
+        Left = 0
+        Top = 0
+        Width = 1168
+        Height = 403
+        Align = alClient
+        Caption = 'Panel3'
+        Color = 16675382
+        ParentBackground = False
+        TabOrder = 0
+        ExplicitWidth = 1111
+        ExplicitHeight = 323
+        object sbHousesAcct: TSpeedButton
+          Left = 112
+          Top = 80
+          Width = 25
+          Height = 25
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000120B0000120B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+            333333333337F33333333333333033333333333333373F333333333333090333
+            33333333337F7F33333333333309033333333333337373F33333333330999033
+            3333333337F337F33333333330999033333333333733373F3333333309999903
+            333333337F33337F33333333099999033333333373333373F333333099999990
+            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333300033333333333337773333333}
+          NumGlyphs = 2
+          OnClick = sbHousesAcctClick
+        end
+        object sbHousesAddress: TSpeedButton
+          Tag = 2
+          Left = 216
+          Top = 80
+          Width = 25
+          Height = 25
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000120B0000120B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+            333333333337F33333333333333033333333333333373F333333333333090333
+            33333333337F7F33333333333309033333333333337373F33333333330999033
+            3333333337F337F33333333330999033333333333733373F3333333309999903
+            333333337F33337F33333333099999033333333373333373F333333099999990
+            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333300033333333333337773333333}
+          NumGlyphs = 2
+          OnClick = sbHousesAcctClick
+        end
+        object sbHousesStreetName: TSpeedButton
+          Tag = 6
+          Left = 416
+          Top = 80
+          Width = 25
+          Height = 25
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000120B0000120B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+            333333333337F33333333333333033333333333333373F333333333333090333
+            33333333337F7F33333333333309033333333333337373F33333333330999033
+            3333333337F337F33333333330999033333333333733373F3333333309999903
+            333333337F33337F33333333099999033333333373333373F333333099999990
+            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333300033333333333337773333333}
+          NumGlyphs = 2
+          OnClick = sbHousesAcctClick
+        end
+        object sbHousesSection: TSpeedButton
+          Tag = 4
+          Left = 336
+          Top = 80
+          Width = 25
+          Height = 25
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000120B0000120B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+            333333333337F33333333333333033333333333333373F333333333333090333
+            33333333337F7F33333333333309033333333333337373F33333333330999033
+            3333333337F337F33333333330999033333333333733373F3333333309999903
+            333333337F33337F33333333099999033333333373333373F333333099999990
+            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333300033333333333337773333333}
+          NumGlyphs = 2
+          OnClick = sbHousesAcctClick
+        end
+        object sbHousesStreetNumber: TSpeedButton
+          Tag = 8
+          Left = 536
+          Top = 80
+          Width = 25
+          Height = 25
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000120B0000120B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+            333333333337F33333333333333033333333333333373F333333333333090333
+            33333333337F7F33333333333309033333333333337373F33333333330999033
+            3333333337F337F33333333330999033333333333733373F3333333309999903
+            333333337F33337F33333333099999033333333373333373F333333099999990
+            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333300033333333333337773333333}
+          NumGlyphs = 2
+          OnClick = sbHousesAcctClick
+        end
+        object dbNavHouses: TDBNavigator
+          Left = 336
+          Top = 35
+          Width = 350
+          Height = 30
+          DataSource = dsHouses
+          TabOrder = 0
+        end
+        object DBGrid2: TDBGrid
+          Left = 31
+          Top = 119
+          Width = 1050
+          Height = 233
+          DataSource = dsHouses
+          DrawingStyle = gdsClassic
+          FixedColor = 16756364
+          TabOrder = 1
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -13
+          TitleFont.Name = 'System'
+          TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'acctID'
+              Width = 50
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'houseAcct'
+              Title.Caption = 'Acct #'
+              Width = 70
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Address'
+              Width = 150
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'Section'
+              Width = 70
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'StreetName'
+              Title.Caption = 'Street Name'
+              Width = 110
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'StreetNumber'
+              Title.Caption = 'Street Number'
+              Width = 110
+              Visible = True
+            end>
+        end
+        object StatusBar1: TStatusBar
+          Left = 1
+          Top = 383
+          Width = 1166
+          Height = 19
+          Panels = <
+            item
+              Text = 'record x of y'
+              Width = 200
+            end
+            item
+              Width = 50
+            end>
+          ExplicitTop = 303
+          ExplicitWidth = 1109
+        end
+      end
+    end
+    object TabSheet3: TTabSheet
+      Caption = 'Passwords'
+      ImageIndex = 2
+      ExplicitLeft = 8
+      ExplicitTop = 6
+      ExplicitHeight = 323
+      object DBGrid3: TDBGrid
+        Left = 52
+        Top = 96
+        Width = 977
+        Height = 241
+        DataSource = dsPasswords
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -13
+        TitleFont.Name = 'System'
+        TitleFont.Style = []
+      end
+      object dbNavPasswords: TDBNavigator
+        Left = 408
+        Top = 72
+        Width = 350
+        Height = 33
+        DataSource = dsPasswords
+        TabOrder = 1
+      end
+      object StatusBar4: TStatusBar
+        Left = 0
+        Top = 384
+        Width = 1168
+        Height = 19
+        Panels = <
+          item
+            Text = 'Record x of y'
+            Width = 200
+          end
+          item
+            Text = 'Panel 2'
+            Width = 50
+          end>
+        ExplicitTop = 304
+        ExplicitWidth = 1111
+      end
+    end
+    object Owners: TTabSheet
+      Caption = 'Owners'
+      ImageIndex = 4
+      ExplicitLeft = 8
+      ExplicitTop = 6
+      object SpeedButton1: TSpeedButton
+        Left = 64
+        Top = 87
+        Width = 25
+        Height = 25
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000120B0000120B00001000000000000000000000000000
+          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+          333333333337F33333333333333033333333333333373F333333333333090333
+          33333333337F7F33333333333309033333333333337373F33333333330999033
+          3333333337F337F33333333330999033333333333733373F3333333309999903
+          333333337F33337F33333333099999033333333373333373F333333099999990
+          33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+          33333333337F7F33333333333309033333333333337F7F333333333333090333
+          33333333337F7F33333333333309033333333333337F7F333333333333090333
+          33333333337F7F33333333333300033333333333337773333333}
+        NumGlyphs = 2
+        OnClick = sbHousesAcctClick
+      end
+      object SpeedButton2: TSpeedButton
+        Left = 200
+        Top = 88
+        Width = 25
+        Height = 25
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000120B0000120B00001000000000000000000000000000
+          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+          333333333337F33333333333333033333333333333373F333333333333090333
+          33333333337F7F33333333333309033333333333337373F33333333330999033
+          3333333337F337F33333333330999033333333333733373F3333333309999903
+          333333337F33337F33333333099999033333333373333373F333333099999990
+          33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+          33333333337F7F33333333333309033333333333337F7F333333333333090333
+          33333333337F7F33333333333309033333333333337F7F333333333333090333
+          33333333337F7F33333333333300033333333333337773333333}
+        NumGlyphs = 2
+        OnClick = sbHousesAcctClick
+      end
+      object SpeedButton3: TSpeedButton
+        Left = 312
+        Top = 88
+        Width = 25
+        Height = 25
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000120B0000120B00001000000000000000000000000000
+          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+          333333333337F33333333333333033333333333333373F333333333333090333
+          33333333337F7F33333333333309033333333333337373F33333333330999033
+          3333333337F337F33333333330999033333333333733373F3333333309999903
+          333333337F33337F33333333099999033333333373333373F333333099999990
+          33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+          33333333337F7F33333333333309033333333333337F7F333333333333090333
+          33333333337F7F33333333333309033333333333337F7F333333333333090333
+          33333333337F7F33333333333300033333333333337773333333}
+        NumGlyphs = 2
+        OnClick = sbHousesAcctClick
+      end
+      object SpeedButton4: TSpeedButton
+        Left = 400
+        Top = 88
+        Width = 25
+        Height = 25
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000120B0000120B00001000000000000000000000000000
+          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+          333333333337F33333333333333033333333333333373F333333333333090333
+          33333333337F7F33333333333309033333333333337373F33333333330999033
+          3333333337F337F33333333330999033333333333733373F3333333309999903
+          333333337F33337F33333333099999033333333373333373F333333099999990
+          33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+          33333333337F7F33333333333309033333333333337F7F333333333333090333
+          33333333337F7F33333333333309033333333333337F7F333333333333090333
+          33333333337F7F33333333333300033333333333337773333333}
+        NumGlyphs = 2
+        OnClick = sbHousesAcctClick
+      end
+      object SpeedButton5: TSpeedButton
+        Left = 520
+        Top = 88
+        Width = 25
+        Height = 25
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000120B0000120B00001000000000000000000000000000
+          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+          333333333337F33333333333333033333333333333373F333333333333090333
+          33333333337F7F33333333333309033333333333337373F33333333330999033
+          3333333337F337F33333333330999033333333333733373F3333333309999903
+          333333337F33337F33333333099999033333333373333373F333333099999990
+          33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+          33333333337F7F33333333333309033333333333337F7F333333333333090333
+          33333333337F7F33333333333309033333333333337F7F333333333333090333
+          33333333337F7F33333333333300033333333333337773333333}
+        NumGlyphs = 2
+        OnClick = sbHousesAcctClick
+      end
+      object SpeedButton6: TSpeedButton
+        Left = 672
+        Top = 88
+        Width = 25
+        Height = 25
+        Glyph.Data = {
+          76010000424D7601000000000000760000002800000020000000100000000100
+          04000000000000010000120B0000120B00001000000000000000000000000000
+          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+          333333333337F33333333333333033333333333333373F333333333333090333
+          33333333337F7F33333333333309033333333333337373F33333333330999033
+          3333333337F337F33333333330999033333333333733373F3333333309999903
+          333333337F33337F33333333099999033333333373333373F333333099999990
+          33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+          33333333337F7F33333333333309033333333333337F7F333333333333090333
+          33333333337F7F33333333333309033333333333337F7F333333333333090333
+          33333333337F7F33333333333300033333333333337773333333}
+        NumGlyphs = 2
+        OnClick = sbHousesAcctClick
+      end
+      object DBGrid5: TDBGrid
+        Left = 11
+        Top = 118
+        Width = 1150
+        Height = 259
+        DataSource = dsOwners
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -13
+        TitleFont.Name = 'System'
+        TitleFont.Style = []
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'ID'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'firstName'
+            Title.Caption = 'First Name'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'lastName'
+            Title.Caption = 'Last Name'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'houseAcct'
+            Title.Caption = 'House Acct'
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'usePolicySigned'
+            Title.Caption = 'Use Policy Signed'
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'policyDate'
+            Title.Caption = 'Policy Date'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'stopDate'
+            Title.Caption = 'Stop Date'
+            Visible = True
+          end>
+      end
+      object dbNavOwners: TDBNavigator
+        Left = 392
+        Top = 32
+        Width = 350
+        Height = 33
+        DataSource = dsOwners
+        TabOrder = 1
+      end
+      object StatusBar5: TStatusBar
+        Left = 0
+        Top = 384
+        Width = 1168
+        Height = 19
+        Panels = <
+          item
+            Text = 'Record x of y'
+            Width = 200
+          end
+          item
+            Text = 'Panel 2'
+            Width = 50
+          end>
+        ExplicitTop = 304
+        ExplicitWidth = 1111
+      end
+      object CheckBox1: TCheckBox
+        Left = 551
+        Top = 92
+        Width = 20
+        Height = 17
+        TabOrder = 3
+      end
+      object CheckBox2: TCheckBox
+        Left = 703
+        Top = 92
+        Width = 20
+        Height = 17
+        TabOrder = 4
+      end
+      object CheckBox3: TCheckBox
+        Left = 431
+        Top = 92
+        Width = 20
+        Height = 17
+        TabOrder = 5
+      end
+    end
+    object Sections: TTabSheet
+      Caption = 'Sections'
+      ImageIndex = 5
+      ExplicitLeft = 8
+      ExplicitTop = 6
+      object DBGrid6: TDBGrid
+        Left = 24
+        Top = 104
+        Width = 1057
+        Height = 265
+        DataSource = dsSections
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -13
+        TitleFont.Name = 'System'
+        TitleFont.Style = []
+      end
+      object dbNavSections: TDBNavigator
+        Left = 392
+        Top = 56
+        Width = 350
+        Height = 33
+        DataSource = dsSections
+        TabOrder = 1
+      end
+      object StatusBar6: TStatusBar
+        Left = 0
+        Top = 384
+        Width = 1168
+        Height = 19
+        Panels = <
+          item
+            Text = 'Record x of y'
+            Width = 200
+          end
+          item
+            Text = 'Panel 2'
+            Width = 50
+          end>
+        ExplicitTop = 304
+        ExplicitWidth = 1111
+      end
+    end
+  end
+  object MainMenu1: TMainMenu
+    Images = ImageList1
+    Left = 504
+    Top = 65528
+    object File1: TMenuItem
+      Caption = '&File'
+      Hint = 'File related commands'
+      object FileNewItem: TMenuItem
+        Action = FileNew1
+      end
+      object FileOpenItem: TMenuItem
+        Action = FileOpen1
+      end
+      object FileSaveItem: TMenuItem
+        Action = FileSave1
+      end
+      object FileSaveAsItem: TMenuItem
+        Action = FileSaveAs1
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object FileExitItem: TMenuItem
+        Action = FileExit1
+      end
+    end
+    object Edit1: TMenuItem
+      Caption = '&Edit'
+      Hint = 'Edit commands'
+      object CutItem: TMenuItem
+        Action = EditCut1
+      end
+      object CopyItem: TMenuItem
+        Action = EditCopy1
+      end
+      object PasteItem: TMenuItem
+        Action = EditPaste1
+      end
+    end
+    object Help1: TMenuItem
+      Caption = '&Help'
+      Hint = 'Help topics'
+      object HelpAboutItem: TMenuItem
+        Action = HelpAbout1
+      end
+    end
+  end
+  object ActionList1: TActionList
+    Images = ImageList1
+    Left = 560
+    object FileNew1: TAction
+      Category = 'File'
+      Caption = '&New'
+      Hint = 'New|Create a new file'
+      ImageIndex = 6
+      ShortCut = 16462
+      OnExecute = FileNew1Execute
+    end
+    object FileOpen1: TAction
+      Category = 'File'
+      Caption = '&Open'
+      Hint = 'Open|Open a file'
+      ImageIndex = 7
+      ShortCut = 16463
+      OnExecute = FileOpen1Execute
+    end
+    object FileSave1: TAction
+      Category = 'File'
+      Caption = '&Save'
+      Hint = 'Save|Save current file'
+      ImageIndex = 8
+      ShortCut = 16467
+      OnExecute = FileSave1Execute
+    end
+    object FileSaveAs1: TAction
+      Category = 'File'
+      Caption = 'Save &As...'
+      Hint = 'Save As|Save current file with different name'
+      OnExecute = FileSave1Execute
+    end
+    object FileExit1: TAction
+      Category = 'File'
+      Caption = 'E&xit'
+      Hint = 'Exit|Exit application'
+      OnExecute = FileExit1Execute
+    end
+    object EditCut1: TEditCut
+      Category = 'Edit'
+      Caption = 'Cu&t'
+      Hint = 'Cut|Cuts the selection and puts it on the Clipboard'
+      ImageIndex = 0
+      ShortCut = 16472
+    end
+    object EditCopy1: TEditCopy
+      Category = 'Edit'
+      Caption = '&Copy'
+      Hint = 'Copy|Copies the selection and puts it on the Clipboard'
+      ImageIndex = 1
+      ShortCut = 16451
+    end
+    object EditPaste1: TEditPaste
+      Category = 'Edit'
+      Caption = '&Paste'
+      Hint = 'Paste|Inserts Clipboard contents'
+      ImageIndex = 2
+      ShortCut = 16470
+    end
+    object HelpAbout1: TAction
+      Category = 'Help'
+      Caption = '&About...'
+      Hint = 
+        'About|Displays program information, version number, and copyrigh' +
+        't'
+      OnExecute = HelpAbout1Execute
+    end
+  end
+  object ImageList1: TImageList
+    Width = 32
+    Left = 616
+    Top = 65528
+    Bitmap = {
+      494C0101020018002C0020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      0000000000003600000028000000800000001000000001002000000000000020
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000007F7F7F007F7F7F007F7F7F00FFFFFF00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000007F7F7F00FFFFFF0000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000FF000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000007F7F7F00FFFFFF007F7F7F00FFFFFF00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000007F7F7F0000000000FFFFFF00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000FF000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000007F7F7F00FFFFFF007F7F7F00FFFFFF00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000FF000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000007F7F7F00FFFFFF007F7F7F00FFFFFF00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000FF000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000007F7F7F00FFFFFF007F7F7F00FFFFFF00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000FF000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000007F7F7F00000000007F7F7F0000000000FFFFFF000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000FF000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000007F7F7F00FFFFFF007F7F7F00FFFFFF00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000FF000000FF000000FF0000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000007F7F7F00FFFFFF0000000000000000007F7F7F00FFFFFF000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000FF000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000FFFFFF00FFFFFF007F7F7F00FFFFFF007F7F7F00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF000000000000000000000000000000000000000000000000000000
+      000000000000000000000000FF000000FF000000FF0000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000007F7F7F000000000000000000000000007F7F7F0000000000FFFF
+      FF00000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000FF000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000007F7F
+      7F007F7F7F007F7F7F007F7F7F00000000007F7F7F007F7F7F007F7F7F007F7F
+      7F00FFFFFF000000000000000000000000000000000000000000000000000000
+      0000000000000000FF000000FF000000FF000000FF000000FF00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00007F7F7F00FFFFFF00000000000000000000000000000000007F7F7F00FFFF
+      FF00000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000FF000000FF000000FF000000FF000000FF000000FF000000FF000000
+      0000000000000000000000000000000000000000000000000000000000007F7F
+      7F0000000000FFFFFF0000000000000000000000000000000000000000007F7F
+      7F00000000000000000000000000000000000000000000000000000000000000
+      0000000000000000FF000000FF000000FF000000FF000000FF00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00007F7F7F0000000000000000000000000000000000000000007F7F7F000000
+      0000FFFFFF000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000FF000000FF000000FF000000FF000000FF00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00007F7F7F00FFFFFF00000000000000000000000000000000007F7F7F00FFFF
+      FF00000000000000000000000000000000000000000000000000000000000000
+      00000000FF000000FF000000FF000000FF000000FF000000FF000000FF000000
+      0000000000000000000000000000000000000000000000000000000000007F7F
+      7F00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000000000FFFFFF00FFFFFF007F7F
+      7F00FFFFFF000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000FF000000FF000000FF000000FF000000FF00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00007F7F7F0000000000FFFFFF000000000000000000000000007F7F7F000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000FF000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000007F7F
+      7F007F7F7F007F7F7F007F7F7F00FFFFFF007F7F7F007F7F7F007F7F7F007F7F
+      7F00000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000FF000000FF000000FF0000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000007F7F7F00FFFFFF0000000000000000007F7F7F00FFFFFF000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000FF000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000007F7F7F00FFFFFF007F7F7F00FFFFFF00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000FF000000FF000000FF0000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000007F7F7F0000000000FFFFFF00000000007F7F7F00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000FF000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000007F7F7F00FFFFFF007F7F7F00FFFFFF00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000FF000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000007F7F7F00FFFFFF007F7F7F00FFFFFF00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000FF000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000007F7F7F00FFFFFF007F7F7F00FFFFFF00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000FF000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000007F7F7F00000000007F7F7F0000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000FF000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000007F7F7F00FFFFFF007F7F7F00FFFFFF00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000007F7F7F00FFFFFF0000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000FF000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000007F7F7F00FFFFFF007F7F7F00FFFFFF00000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000007F7F7F000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000007F7F7F007F7F7F007F7F7F0000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000424D3E000000000000003E000000
+      2800000080000000100000000100010000000000000100000000000000000000
+      000000000000000000000000FFFFFF00FC7FFC3FFEFFFE7F0000000000000000
+      FC7FFC3FFEFFFEBF0000000000000000FC7FFC3FFC7FFC3F0000000000000000
+      FC7FFC3FFC7FFD5F0000000000000000FC7FFC3FF83FF99F0000000000000000
+      FC7FF007F83FFBAF0000000000000000E00FE107F01FF3CF0000000000000000
+      E00FEBEFF01FF7D70000000000000000F01FF3CFE00FE0870000000000000000
+      F01FF5DFE00FE00F0000000000000000F83FF99FFC7FFC3F0000000000000000
+      F83FFABFFC7FFC3F0000000000000000FC7FFC3FFC7FFC3F0000000000000000
+      FC7FFD7FFC7FFC3F0000000000000000FEFFFE7FFC7FFC3F0000000000000000
+      FEFFFEFFFC7FFC7F000000000000000000000000000000000000000000000000
+      000000000000}
+  end
+  object OpenDialog: TOpenDialog
+    Filter = 'All Files (*.*)|*.*'
+    Left = 664
+    Top = 16
+  end
+  object SaveDialog: TSaveDialog
+    Filter = 'All Files (*.*)|*.*'
+    Left = 704
+  end
+  object dsDirectors: TDataSource
+    DataSet = aTblDirectors
+    Left = 496
+    Top = 128
+  end
+  object ADOConnection1: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Admin\Doc' +
+      'uments\SscaEmail.accdb;Persist Security Info=False'
+    Mode = cmShareDenyNone
+    Provider = 'Microsoft.ACE.OLEDB.12.0'
+    Left = 1064
+  end
+  object aTblDirectors: TADOTable
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    AfterScroll = aTblDirectorsAfterScroll
+    TableDirect = True
+    TableName = 'Directors'
+    Left = 496
+    Top = 80
+  end
+  object dsHouses: TDataSource
+    DataSet = aDsHouses
+    Left = 664
+    Top = 128
+  end
+  object aDsHouses: TADODataSet
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    CommandText = 'select * from Houses'
+    IndexFieldNames = 'houseAcct DESC'
+    Parameters = <>
+    Left = 664
+    Top = 80
+    object aDsHousesacctID: TAutoIncField
+      FieldName = 'acctID'
+      ReadOnly = True
+    end
+    object aDsHouseshouseAcct: TIntegerField
+      FieldName = 'houseAcct'
+      DisplayFormat = '000000'
+    end
+    object aDsHousesAddress: TWideStringField
+      FieldName = 'Address'
+      Size = 255
+    end
+    object aDsHousesSection: TWideStringField
+      FieldName = 'Section'
+      Size = 255
+    end
+    object aDsHousesStreetNumber: TIntegerField
+      FieldName = 'StreetNumber'
+    end
+    object aDsHousesStreetName: TWideStringField
+      FieldName = 'StreetName'
+      Size = 50
+    end
+  end
+  object aTblPasswords: TADOTable
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    TableDirect = True
+    TableName = 'Passwords'
+    Left = 748
+    Top = 80
+    object aTblPasswordsID: TAutoIncField
+      FieldName = 'ID'
+      ReadOnly = True
+    end
+    object aTblPasswordsacct: TWideStringField
+      FieldName = 'acct'
+      Size = 50
+    end
+    object aTblPasswordspassword: TWideStringField
+      FieldName = 'password'
+      Size = 25
+    end
+    object aTblPasswordsstartDate: TDateTimeField
+      FieldName = 'startDate'
+    end
+    object aTblPasswordsstopDate: TDateTimeField
+      FieldName = 'stopDate'
+    end
+  end
+  object dsPasswords: TDataSource
+    DataSet = aTblPasswords
+    Left = 748
+    Top = 128
+  end
+  object aTblEmailAccts: TADOTable
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    TableDirect = True
+    TableName = 'EmailAccts'
+    Left = 580
+    Top = 80
+    object aTblEmailAcctsID: TAutoIncField
+      FieldName = 'ID'
+      ReadOnly = True
+    end
+    object aTblEmailAcctsacct: TWideStringField
+      FieldName = 'acct'
+      Size = 50
+    end
+    object aTblEmailAcctssection: TWideStringField
+      FieldName = 'section'
+      Size = 10
+    end
+    object aTblEmailAcctsdateCreated: TDateTimeField
+      FieldName = 'dateCreated'
+    end
+    object aTblEmailAcctsdateRetired: TDateTimeField
+      FieldName = 'dateRetired'
+    end
+    object aTblEmailAcctsDomain: TWideStringField
+      FieldName = 'Domain'
+      Size = 255
+    end
+  end
+  object dsEmailAccts: TDataSource
+    DataSet = aTblEmailAccts
+    Left = 580
+    Top = 128
+  end
+  object dsOwners: TDataSource
+    DataSet = aTblOwners
+    Left = 836
+    Top = 128
+  end
+  object aTblOwners: TADOTable
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    TableName = 'Owners'
+    Left = 832
+    Top = 80
+    object aTblOwnersID: TAutoIncField
+      FieldName = 'ID'
+      ReadOnly = True
+    end
+    object aTblOwnersfirstName: TWideStringField
+      FieldName = 'firstName'
+      Size = 15
+    end
+    object aTblOwnerslastName: TWideStringField
+      FieldName = 'lastName'
+      Size = 15
+    end
+    object aTblOwnershouseAcct: TIntegerField
+      FieldName = 'houseAcct'
+      DisplayFormat = '000000'
+    end
+    object aTblOwnersusePolicySigned: TBooleanField
+      FieldName = 'usePolicySigned'
+      DisplayValues = 'Yes; No'
+    end
+    object aTblOwnerspolicyDate: TDateTimeField
+      FieldName = 'policyDate'
+    end
+    object aTblOwnersstopDate: TDateTimeField
+      FieldName = 'stopDate'
+    end
+  end
+  object aTblSections: TADOTable
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    TableName = 'Sections'
+    Left = 916
+    Top = 80
+  end
+  object dsSections: TDataSource
+    DataSet = aTblSections
+    Left = 924
+    Top = 128
+  end
+end
