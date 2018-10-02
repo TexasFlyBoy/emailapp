@@ -234,9 +234,16 @@ var
   sortFieldName, sortDirection: string;
   oddEven: Boolean;
   buttonNumber, tagNumber, direction: integer;
+  numOfSpeedButtons, i: integer;
 begin
   tagNumber := TSpeedButton(Sender).Tag;
   buttonNumber := tagNumber div 2;
+  numOfSpeedButtons := owners.ComponentCount;
+  i := 0;
+  for i := 0 to owners.ComponentCount - 1 do
+  begin
+
+  end;
 
   if odd(tagNumber) then begin
     oddEven := True;
