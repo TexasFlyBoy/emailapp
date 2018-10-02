@@ -83,7 +83,7 @@ type
     aTblEmailAcctsDomain: TWideStringField;
     dsOwners: TDataSource;
     aTblOwners: TADOTable;
-    DBGrid5: TDBGrid;
+    dbgOwners: TDBGrid;
     aTblOwnersID: TAutoIncField;
     aTblOwnersfirstName: TWideStringField;
     aTblOwnerslastName: TWideStringField;
@@ -107,9 +107,9 @@ type
     StatusBar2: TStatusBar;
     StatusBar3: TStatusBar;
     StatusBar4: TStatusBar;
-    StatusBar5: TStatusBar;
+    sbOwners: TStatusBar;
     StatusBar6: TStatusBar;
-    SpeedButton1: TSpeedButton;
+    sbOwnersFName: TSpeedButton;
     SpeedButton2: TSpeedButton;
     SpeedButton3: TSpeedButton;
     SpeedButton4: TSpeedButton;
@@ -127,6 +127,7 @@ type
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure aTblDirectorsAfterScroll(DataSet: TDataSet);
     procedure sbHousesAcctClick(Sender: TObject);
+    procedure sbOwnersClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -219,6 +220,52 @@ begin
     TSpeedButton(Sender).Glyph.Assign(nil);
     ImageList1.GetBitmap(1,TSpeedButton(Sender).Glyph)
   end;
+end;
+
+{------------------------------------------------------------------+
+| sbOwnersClick(Sender: TObject)
+| This procedure operates when the user click on any of the
+| TSpeedButtons on the Owners TTabSheet.
+|  direction: 1 -->
+|                                                                |
++------------------------------------------------------------------}
+procedure TSDIAppForm.sbOwnersClick(Sender: TObject);
+var
+  sortFieldName, sortDirection: string;
+  oddEven: Boolean;
+  buttonNumber, tagNumber, direction: integer;
+begin
+  tagNumber := TSpeedButton(Sender).Tag;
+  buttonNumber := tagNumber div 2;
+
+  if odd(tagNumber) then begin
+    oddEven := True;
+    direction := 0;
+  end else begin
+    oddEven := False;
+    direction := 1;
+  end;
+
+  case buttonNumber of
+    0: sortFieldName := 'firstName';
+    1: sortFieldName := 'lastName';
+    2: sortFieldName := 'houseAcct';
+    3: sortFieldName := 'usePolicySigned';
+    4: sortFieldName := 'policyDate';
+    5: sortFieldName := 'stopDate';
+  end;
+  if (oddEven) then sortDirection := ' ASC'
+  else sortDirection := ' DESC';
+
+  aTblOwners.IndexFieldNames := sortFieldName + sortDirection;
+  TSpeedButton(Sender).Tag := (buttonNumber * 2) + direction;
+  TSpeedButton(Sender).Glyph.Assign(nil);
+  ImageList1.GetBitmap(direction, TSpeedButton(Sender).Glyph);
+
+  sbOwners.Panels[0].Text := 'direction:' + inttostr(direction);
+  sbOwners.Panels[1].Text := 'oddEven:' + BoolToStr(oddEven);
+  sbOwners.Panels[2].Text := 'tagNumber:' + IntToStr(tagNumber);
+  sbOwners.Panels[3].Text := 'buttonNumber:' + IntToStr(buttonNumber);
 end;
 
 end.
