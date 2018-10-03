@@ -44,41 +44,91 @@ object SDIAppForm: TSDIAppForm
     object Directors: TTabSheet
       Caption = 'Directors'
       Highlighted = True
-      object sbDirectors: TStatusBar
-        Left = 0
-        Top = 384
-        Width = 1168
-        Height = 19
-        Panels = <
-          item
-            Text = 'Record x of y'
-            Width = 200
-          end
-          item
-            Text = 'Panel 2'
-            Width = 50
-          end>
-      end
-      object Panel2: TPanel
+      object pnlDirectors: TPanel
         Left = 0
         Top = 0
         Width = 1168
-        Height = 384
+        Height = 403
         Align = alClient
         BevelInner = bvRaised
         BevelKind = bkSoft
-        Caption = 'Panel2'
+        Caption = 'pnlDirectors'
         Color = 33792
         ParentBackground = False
-        TabOrder = 1
-        object DBGrid1: TDBGrid
+        TabOrder = 0
+        ExplicitHeight = 384
+        object sbDirectorsId: TSpeedButton
+          Left = 72
+          Top = 48
+          Width = 25
+          Height = 25
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000120B0000120B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+            333333333337F33333333333333033333333333333373F333333333333090333
+            33333333337F7F33333333333309033333333333337373F33333333330999033
+            3333333337F337F33333333330999033333333333733373F3333333309999903
+            333333337F33337F33333333099999033333333373333373F333333099999990
+            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333300033333333333337773333333}
+          NumGlyphs = 2
+          OnClick = sbDirectorsClick
+        end
+        object sbDirectorsSection: TSpeedButton
+          Tag = 2
+          Left = 160
+          Top = 48
+          Width = 25
+          Height = 25
+          NumGlyphs = 2
+          OnClick = sbDirectorsClick
+        end
+        object sbDirectorsStartDate: TSpeedButton
+          Tag = 4
+          Left = 232
+          Top = 48
+          Width = 25
+          Height = 25
+          NumGlyphs = 2
+          OnClick = sbDirectorsClick
+        end
+        object sbDirectorsStopDate: TSpeedButton
+          Tag = 6
+          Left = 320
+          Top = 56
+          Width = 25
+          Height = 25
+          NumGlyphs = 2
+          OnClick = sbDirectorsClick
+        end
+        object sbDirectorsEmailAcct: TSpeedButton
+          Tag = 8
+          Left = 456
+          Top = 56
+          Width = 25
+          Height = 25
+          NumGlyphs = 2
+          OnClick = sbDirectorsClick
+        end
+        object sbDirectorsSortOrder: TSpeedButton
+          Tag = 10
+          Left = 648
+          Top = 56
+          Width = 25
+          Height = 25
+          NumGlyphs = 2
+          OnClick = sbDirectorsClick
+        end
+        object dbgDirectors: TDBGrid
           Left = 32
-          Top = 87
+          Top = 79
           Width = 977
           Height = 249
-          Color = 33792
           DataSource = dsDirectors
-          DefaultDrawing = False
           DrawingStyle = gdsClassic
           FixedColor = 7143276
           Font.Charset = DEFAULT_CHARSET
@@ -94,7 +144,7 @@ object SDIAppForm: TSDIAppForm
           TitleFont.Name = 'System'
           TitleFont.Style = []
           StyleElements = [seClient, seBorder]
-          OnDrawColumnCell = DBGrid1DrawColumnCell
+          OnDrawColumnCell = dbgDirectorsDrawColumnCell
           Columns = <
             item
               Expanded = False
@@ -112,7 +162,7 @@ object SDIAppForm: TSDIAppForm
               Expanded = False
               FieldName = 'directorSection'
               Title.Caption = 'Director Section'
-              Width = 80
+              Width = 101
               Visible = True
             end
             item
@@ -145,121 +195,206 @@ object SDIAppForm: TSDIAppForm
             end>
         end
         object dbNavDirectors: TDBNavigator
-          Left = 339
-          Top = 59
+          Left = 387
+          Top = 27
           Width = 350
           Height = 30
           DataSource = dsDirectors
           TabOrder = 1
         end
-        object StatusBar2: TStatusBar
+        object sbDirectors: TStatusBar
           Left = 2
-          Top = 359
+          Top = 378
           Width = 1160
           Height = 19
           Panels = <
             item
-              Width = 150
+              Width = 200
             end
             item
-              Width = 150
+              Width = 200
             end
             item
-              Width = 150
+              Width = 200
+            end
+            item
+              Width = 200
             end>
+          ExplicitLeft = -2
         end
       end
     end
     object TabSheet4: TTabSheet
       Caption = 'Email Accts'
       ImageIndex = 3
-      object DBGrid4: TDBGrid
-        Left = 52
-        Top = 87
-        Width = 1057
-        Height = 273
-        DataSource = dsEmailAccts
-        TabOrder = 0
-        TitleFont.Charset = DEFAULT_CHARSET
-        TitleFont.Color = clWindowText
-        TitleFont.Height = -13
-        TitleFont.Name = 'System'
-        TitleFont.Style = []
-        Columns = <
-          item
-            Expanded = False
-            FieldName = 'ID'
-            Visible = False
-          end
-          item
-            Expanded = False
-            FieldName = 'acct'
-            Title.Caption = 'Email Acct'
-            Width = 250
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'section'
-            Title.Caption = 'Section'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'dateCreated'
-            Title.Caption = 'Date Created'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'dateRetired'
-            Title.Caption = 'Date Retired'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'Domain'
-            Width = 150
-            Visible = True
-          end>
-      end
-      object dbNavEmailAccts: TDBNavigator
-        Left = 416
-        Top = 48
-        Width = 350
-        Height = 33
-        DataSource = dsEmailAccts
-        TabOrder = 1
-      end
-      object StatusBar3: TStatusBar
-        Left = 0
-        Top = 384
-        Width = 1168
-        Height = 19
-        Panels = <
-          item
-            Text = 'Record x of y'
-            Width = 200
-          end
-          item
-            Text = 'Panel 2'
-            Width = 50
-          end>
-      end
-    end
-    object Houses: TTabSheet
-      Caption = 'Houses'
-      ImageIndex = 1
-      object Panel3: TPanel
+      ExplicitLeft = 8
+      ExplicitTop = 6
+      object pnlEmailAccts: TPanel
         Left = 0
         Top = 0
         Width = 1168
         Height = 403
         Align = alClient
-        Caption = 'Panel3'
+        Caption = 'pnlEmailAccts'
+        Color = 15743371
+        ParentBackground = False
+        TabOrder = 0
+        ExplicitTop = 2
+        object spEmailAcct: TSpeedButton
+          Left = 120
+          Top = 56
+          Width = 25
+          Height = 25
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000120B0000120B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+            333333333337F33333333333333033333333333333373F333333333333090333
+            33333333337F7F33333333333309033333333333337373F33333333330999033
+            3333333337F337F33333333330999033333333333733373F3333333309999903
+            333333337F33337F33333333099999033333333373333373F333333099999990
+            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333300033333333333337773333333}
+          NumGlyphs = 2
+          OnClick = sbEmailClick
+        end
+        object spEmailSection: TSpeedButton
+          Tag = 2
+          Left = 333
+          Top = 56
+          Width = 25
+          Height = 25
+          NumGlyphs = 2
+          OnClick = sbEmailClick
+        end
+        object spEmailDateCreated: TSpeedButton
+          Tag = 4
+          Left = 440
+          Top = 55
+          Width = 25
+          Height = 25
+          NumGlyphs = 2
+          OnClick = sbEmailClick
+        end
+        object spEmailDateRetired: TSpeedButton
+          Tag = 6
+          Left = 576
+          Top = 56
+          Width = 25
+          Height = 25
+          NumGlyphs = 2
+          OnClick = sbEmailClick
+        end
+        object spEmailDomain: TSpeedButton
+          Tag = 8
+          Left = 728
+          Top = 56
+          Width = 25
+          Height = 25
+          NumGlyphs = 2
+          OnClick = sbEmailClick
+        end
+        object dbNavEmailAccts: TDBNavigator
+          Left = 364
+          Top = 16
+          Width = 350
+          Height = 33
+          DataSource = dsEmailAccts
+          TabOrder = 0
+        end
+        object DBGrid4: TDBGrid
+          Left = 52
+          Top = 87
+          Width = 988
+          Height = 273
+          DataSource = dsEmailAccts
+          DrawingStyle = gdsClassic
+          FixedColor = 16294857
+          TabOrder = 1
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -13
+          TitleFont.Name = 'System'
+          TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'ID'
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'acct'
+              Title.Caption = 'Email Acct'
+              Width = 250
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'section'
+              Title.Caption = 'Section'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'dateCreated'
+              Title.Caption = 'Date Created'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'dateRetired'
+              Title.Caption = 'Date Retired'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Domain'
+              Width = 150
+              Visible = True
+            end>
+        end
+        object sbEmailAccts: TStatusBar
+          Left = 1
+          Top = 383
+          Width = 1166
+          Height = 19
+          Panels = <
+            item
+              Text = 'Record x of y'
+              Width = 200
+            end
+            item
+              Text = 'Panel 2'
+              Width = 200
+            end
+            item
+              Width = 200
+            end
+            item
+              Width = 200
+            end>
+          ExplicitLeft = 0
+        end
+      end
+    end
+    object Houses: TTabSheet
+      Caption = 'Houses'
+      ImageIndex = 1
+      object pnlHouses: TPanel
+        Left = 0
+        Top = 0
+        Width = 1168
+        Height = 403
+        Align = alClient
+        Caption = 'pnlHouses'
         Color = 16675382
         ParentBackground = False
         TabOrder = 0
+        ExplicitTop = 2
         object sbHousesAcct: TSpeedButton
           Left = 120
           Top = 80
@@ -287,19 +422,6 @@ object SDIAppForm: TSDIAppForm
           Top = 80
           Width = 25
           Height = 25
-          Glyph.Data = {
-            76010000424D7601000000000000760000002800000020000000100000000100
-            04000000000000010000120B0000120B00001000000000000000000000000000
-            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
-            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
-            333333333337F33333333333333033333333333333373F333333333333090333
-            33333333337F7F33333333333309033333333333337373F33333333330999033
-            3333333337F337F33333333330999033333333333733373F3333333309999903
-            333333337F33337F33333333099999033333333373333373F333333099999990
-            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
-            33333333337F7F33333333333309033333333333337F7F333333333333090333
-            33333333337F7F33333333333309033333333333337F7F333333333333090333
-            33333333337F7F33333333333300033333333333337773333333}
           NumGlyphs = 2
           OnClick = sbHousesAcctClick
         end
@@ -309,19 +431,6 @@ object SDIAppForm: TSDIAppForm
           Top = 80
           Width = 25
           Height = 25
-          Glyph.Data = {
-            76010000424D7601000000000000760000002800000020000000100000000100
-            04000000000000010000120B0000120B00001000000000000000000000000000
-            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
-            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
-            333333333337F33333333333333033333333333333373F333333333333090333
-            33333333337F7F33333333333309033333333333337373F33333333330999033
-            3333333337F337F33333333330999033333333333733373F3333333309999903
-            333333337F33337F33333333099999033333333373333373F333333099999990
-            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
-            33333333337F7F33333333333309033333333333337F7F333333333333090333
-            33333333337F7F33333333333309033333333333337F7F333333333333090333
-            33333333337F7F33333333333300033333333333337773333333}
           NumGlyphs = 2
           OnClick = sbHousesAcctClick
         end
@@ -331,19 +440,6 @@ object SDIAppForm: TSDIAppForm
           Top = 80
           Width = 25
           Height = 25
-          Glyph.Data = {
-            76010000424D7601000000000000760000002800000020000000100000000100
-            04000000000000010000120B0000120B00001000000000000000000000000000
-            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
-            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
-            333333333337F33333333333333033333333333333373F333333333333090333
-            33333333337F7F33333333333309033333333333337373F33333333330999033
-            3333333337F337F33333333330999033333333333733373F3333333309999903
-            333333337F33337F33333333099999033333333373333373F333333099999990
-            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
-            33333333337F7F33333333333309033333333333337F7F333333333333090333
-            33333333337F7F33333333333309033333333333337F7F333333333333090333
-            33333333337F7F33333333333300033333333333337773333333}
           NumGlyphs = 2
           OnClick = sbHousesAcctClick
         end
@@ -353,19 +449,6 @@ object SDIAppForm: TSDIAppForm
           Top = 80
           Width = 25
           Height = 25
-          Glyph.Data = {
-            76010000424D7601000000000000760000002800000020000000100000000100
-            04000000000000010000120B0000120B00001000000000000000000000000000
-            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
-            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
-            333333333337F33333333333333033333333333333373F333333333333090333
-            33333333337F7F33333333333309033333333333337373F33333333330999033
-            3333333337F337F33333333330999033333333333733373F3333333309999903
-            333333337F33337F33333333099999033333333373333373F333333099999990
-            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
-            33333333337F7F33333333333309033333333333337F7F333333333333090333
-            33333333337F7F33333333333309033333333333337F7F333333333333090333
-            33333333337F7F33333333333300033333333333337773333333}
           NumGlyphs = 2
           OnClick = sbHousesAcctClick
         end
@@ -433,7 +516,7 @@ object SDIAppForm: TSDIAppForm
               Visible = True
             end>
         end
-        object StatusBar1: TStatusBar
+        object sbHouses: TStatusBar
           Left = 1
           Top = 383
           Width = 1166
@@ -444,7 +527,13 @@ object SDIAppForm: TSDIAppForm
               Width = 200
             end
             item
-              Width = 50
+              Width = 200
+            end
+            item
+              Width = 200
+            end
+            item
+              Width = 200
             end>
         end
       end
@@ -452,41 +541,139 @@ object SDIAppForm: TSDIAppForm
     object TabSheet3: TTabSheet
       Caption = 'Passwords'
       ImageIndex = 2
-      object DBGrid3: TDBGrid
-        Left = 52
-        Top = 96
-        Width = 977
-        Height = 241
-        DataSource = dsPasswords
-        TabOrder = 0
-        TitleFont.Charset = DEFAULT_CHARSET
-        TitleFont.Color = clWindowText
-        TitleFont.Height = -13
-        TitleFont.Name = 'System'
-        TitleFont.Style = []
-      end
-      object dbNavPasswords: TDBNavigator
-        Left = 408
-        Top = 72
-        Width = 350
-        Height = 33
-        DataSource = dsPasswords
-        TabOrder = 1
-      end
-      object StatusBar4: TStatusBar
+      object pnlPasswords: TPanel
         Left = 0
-        Top = 384
+        Top = 0
         Width = 1168
-        Height = 19
-        Panels = <
-          item
-            Text = 'Record x of y'
-            Width = 200
-          end
-          item
-            Text = 'Panel 2'
-            Width = 50
-          end>
+        Height = 403
+        Align = alClient
+        Caption = 'pnlPasswords'
+        Color = 1149183
+        ParentBackground = False
+        TabOrder = 0
+        ExplicitTop = 2
+        object sbPasswordAcct: TSpeedButton
+          Left = 240
+          Top = 56
+          Width = 25
+          Height = 25
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000120B0000120B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+            333333333337F33333333333333033333333333333373F333333333333090333
+            33333333337F7F33333333333309033333333333337373F33333333330999033
+            3333333337F337F33333333330999033333333333733373F3333333309999903
+            333333337F33337F33333333099999033333333373333373F333333099999990
+            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333300033333333333337773333333}
+          NumGlyphs = 2
+          OnClick = sbPasswordClick
+        end
+        object sbPasswordPassword: TSpeedButton
+          Tag = 2
+          Left = 568
+          Top = 55
+          Width = 25
+          Height = 25
+          NumGlyphs = 2
+          OnClick = sbPasswordClick
+        end
+        object sbPasswordStartDate: TSpeedButton
+          Tag = 4
+          Left = 784
+          Top = 56
+          Width = 25
+          Height = 25
+          NumGlyphs = 2
+          OnClick = sbPasswordClick
+        end
+        object sbPasswordStopDate: TSpeedButton
+          Tag = 6
+          Left = 928
+          Top = 55
+          Width = 25
+          Height = 25
+          NumGlyphs = 2
+          OnClick = sbPasswordClick
+        end
+        object DBGrid3: TDBGrid
+          Left = 28
+          Top = 104
+          Width = 1005
+          Height = 273
+          Color = clWhite
+          DataSource = dsPasswords
+          DrawingStyle = gdsClassic
+          FixedColor = 7846911
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -13
+          TitleFont.Name = 'System'
+          TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'ID'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'acct'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'password'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'startDate'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'stopDate'
+              Visible = True
+            end>
+        end
+        object dbNavPasswords: TDBNavigator
+          Left = 387
+          Top = 16
+          Width = 342
+          Height = 33
+          DataSource = dsPasswords
+          VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbEdit, nbPost, nbCancel, nbRefresh]
+          TabOrder = 1
+        end
+        object sbPasswords: TStatusBar
+          Left = 1
+          Top = 383
+          Width = 1166
+          Height = 19
+          Panels = <
+            item
+              Text = 'Record x of y'
+              Width = 200
+            end
+            item
+              Text = 'Panel 2'
+              Width = 200
+            end
+            item
+              Width = 200
+            end
+            item
+              Width = 200
+            end>
+          ExplicitTop = 310
+          ExplicitWidth = 567
+        end
       end
     end
     object Owners: TTabSheet
@@ -494,26 +681,13 @@ object SDIAppForm: TSDIAppForm
       ImageIndex = 4
       object sbOwnersFName: TSpeedButton
         Left = 64
-        Top = 87
+        Top = 88
         Width = 25
         Height = 25
-        Glyph.Data = {
-          76010000424D7601000000000000760000002800000020000000100000000100
-          04000000000000010000120B0000120B00001000000000000000000000000000
-          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
-          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
-          333333333337F33333333333333033333333333333373F333333333333090333
-          33333333337F7F33333333333309033333333333337373F33333333330999033
-          3333333337F337F33333333330999033333333333733373F3333333309999903
-          333333337F33337F33333333099999033333333373333373F333333099999990
-          33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
-          33333333337F7F33333333333309033333333333337F7F333333333333090333
-          33333333337F7F33333333333309033333333333337F7F333333333333090333
-          33333333337F7F33333333333300033333333333337773333333}
         NumGlyphs = 2
         OnClick = sbOwnersClick
       end
-      object SpeedButton2: TSpeedButton
+      object sbOwnersLName: TSpeedButton
         Tag = 2
         Left = 200
         Top = 88
@@ -535,91 +709,39 @@ object SDIAppForm: TSDIAppForm
         NumGlyphs = 2
         OnClick = sbOwnersClick
       end
-      object SpeedButton3: TSpeedButton
+      object sbOwnersHouseAcct: TSpeedButton
         Tag = 4
         Left = 312
         Top = 87
         Width = 25
         Height = 25
-        Glyph.Data = {
-          76010000424D7601000000000000760000002800000020000000100000000100
-          04000000000000010000120B0000120B00001000000000000000000000000000
-          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
-          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
-          333333333337F33333333333333033333333333333373F333333333333090333
-          33333333337F7F33333333333309033333333333337373F33333333330999033
-          3333333337F337F33333333330999033333333333733373F3333333309999903
-          333333337F33337F33333333099999033333333373333373F333333099999990
-          33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
-          33333333337F7F33333333333309033333333333337F7F333333333333090333
-          33333333337F7F33333333333309033333333333337F7F333333333333090333
-          33333333337F7F33333333333300033333333333337773333333}
         NumGlyphs = 2
         OnClick = sbOwnersClick
       end
-      object SpeedButton4: TSpeedButton
+      object sbOwnersUsePolicy: TSpeedButton
         Tag = 6
-        Left = 400
+        Left = 416
         Top = 88
         Width = 25
         Height = 25
-        Glyph.Data = {
-          76010000424D7601000000000000760000002800000020000000100000000100
-          04000000000000010000120B0000120B00001000000000000000000000000000
-          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
-          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
-          333333333337F33333333333333033333333333333373F333333333333090333
-          33333333337F7F33333333333309033333333333337373F33333333330999033
-          3333333337F337F33333333330999033333333333733373F3333333309999903
-          333333337F33337F33333333099999033333333373333373F333333099999990
-          33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
-          33333333337F7F33333333333309033333333333337F7F333333333333090333
-          33333333337F7F33333333333309033333333333337F7F333333333333090333
-          33333333337F7F33333333333300033333333333337773333333}
         NumGlyphs = 2
         OnClick = sbOwnersClick
       end
-      object SpeedButton5: TSpeedButton
+      object sbOwnersPolicyDate: TSpeedButton
         Tag = 8
         Left = 520
         Top = 88
         Width = 25
         Height = 25
-        Glyph.Data = {
-          76010000424D7601000000000000760000002800000020000000100000000100
-          04000000000000010000120B0000120B00001000000000000000000000000000
-          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
-          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
-          333333333337F33333333333333033333333333333373F333333333333090333
-          33333333337F7F33333333333309033333333333337373F33333333330999033
-          3333333337F337F33333333330999033333333333733373F3333333309999903
-          333333337F33337F33333333099999033333333373333373F333333099999990
-          33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
-          33333333337F7F33333333333309033333333333337F7F333333333333090333
-          33333333337F7F33333333333309033333333333337F7F333333333333090333
-          33333333337F7F33333333333300033333333333337773333333}
         NumGlyphs = 2
         OnClick = sbOwnersClick
       end
-      object SpeedButton6: TSpeedButton
+      object sbOwnersStopDate: TSpeedButton
         Tag = 10
         Left = 672
         Top = 88
         Width = 25
         Height = 25
-        Glyph.Data = {
-          76010000424D7601000000000000760000002800000020000000100000000100
-          04000000000000010000120B0000120B00001000000000000000000000000000
-          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
-          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
-          333333333337F33333333333333033333333333333373F333333333333090333
-          33333333337F7F33333333333309033333333333337373F33333333330999033
-          3333333337F337F33333333330999033333333333733373F3333333309999903
-          333333337F33337F33333333099999033333333373333373F333333099999990
-          33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
-          33333333337F7F33333333333309033333333333337F7F333333333333090333
-          33333333337F7F33333333333309033333333333337F7F333333333333090333
-          33333333337F7F33333333333300033333333333337773333333}
         NumGlyphs = 2
         OnClick = sbOwnersClick
       end
@@ -709,26 +831,35 @@ object SDIAppForm: TSDIAppForm
             Width = 200
           end>
       end
-      object CheckBox1: TCheckBox
-        Left = 551
-        Top = 92
-        Width = 20
-        Height = 17
+      object gbPolicySigned: TGroupBox
+        Left = 816
+        Top = 56
+        Width = 137
+        Height = 49
+        Caption = ' Policy Signed '
         TabOrder = 3
-      end
-      object CheckBox2: TCheckBox
-        Left = 703
-        Top = 92
-        Width = 20
-        Height = 17
-        TabOrder = 4
-      end
-      object CheckBox3: TCheckBox
-        Left = 431
-        Top = 92
-        Width = 20
-        Height = 17
-        TabOrder = 5
+        object cbPolicyYes: TCheckBox
+          Left = 16
+          Top = 24
+          Width = 49
+          Height = 17
+          Caption = 'Yes'
+          Checked = True
+          State = cbChecked
+          TabOrder = 0
+          OnClick = cbPolicyYesClick
+        end
+        object cbPolicyNo: TCheckBox
+          Left = 88
+          Top = 23
+          Width = 41
+          Height = 17
+          Caption = 'No'
+          Checked = True
+          State = cbChecked
+          TabOrder = 1
+          OnClick = cbPolicyNoClick
+        end
       end
     end
     object Sections: TTabSheet
@@ -893,7 +1024,7 @@ object SDIAppForm: TSDIAppForm
     Left = 616
     Top = 65528
     Bitmap = {
-      494C0101020018003C0020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101020018004C0020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000001000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1189,9 +1320,11 @@ object SDIAppForm: TSDIAppForm
   end
   object aTblDirectors: TADOTable
     Active = True
+    AutoCalcFields = False
     Connection = ADOConnection1
     CursorType = ctStatic
     AfterScroll = aTblDirectorsAfterScroll
+    IndexFieldNames = 'ownerId  ASC'
     TableDirect = True
     TableName = 'Directors'
     Left = 496
@@ -1207,7 +1340,7 @@ object SDIAppForm: TSDIAppForm
     Connection = ADOConnection1
     CursorType = ctStatic
     CommandText = 'select * from Houses'
-    IndexFieldNames = 'houseAcct DESC'
+    IndexFieldNames = 'houseAcct ASC'
     Parameters = <>
     Left = 664
     Top = 80
@@ -1239,6 +1372,7 @@ object SDIAppForm: TSDIAppForm
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
+    IndexFieldNames = 'acct ASC'
     TableDirect = True
     TableName = 'Passwords'
     Left = 748
@@ -1271,6 +1405,7 @@ object SDIAppForm: TSDIAppForm
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
+    IndexFieldNames = 'acct ASC'
     TableDirect = True
     TableName = 'EmailAccts'
     Left = 580
@@ -1312,6 +1447,7 @@ object SDIAppForm: TSDIAppForm
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
+    IndexFieldNames = 'lastName  ASC'
     TableName = 'Owners'
     Left = 832
     Top = 80

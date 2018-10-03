@@ -2,7 +2,7 @@ program Sdiapp;
 
 uses
   Forms,
-  SDIMAIN in 'SDIMAIN.pas' {SDIAppForm},
+  SDIMAIN in 'SDIMAIN.PAS' {SDIAppForm},
   ABOUT in 'ABOUT.PAS' {AboutBox};
 
 {$R *.RES}

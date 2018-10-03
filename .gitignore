@@ -1,0 +1,11 @@
+# ignore all files in any directory named __history
+__history/
+Modelsupport_SDIAPP/
+*.groupproj
+*.local
+*.tvsconfig
+README
+*.identcache
+*.stat
+*.vlb
+*.ico
