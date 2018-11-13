@@ -1,11 +1,13 @@
 object SDIAppForm: TSDIAppForm
   Left = 197
   Top = 111
-  Align = alTop
+  BorderWidth = 2
   Caption = 'SDI Application'
-  ClientHeight = 628
-  ClientWidth = 1176
+  ClientHeight = 796
+  ClientWidth = 1200
   Color = clBtnFace
+  Constraints.MinHeight = 300
+  Constraints.MinWidth = 300
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -13
@@ -13,42 +15,482 @@ object SDIAppForm: TSDIAppForm
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
+  Scaled = False
+  OnResize = pnlCurrentDirectorsResize
   PixelsPerInch = 96
   TextHeight = 16
-  object Panel1: TPanel
+  object Splitter1: TSplitter
+    Left = 0
+    Top = 400
+    Width = 1200
+    Height = 3
+    Cursor = crVSplit
+    Align = alTop
+    ExplicitTop = 225
+  end
+  object pnlCurrentDirectors: TPanel
     Left = 0
     Top = 0
-    Width = 1176
-    Height = 145
+    Width = 1200
+    Height = 400
     Align = alTop
-    Caption = 'Panel1'
+    Caption = 'pnlCurrentDirectors'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
     TabOrder = 0
-    object SearchBox1: TSearchBox
-      Left = 56
-      Top = 16
-      Width = 121
-      Height = 24
+    OnResize = pnlCurrentDirectorsResize
+    object sbCurDirLastName: TSpeedButton
+      Left = 29
+      Top = 37
+      Width = 25
+      Height = 25
+      Hint = 'Last Name'
+      Glyph.Data = {
+        76010000424D7601000000000000760000002800000020000000100000000100
+        04000000000000010000120B0000120B00001000000000000000000000000000
+        800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+        333333333337F33333333333333033333333333333373F333333333333090333
+        33333333337F7F33333333333309033333333333337373F33333333330999033
+        3333333337F337F33333333330999033333333333733373F3333333309999903
+        333333337F33337F33333333099999033333333373333373F333333099999990
+        33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+        33333333337F7F33333333333309033333333333337F7F333333333333090333
+        33333333337F7F33333333333309033333333333337F7F333333333333090333
+        33333333337F7F33333333333300033333333333337773333333}
+      NumGlyphs = 2
+      ParentShowHint = False
+      ShowHint = True
+      OnClick = sbCurDirLastNameClick
+    end
+    object sbCurDirFirstName: TSpeedButton
+      Tag = 2
+      Left = 142
+      Top = 37
+      Width = 25
+      Height = 25
+      Hint = 'First Name'
+      Glyph.Data = {
+        76010000424D7601000000000000760000002800000020000000100000000100
+        04000000000000010000120B0000120B00001000000000000000000000000000
+        800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+        333333333337F33333333333333033333333333333373F333333333333090333
+        33333333337F7F33333333333309033333333333337373F33333333330999033
+        3333333337F337F33333333330999033333333333733373F3333333309999903
+        333333337F33337F33333333099999033333333373333373F333333099999990
+        33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+        33333333337F7F33333333333309033333333333337F7F333333333333090333
+        33333333337F7F33333333333309033333333333337F7F333333333333090333
+        33333333337F7F33333333333300033333333333337773333333}
+      NumGlyphs = 2
+      OnClick = sbCurDirLastNameClick
+    end
+    object sbCurDirAcctNumber: TSpeedButton
+      Tag = 4
+      Left = 278
+      Top = 37
+      Width = 25
+      Height = 25
+      Hint = 'Acct #'
+      Glyph.Data = {
+        76010000424D7601000000000000760000002800000020000000100000000100
+        04000000000000010000120B0000120B00001000000000000000000000000000
+        800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+        333333333337F33333333333333033333333333333373F333333333333090333
+        33333333337F7F33333333333309033333333333337373F33333333330999033
+        3333333337F337F33333333330999033333333333733373F3333333309999903
+        333333337F33337F33333333099999033333333373333373F333333099999990
+        33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+        33333333337F7F33333333333309033333333333337F7F333333333333090333
+        33333333337F7F33333333333309033333333333337F7F333333333333090333
+        33333333337F7F33333333333300033333333333337773333333}
+      NumGlyphs = 2
+      OnClick = sbCurDirLastNameClick
+    end
+    object sbCurDirRepresents: TSpeedButton
+      Tag = 6
+      Left = 366
+      Top = 37
+      Width = 25
+      Height = 25
+      Hint = 'Represents'
+      Glyph.Data = {
+        76010000424D7601000000000000760000002800000020000000100000000100
+        04000000000000010000120B0000120B00001000000000000000000000000000
+        800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+        333333333337F33333333333333033333333333333373F333333333333090333
+        33333333337F7F33333333333309033333333333337373F33333333330999033
+        3333333337F337F33333333330999033333333333733373F3333333309999903
+        333333337F33337F33333333099999033333333373333373F333333099999990
+        33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+        33333333337F7F33333333333309033333333333337F7F333333333333090333
+        33333333337F7F33333333333309033333333333337F7F333333333333090333
+        33333333337F7F33333333333300033333333333337773333333}
+      NumGlyphs = 2
+      OnClick = sbCurDirLastNameClick
+    end
+    object sbCurDirStartDate: TSpeedButton
+      Tag = 8
+      Left = 438
+      Top = 37
+      Width = 25
+      Height = 25
+      Hint = 'Start Date'
+      Glyph.Data = {
+        76010000424D7601000000000000760000002800000020000000100000000100
+        04000000000000010000120B0000120B00001000000000000000000000000000
+        800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+        333333333337F33333333333333033333333333333373F333333333333090333
+        33333333337F7F33333333333309033333333333337373F33333333330999033
+        3333333337F337F33333333330999033333333333733373F3333333309999903
+        333333337F33337F33333333099999033333333373333373F333333099999990
+        33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+        33333333337F7F33333333333309033333333333337F7F333333333333090333
+        33333333337F7F33333333333309033333333333337F7F333333333333090333
+        33333333337F7F33333333333300033333333333337773333333}
+      NumGlyphs = 2
+      OnClick = sbCurDirLastNameClick
+    end
+    object sbCurDirEmailAcct: TSpeedButton
+      Tag = 10
+      Left = 638
+      Top = 37
+      Width = 25
+      Height = 25
+      Hint = 'Email'
+      Glyph.Data = {
+        76010000424D7601000000000000760000002800000020000000100000000100
+        04000000000000010000120B0000120B00001000000000000000000000000000
+        800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+        333333333337F33333333333333033333333333333373F333333333333090333
+        33333333337F7F33333333333309033333333333337373F33333333330999033
+        3333333337F337F33333333330999033333333333733373F3333333309999903
+        333333337F33337F33333333099999033333333373333373F333333099999990
+        33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+        33333333337F7F33333333333309033333333333337F7F333333333333090333
+        33333333337F7F33333333333309033333333333337F7F333333333333090333
+        33333333337F7F33333333333300033333333333337773333333}
+      NumGlyphs = 2
+      OnClick = sbCurDirLastNameClick
+    end
+    object sbCurDirUsePolicy: TSpeedButton
+      Tag = 12
+      Left = 822
+      Top = 37
+      Width = 25
+      Height = 25
+      Hint = 'Policy Signed'
+      Glyph.Data = {
+        76010000424D7601000000000000760000002800000020000000100000000100
+        04000000000000010000120B0000120B00001000000000000000000000000000
+        800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+        333333333337F33333333333333033333333333333373F333333333333090333
+        33333333337F7F33333333333309033333333333337373F33333333330999033
+        3333333337F337F33333333330999033333333333733373F3333333309999903
+        333333337F33337F33333333099999033333333373333373F333333099999990
+        33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+        33333333337F7F33333333333309033333333333337F7F333333333333090333
+        33333333337F7F33333333333309033333333333337F7F333333333333090333
+        33333333337F7F33333333333300033333333333337773333333}
+      NumGlyphs = 2
+      OnClick = sbCurDirLastNameClick
+    end
+    object sbCurDirSortOrder: TSpeedButton
+      Tag = 14
+      Left = 1062
+      Top = 37
+      Width = 25
+      Height = 25
+      Hint = 'Sort Order'
+      Glyph.Data = {
+        76010000424D7601000000000000760000002800000020000000100000000100
+        04000000000000010000120B0000120B00001000000000000000000000000000
+        800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+        333333333337F33333333333333033333333333333373F333333333333090333
+        33333333337F7F33333333333309033333333333337373F33333333330999033
+        3333333337F337F33333333330999033333333333733373F3333333309999903
+        333333337F33337F33333333099999033333333373333373F333333099999990
+        33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+        33333333337F7F33333333333309033333333333337F7F333333333333090333
+        33333333337F7F33333333333309033333333333337F7F333333333333090333
+        33333333337F7F33333333333300033333333333337773333333}
+      NumGlyphs = 2
+      ParentShowHint = False
+      ShowHint = False
+      OnClick = sbCurDirLastNameClick
+    end
+    object dbGridCurDirs: TDBGrid
+      Left = 17
+      Top = 65
+      Width = 1175
+      Height = 326
+      Hint = 'Sort Order'
+      DataSource = dsCurrentDirectors
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Arial'
+      Font.Style = []
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      ParentFont = False
       TabOrder = 0
-      Text = 'SearchBox1'
+      TitleFont.Charset = ANSI_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -12
+      TitleFont.Name = 'Arial'
+      TitleFont.Style = []
+      OnCellClick = dbGridCurDirsCellClick
+      OnColumnMoved = dbGridCurDirsColumnMoved
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'lastName'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Title.Font.Charset = ANSI_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'firstName'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Title.Font.Charset = ANSI_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'houseAcct'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Title.Font.Charset = ANSI_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'directorSection'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Title.Font.Charset = ANSI_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'startDate'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Title.Font.Charset = ANSI_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'stopDate'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Title.Font.Charset = ANSI_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Width = 83
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'emailAcct'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Title.Font.Charset = ANSI_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Width = 225
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'usePolicySigned'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Title.Font.Charset = ANSI_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'policyDate'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Title.Font.Charset = ANSI_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'sortOrder'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Title.Font.Charset = ANSI_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -12
+          Title.Font.Name = 'Arial'
+          Title.Font.Style = [fsBold]
+          Visible = True
+        end>
+    end
+    object sbCurDirs: TStatusBar
+      Left = 1
+      Top = 380
+      Width = 1198
+      Height = 19
+      Panels = <
+        item
+          Width = 200
+        end
+        item
+          Width = 200
+        end
+        item
+          Width = 300
+        end>
+      ExplicitLeft = 192
+      ExplicitTop = 160
+      ExplicitWidth = 0
+    end
+    object eCurDirLastName: TEdit
+      Left = 19
+      Top = 8
+      Width = 65
+      Height = 23
+      TabOrder = 2
+      Text = 'eCurDirLastName'
+    end
+    object eCurDirFirstName: TEdit
+      Left = 126
+      Top = 8
+      Width = 65
+      Height = 23
+      TabOrder = 3
+      Text = 'Edit2'
+    end
+    object eCurDirAcctNumber: TEdit
+      Left = 261
+      Top = 8
+      Width = 65
+      Height = 23
+      TabOrder = 4
+      Text = 'Edit2'
+    end
+    object eCurDirEmail: TEdit
+      Left = 797
+      Top = 8
+      Width = 65
+      Height = 23
+      TabOrder = 5
+      Text = 'Edit2'
+    end
+    object eCurDirRepresents: TEdit
+      Left = 348
+      Top = 8
+      Width = 65
+      Height = 23
+      TabOrder = 6
+      Text = 'Edit2'
     end
   end
   object pcEmail: TPageControl
     Left = 0
-    Top = 145
-    Width = 1176
-    Height = 432
-    ActivePage = Owners
-    Align = alTop
+    Top = 403
+    Width = 1200
+    Height = 393
+    ActivePage = Sections
+    Align = alClient
     TabOrder = 1
     TabPosition = tpBottom
+    ExplicitLeft = 88
+    ExplicitTop = 145
+    ExplicitWidth = 1140
+    ExplicitHeight = 464
     object Directors: TTabSheet
       Caption = 'Directors'
       Highlighted = True
+      ExplicitWidth = 1168
+      ExplicitHeight = 403
       object pnlDirectors: TPanel
         Left = 0
         Top = 0
-        Width = 1168
-        Height = 403
+        Width = 1192
+        Height = 364
         Align = alClient
         BevelInner = bvRaised
         BevelKind = bkSoft
@@ -56,7 +498,8 @@ object SDIAppForm: TSDIAppForm
         Color = 33792
         ParentBackground = False
         TabOrder = 0
-        ExplicitHeight = 384
+        OnResize = pnlDirectorsResize
+        ExplicitHeight = 461
         object sbDirectorsId: TSpeedButton
           Left = 72
           Top = 48
@@ -124,17 +567,17 @@ object SDIAppForm: TSDIAppForm
           OnClick = sbDirectorsClick
         end
         object dbgDirectors: TDBGrid
-          Left = 32
+          Left = 13
           Top = 79
-          Width = 977
+          Width = 1164
           Height = 249
           DataSource = dsDirectors
           DrawingStyle = gdsClassic
           FixedColor = 7143276
-          Font.Charset = DEFAULT_CHARSET
+          Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
-          Font.Name = 'System'
+          Font.Name = 'Arial'
           Font.Style = []
           ParentFont = False
           TabOrder = 0
@@ -204,8 +647,8 @@ object SDIAppForm: TSDIAppForm
         end
         object sbDirectors: TStatusBar
           Left = 2
-          Top = 378
-          Width = 1160
+          Top = 339
+          Width = 1184
           Height = 19
           Panels = <
             item
@@ -221,25 +664,27 @@ object SDIAppForm: TSDIAppForm
               Width = 200
             end>
           ExplicitLeft = -2
+          ExplicitTop = 436
         end
       end
     end
     object TabSheet4: TTabSheet
       Caption = 'Email Accts'
       ImageIndex = 3
-      ExplicitLeft = 8
-      ExplicitTop = 6
+      ExplicitWidth = 1168
+      ExplicitHeight = 403
       object pnlEmailAccts: TPanel
         Left = 0
         Top = 0
-        Width = 1168
-        Height = 403
+        Width = 1192
+        Height = 364
         Align = alClient
         Caption = 'pnlEmailAccts'
         Color = 15743371
         ParentBackground = False
         TabOrder = 0
-        ExplicitTop = 2
+        ExplicitWidth = 1168
+        ExplicitHeight = 403
         object spEmailAcct: TSpeedButton
           Left = 120
           Top = 56
@@ -359,8 +804,8 @@ object SDIAppForm: TSDIAppForm
         end
         object sbEmailAccts: TStatusBar
           Left = 1
-          Top = 383
-          Width = 1166
+          Top = 344
+          Width = 1190
           Height = 19
           Panels = <
             item
@@ -377,24 +822,28 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitLeft = 0
+          ExplicitTop = 383
+          ExplicitWidth = 1166
         end
       end
     end
     object Houses: TTabSheet
       Caption = 'Houses'
       ImageIndex = 1
+      ExplicitWidth = 1168
+      ExplicitHeight = 403
       object pnlHouses: TPanel
         Left = 0
         Top = 0
-        Width = 1168
-        Height = 403
+        Width = 1192
+        Height = 364
         Align = alClient
         Caption = 'pnlHouses'
         Color = 16675382
         ParentBackground = False
         TabOrder = 0
-        ExplicitTop = 2
+        ExplicitWidth = 1168
+        ExplicitHeight = 403
         object sbHousesAcct: TSpeedButton
           Left = 120
           Top = 80
@@ -518,8 +967,8 @@ object SDIAppForm: TSDIAppForm
         end
         object sbHouses: TStatusBar
           Left = 1
-          Top = 383
-          Width = 1166
+          Top = 344
+          Width = 1190
           Height = 19
           Panels = <
             item
@@ -535,23 +984,28 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
+          ExplicitTop = 383
+          ExplicitWidth = 1166
         end
       end
     end
     object TabSheet3: TTabSheet
       Caption = 'Passwords'
       ImageIndex = 2
+      ExplicitWidth = 1168
+      ExplicitHeight = 403
       object pnlPasswords: TPanel
         Left = 0
         Top = 0
-        Width = 1168
-        Height = 403
+        Width = 1192
+        Height = 364
         Align = alClient
         Caption = 'pnlPasswords'
         Color = 1149183
         ParentBackground = False
         TabOrder = 0
-        ExplicitTop = 2
+        ExplicitWidth = 1168
+        ExplicitHeight = 403
         object sbPasswordAcct: TSpeedButton
           Left = 240
           Top = 56
@@ -653,8 +1107,8 @@ object SDIAppForm: TSDIAppForm
         end
         object sbPasswords: TStatusBar
           Left = 1
-          Top = 383
-          Width = 1166
+          Top = 344
+          Width = 1190
           Height = 19
           Panels = <
             item
@@ -671,14 +1125,18 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitTop = 310
-          ExplicitWidth = 567
+          ExplicitTop = 383
+          ExplicitWidth = 1166
         end
       end
     end
     object Owners: TTabSheet
       Caption = 'Owners'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 23
+      ExplicitWidth = 1220
+      ExplicitHeight = 435
       object sbOwnersFName: TSpeedButton
         Left = 64
         Top = 88
@@ -812,8 +1270,8 @@ object SDIAppForm: TSDIAppForm
       end
       object sbOwners: TStatusBar
         Left = 0
-        Top = 384
-        Width = 1168
+        Top = 345
+        Width = 1192
         Height = 19
         Panels = <
           item
@@ -830,6 +1288,8 @@ object SDIAppForm: TSDIAppForm
           item
             Width = 200
           end>
+        ExplicitTop = 384
+        ExplicitWidth = 1168
       end
       object gbPolicySigned: TGroupBox
         Left = 816
@@ -865,11 +1325,26 @@ object SDIAppForm: TSDIAppForm
     object Sections: TTabSheet
       Caption = 'Sections'
       ImageIndex = 5
+      ExplicitWidth = 1168
+      ExplicitHeight = 403
+      object Label1: TLabel
+        Left = 496
+        Top = 3
+        Width = 92
+        Height = 27
+        Caption = 'Sections'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -19
+        Font.Name = 'Arial Black'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
       object DBGrid6: TDBGrid
-        Left = 24
-        Top = 104
-        Width = 1057
-        Height = 265
+        Left = 3
+        Top = 42
+        Width = 1186
+        Height = 297
         DataSource = dsSections
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
@@ -877,10 +1352,21 @@ object SDIAppForm: TSDIAppForm
         TitleFont.Height = -13
         TitleFont.Name = 'System'
         TitleFont.Style = []
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'ID'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'section'
+            Visible = True
+          end>
       end
       object dbNavSections: TDBNavigator
-        Left = 392
-        Top = 56
+        Left = 656
+        Top = 3
         Width = 350
         Height = 33
         DataSource = dsSections
@@ -888,8 +1374,8 @@ object SDIAppForm: TSDIAppForm
       end
       object StatusBar6: TStatusBar
         Left = 0
-        Top = 384
-        Width = 1168
+        Top = 345
+        Width = 1192
         Height = 19
         Panels = <
           item
@@ -900,13 +1386,15 @@ object SDIAppForm: TSDIAppForm
             Text = 'Panel 2'
             Width = 50
           end>
+        ExplicitTop = 384
+        ExplicitWidth = 1168
       end
     end
   end
   object MainMenu1: TMainMenu
     Images = ImageList1
     Left = 504
-    Top = 65528
+    Top = 16
     object File1: TMenuItem
       Caption = '&File'
       Hint = 'File related commands'
@@ -1024,7 +1512,7 @@ object SDIAppForm: TSDIAppForm
     Left = 616
     Top = 65528
     Bitmap = {
-      494C0101020018004C0020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010102001800500020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000001000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1312,11 +1800,13 @@ object SDIAppForm: TSDIAppForm
   object ADOConnection1: TADOConnection
     Connected = True
     ConnectionString = 
-      'Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Admin\Doc' +
-      'uments\SscaEmail.accdb;Persist Security Info=False'
+      'Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Mandy.SSC' +
+      'A-FRONTOFFIC\Documents\SscaEmail.accdb;Persist Security Info=Fal' +
+      'se'
     Mode = cmShareDenyNone
     Provider = 'Microsoft.ACE.OLEDB.12.0'
-    Left = 1064
+    Left = 1048
+    Top = 16
   end
   object aTblDirectors: TADOTable
     Active = True
@@ -1327,8 +1817,8 @@ object SDIAppForm: TSDIAppForm
     IndexFieldNames = 'ownerId  ASC'
     TableDirect = True
     TableName = 'Directors'
-    Left = 496
-    Top = 80
+    Left = 520
+    Top = 64
   end
   object dsHouses: TDataSource
     DataSet = aDsHouses
@@ -1343,7 +1833,7 @@ object SDIAppForm: TSDIAppForm
     IndexFieldNames = 'houseAcct ASC'
     Parameters = <>
     Left = 664
-    Top = 80
+    Top = 64
     object aDsHousesacctID: TAutoIncField
       FieldName = 'acctID'
       ReadOnly = True
@@ -1375,8 +1865,8 @@ object SDIAppForm: TSDIAppForm
     IndexFieldNames = 'acct ASC'
     TableDirect = True
     TableName = 'Passwords'
-    Left = 748
-    Top = 80
+    Left = 756
+    Top = 56
     object aTblPasswordsID: TAutoIncField
       FieldName = 'ID'
       ReadOnly = True
@@ -1409,7 +1899,7 @@ object SDIAppForm: TSDIAppForm
     TableDirect = True
     TableName = 'EmailAccts'
     Left = 580
-    Top = 80
+    Top = 64
     object aTblEmailAcctsID: TAutoIncField
       FieldName = 'ID'
       ReadOnly = True
@@ -1449,8 +1939,8 @@ object SDIAppForm: TSDIAppForm
     CursorType = ctStatic
     IndexFieldNames = 'lastName  ASC'
     TableName = 'Owners'
-    Left = 832
-    Top = 80
+    Left = 824
+    Top = 64
     object aTblOwnersID: TAutoIncField
       FieldName = 'ID'
       ReadOnly = True
@@ -1484,11 +1974,71 @@ object SDIAppForm: TSDIAppForm
     CursorType = ctStatic
     TableName = 'Sections'
     Left = 916
-    Top = 80
+    Top = 48
   end
   object dsSections: TDataSource
     DataSet = aTblSections
     Left = 924
     Top = 128
+  end
+  object dsCurrentDirectors: TDataSource
+    DataSet = adsCurrentDirectors
+    Left = 232
+    Top = 96
+  end
+  object adsCurrentDirectors: TADODataSet
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    AfterScroll = adsCurrentDirectorsAfterScroll
+    CommandText = 'select * from CurrentDirectors'
+    Parameters = <>
+    Left = 208
+    Top = 32
+    object adsCurrentDirectorslastName: TWideStringField
+      DisplayLabel = 'Last Name'
+      FieldName = 'lastName'
+      Size = 15
+    end
+    object adsCurrentDirectorsfirstName: TWideStringField
+      DisplayLabel = 'First Name'
+      FieldName = 'firstName'
+      Size = 15
+    end
+    object adsCurrentDirectorshouseAcct: TIntegerField
+      DisplayLabel = 'Acct #'
+      FieldName = 'houseAcct'
+    end
+    object adsCurrentDirectorsdirectorSection: TWideStringField
+      Alignment = taCenter
+      DisplayLabel = 'Represents'
+      FieldName = 'directorSection'
+      Size = 10
+    end
+    object adsCurrentDirectorsstartDate: TDateTimeField
+      DisplayLabel = 'Start Date'
+      FieldName = 'startDate'
+    end
+    object adsCurrentDirectorsstopDate: TDateTimeField
+      DisplayLabel = 'Stop Date'
+      FieldName = 'stopDate'
+    end
+    object adsCurrentDirectorsemailAcct: TWideStringField
+      DisplayLabel = 'Email Acct'
+      FieldName = 'emailAcct'
+      Size = 50
+    end
+    object adsCurrentDirectorsusePolicySigned: TBooleanField
+      DisplayLabel = 'Policy Signed'
+      FieldName = 'usePolicySigned'
+    end
+    object adsCurrentDirectorspolicyDate: TDateTimeField
+      DisplayLabel = 'Policy Date'
+      FieldName = 'policyDate'
+    end
+    object adsCurrentDirectorssortOrder: TIntegerField
+      DisplayLabel = 'Sort Order'
+      FieldName = 'sortOrder'
+    end
   end
 end

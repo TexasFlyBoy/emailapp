@@ -37,7 +37,7 @@ type
     PasteItem: TMenuItem;
     Help1: TMenuItem;
     HelpAboutItem: TMenuItem;
-    Panel1: TPanel;
+    pnlCurrentDirectors: TPanel;
     pcEmail: TPageControl;
     Directors: TTabSheet;
     Houses: TTabSheet;
@@ -45,7 +45,6 @@ type
     TabSheet4: TTabSheet;
     Owners: TTabSheet;
     Sections: TTabSheet;
-    SearchBox1: TSearchBox;
     dsDirectors: TDataSource;
     ADOConnection1: TADOConnection;
     aTblDirectors: TADOTable;
@@ -134,6 +133,35 @@ type
     gbPolicySigned: TGroupBox;
     cbPolicyYes: TCheckBox;
     cbPolicyNo: TCheckBox;
+    dbGridCurDirs: TDBGrid;
+    Splitter1: TSplitter;
+    sbCurDirs: TStatusBar;
+    dsCurrentDirectors: TDataSource;
+    adsCurrentDirectors: TADODataSet;
+    adsCurrentDirectorslastName: TWideStringField;
+    adsCurrentDirectorsfirstName: TWideStringField;
+    adsCurrentDirectorshouseAcct: TIntegerField;
+    adsCurrentDirectorsdirectorSection: TWideStringField;
+    adsCurrentDirectorsstartDate: TDateTimeField;
+    adsCurrentDirectorsstopDate: TDateTimeField;
+    adsCurrentDirectorsemailAcct: TWideStringField;
+    adsCurrentDirectorsusePolicySigned: TBooleanField;
+    adsCurrentDirectorspolicyDate: TDateTimeField;
+    adsCurrentDirectorssortOrder: TIntegerField;
+    eCurDirLastName: TEdit;
+    eCurDirFirstName: TEdit;
+    eCurDirAcctNumber: TEdit;
+    eCurDirEmail: TEdit;
+    eCurDirRepresents: TEdit;
+    sbCurDirLastName: TSpeedButton;
+    sbCurDirFirstName: TSpeedButton;
+    sbCurDirAcctNumber: TSpeedButton;
+    sbCurDirRepresents: TSpeedButton;
+    sbCurDirStartDate: TSpeedButton;
+    sbCurDirEmailAcct: TSpeedButton;
+    sbCurDirUsePolicy: TSpeedButton;
+    sbCurDirSortOrder: TSpeedButton;
+    Label1: TLabel;
     procedure FileNew1Execute(Sender: TObject);
     procedure FileOpen1Execute(Sender: TObject);
     procedure FileSave1Execute(Sender: TObject);
@@ -149,6 +177,13 @@ type
     procedure sbPasswordClick(Sender: TObject);
     procedure cbPolicyYesClick(Sender: TObject);
     procedure cbPolicyNoClick(Sender: TObject);
+    procedure pnlCurrentDirectorsResize(Sender: TObject);
+    procedure pnlDirectorsResize(Sender: TObject);
+    procedure dbGridCurDirsColumnMoved(Sender: TObject; FromIndex,
+      ToIndex: Integer);
+    procedure dbGridCurDirsCellClick(Column: TColumn);
+    procedure sbCurDirLastNameClick(Sender: TObject);
+    procedure adsCurrentDirectorsAfterScroll(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -177,6 +212,11 @@ end;
 procedure TSDIAppForm.FileSave1Execute(Sender: TObject);
 begin
   SaveDialog.Execute;
+end;
+
+procedure TSDIAppForm.adsCurrentDirectorsAfterScroll(DataSet: TDataSet);
+begin
+  sbCurDirs.Panels[0].Text := 'Record ' + IntToStr(adsCurrentDirectors.RecNo) + ' of ' + IntToStr(adsCurrentDirectors.RecordCount);
 end;
 
 procedure TSDIAppForm.aTblDirectorsAfterScroll(DataSet: TDataSet);
@@ -210,6 +250,65 @@ begin
    grid.DefaultDrawColumnCell(Rect, DataCol, Column, State) ;
 end;
 
+   //This is to stop columns being moved whilst allowing them to be resized
+procedure TSDIAppForm.dbGridCurDirsCellClick(Column: TColumn);
+var
+  sbHalfWidth, nextLeft, i, spacing: Integer;
+begin
+  nextLeft := 13;
+  i := 0;
+  spacing := 3;
+
+  sbHalfWidth := sbCurDirLastName.Width div 2;
+
+  eCurDirLastName.Left := dbGridCurDirs.Left + nextLeft;
+  sbCurDirLastName.Left := nextLeft + (dbGridCurDirs.Columns[i].Width div 2);
+  nextLeft := nextLeft + dbGridCurDirs.Columns[i].Width;
+  Inc(i);
+
+  eCurDirFirstName.Left := nextLeft + (i * spacing);
+  sbCurDirFirstName.Left := nextLeft + (dbGridCurDirs.Columns[i].Width div 2);
+  nextLeft := nextLeft + dbGridCurDirs.Columns[i].Width;
+  Inc(i);
+
+  eCurDirAcctNumber.Left := nextLeft + (i * spacing);
+  sbCurDirAcctNumber.Left := nextLeft + (dbGridCurDirs.Columns[i].Width div 2);
+  nextLeft := nextLeft + dbGridCurDirs.Columns[i].Width;
+  Inc(i);
+
+  eCurDirRepresents.Left := nextLeft + (i * spacing);
+  sbCurDirRepresents.Left := nextLeft + (dbGridCurDirs.Columns[i].Width div 2);
+  nextLeft := nextLeft + dbGridCurDirs.Columns[i].Width;
+  Inc(i);
+
+  sbCurDirStartDate.Left := nextLeft + (dbGridCurDirs.Columns[i].Width div 2);
+  nextLeft := nextLeft + dbGridCurDirs.Columns[i].Width;
+  Inc(i);
+
+  nextLeft := nextLeft + dbGridCurDirs.Columns[i].Width;
+  Inc(i);
+
+  eCurDirEmail.Left := nextLeft + (i * spacing);
+  sbCurDirEmailAcct.Left := nextLeft + (dbGridCurDirs.Columns[i].Width div 2);
+  nextLeft := nextLeft + dbGridCurDirs.Columns[i].Width;
+  Inc(i);
+
+  sbCurDirUsePolicy.Left := nextLeft + (dbGridCurDirs.Columns[i].Width div 2);
+  nextLeft := nextLeft + dbGridCurDirs.Columns[i].Width;
+  Inc(i);
+
+  nextLeft := nextLeft + dbGridCurDirs.Columns[i].Width;
+  Inc(i);
+
+  sbCurDirSortOrder.Left := nextLeft + (dbGridCurDirs.Columns[i].Width div 2);
+end;
+
+procedure TSDIAppForm.dbGridCurDirsColumnMoved(Sender: TObject; FromIndex,
+  ToIndex: Integer);
+begin
+  (Sender as TDBGrid).Columns[ToIndex].Index := FromIndex;
+end;
+
 procedure TSDIAppForm.FileExit1Execute(Sender: TObject);
 begin
   Close;
@@ -218,6 +317,32 @@ end;
 procedure TSDIAppForm.HelpAbout1Execute(Sender: TObject);
 begin
   AboutBox.ShowModal;
+end;
+
+procedure TSDIAppForm.pnlCurrentDirectorsResize(Sender: TObject);
+Const
+  margin = 5;
+  topGap = 65;
+begin
+  with dbGridCurDirs do begin
+    Left := margin;
+    Width := pnlCurrentDirectors.Width - 3 * margin;
+    Top := topGap;
+    Height := pnlCurrentDirectors.Height - topGap - 2 * margin - sbCurDirs.Height;
+  end;
+end;
+
+procedure TSDIAppForm.pnlDirectorsResize(Sender: TObject);
+Const
+  margin = 5;
+  topGap = 15;
+begin
+  with dbgDirectors do begin
+    Left := margin;
+    Width := pnlDirectors.Width - 3 * margin;
+    Top := topGap;
+    Height := pnlDirectors.Height - topGap - 2 * margin - sbDirectors.Height;
+  end;
 end;
 
 procedure TSDIAppForm.sbHousesAcctClick(Sender: TObject);
@@ -365,6 +490,55 @@ begin
   sbPasswords.Panels[2].Text := '';
   sbPasswords.Panels[3].Text := '';
 end;
+
+procedure TSDIAppForm.sbCurDirLastNameClick(Sender: TObject);
+var
+  sortFieldName, sortDirection: string;
+  oddEven: Boolean;
+  buttonNumber, tagNumber, direction: integer;
+  i: integer;
+begin
+  tagNumber := TSpeedButton(Sender).Tag;
+  buttonNumber := tagNumber div 2;
+  // Blank the glyphs on all the TSpeedButtons
+  for i := 0 to (pnlCurrentDirectors.ControlCount - 1) do
+  begin
+    if (pnlCurrentDirectors.Controls[i].ClassName = 'TSpeedButton')then
+      TSpeedButton(pnlCurrentDirectors.Controls[i]).Glyph := nil;
+  end;
+  // Determine sort direction and glyph
+  if odd(tagNumber) then begin
+    oddEven := True;
+    direction := 0;
+  end else begin
+    oddEven := False;
+    direction := 1;
+  end;
+  // Determine indexFieldName
+  case buttonNumber of
+    0: sortFieldName := 'lastName';
+    1: sortFieldName := 'firstName';
+    2: sortFieldName := 'houseAcct';
+    3: sortFieldName := 'directorSection';
+    4: sortFieldName := 'startDate';
+    5: sortFieldName := 'emailAcct';
+    6: sortFieldName := 'usePolicySigned';
+    7: sortFieldName := 'sortOrder';
+  end;
+  // Step the text for the sort direction
+  if (oddEven) then sortDirection := ' ASC'
+  else sortDirection := ' DESC';
+  // Update the IndexFieldName, Tag, Glyph
+  adsCurrentDirectors.IndexFieldNames := sortFieldName + sortDirection;
+  TSpeedButton(Sender).Tag := (buttonNumber * 2) + direction;
+  ImageList1.GetBitmap(direction, TSpeedButton(Sender).Glyph);
+  // Update the status bar text panels
+  sbCurDirs.Panels[0].Text := 'Record ' + inttostr(dsCurrentDirectors.DataSet.RecNo)
+              + ' of ' + IntToStr(dsCurrentDirectors.DataSet.RecordCount);
+  sbCurDirs.Panels[1].Text := 'Index: ' + TADOTable(dsCurrentDirectors.DataSet).IndexFieldNames;
+  sbCurDirs.Panels[2].Text := '';
+end;
+
 
 procedure TSDIAppForm.sbDirectorsClick(Sender: TObject);
 var
