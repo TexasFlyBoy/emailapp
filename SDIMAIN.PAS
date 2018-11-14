@@ -93,14 +93,11 @@ type
     aDsHousesSection: TWideStringField;
     aDsHousesStreetNumber: TIntegerField;
     aDsHousesStreetName: TWideStringField;
-    DBGrid6: TDBGrid;
     aTblSections: TADOTable;
     dsSections: TDataSource;
-    dbNavSections: TDBNavigator;
     dbNavOwners: TDBNavigator;
     sbDirectors: TStatusBar;
     sbOwners: TStatusBar;
-    StatusBar6: TStatusBar;
     sbOwnersFName: TSpeedButton;
     sbOwnersLName: TSpeedButton;
     sbOwnersHouseAcct: TSpeedButton;
@@ -161,7 +158,11 @@ type
     sbCurDirEmailAcct: TSpeedButton;
     sbCurDirUsePolicy: TSpeedButton;
     sbCurDirSortOrder: TSpeedButton;
-    Label1: TLabel;
+    pnlSections: TPanel;
+    lblSections: TLabel;
+    dbNavSections: TDBNavigator;
+    dbGridSections: TDBGrid;
+    sbSections: TStatusBar;
     procedure FileNew1Execute(Sender: TObject);
     procedure FileOpen1Execute(Sender: TObject);
     procedure FileSave1Execute(Sender: TObject);
@@ -184,7 +185,18 @@ type
     procedure dbGridCurDirsCellClick(Column: TColumn);
     procedure sbCurDirLastNameClick(Sender: TObject);
     procedure adsCurrentDirectorsAfterScroll(DataSet: TDataSet);
+    procedure pnlSectionsResize(Sender: TObject);
+    procedure aTblSectionsAfterScroll(DataSet: TDataSet);
+    procedure eCurDirLastNameChange(Sender: TObject);
+    procedure eCurDirFirstNameChange(Sender: TObject);
+    procedure eCurDirRepresentsChange(Sender: TObject);
+    procedure eCurDirEmailChange(Sender: TObject);
+    procedure EditColorChangeOnEnter(Sender: TObject);
+    procedure EditColorChangeOnExit(Sender: TObject);
+    procedure eCurDirAcctNumberChange(Sender: TObject);
   private
+    procedure TEditChange(filterText: string);
+
     { Private declarations }
   public
     { Public declarations }
@@ -222,6 +234,11 @@ end;
 procedure TSDIAppForm.aTblDirectorsAfterScroll(DataSet: TDataSet);
 begin
   sbDirectors.Panels[0].Text := 'Record ' + IntToStr(aTblDirectors.RecNo) + ' of ' + IntToStr(aTblDirectors.RecordCount);
+end;
+
+procedure TSDIAppForm.aTblSectionsAfterScroll(DataSet: TDataSet);
+begin
+  sbSections.Panels[0].Text := 'Record ' + IntToStr(aTblSections.RecNo) + ' of ' + IntToStr(aTblSections.RecordCount);
 end;
 
 procedure TSDIAppForm.cbPolicyNoClick(Sender: TObject);
@@ -309,6 +326,124 @@ begin
   (Sender as TDBGrid).Columns[ToIndex].Index := FromIndex;
 end;
 
+procedure TSDIAppForm.eCurDirAcctNumberChange(Sender: TObject);
+var
+  filterText: string;
+begin
+  // First we ignore the wildcard as the first character
+  if (eCurDirAcctNumber.Text = '%') then
+    eCurDirAcctNumber.Text := '';
+  filterText := '';
+  if (length(eCurDirAcctNumber.Text) > 0) then
+    filterText := 'houseAcct = ' + '''' + eCurDirAcctNumber.Text + '''';
+  TEditChange(filterText);
+end;
+procedure TSDIAppForm.eCurDirEmailChange(Sender: TObject);
+var
+  filterText: string;
+begin
+  // First we ignore the wildcard as the first character
+  if (eCurDirEmail.Text = '%') then
+    Exit;
+  filterText := '';
+  if (length(eCurDirEmail.Text) > 0) then
+    filterText := 'emailAcct like ' + '''' + eCurDirEmail.Text +
+      '%' + '''';
+  TEditChange(filterText);
+end;
+
+procedure TSDIAppForm.eCurDirFirstNameChange(Sender: TObject);
+var
+  filterText: string;
+begin
+  // First we ignore the wildcard as the first character
+  if (eCurDirFirstName.Text = '%') then
+    Exit;
+  filterText := '';
+  if (length(eCurDirFirstName.Text) > 0) then
+    filterText := 'firstName like ' + '''' + eCurDirFirstName.Text +
+      '%' + '''';
+  TEditChange(filterText);
+end;
+
+procedure TSDIAppForm.eCurDirLastNameChange(Sender: TObject);
+var
+  filterText: string;
+begin
+  // First we ignore the wildcard as the first character
+  if (eCurDirLastName.Text = '%') then
+    Exit;
+  filterText := '';
+  if (length(eCurDirLastName.Text) > 0) then
+    filterText := 'lastName like ' + '''' + eCurDirLastName.Text +
+      '%' + '''';
+  TEditChange(filterText);
+end;
+
+procedure TSDIAppForm.eCurDirRepresentsChange(Sender: TObject);
+var
+  filterText: string;
+begin
+  // First we ignore the wildcard as the first character
+  if (eCurDirRepresents.Text = '%') then
+    Exit;
+  filterText := '';
+  if (length(eCurDirRepresents.Text) > 0) then
+    filterText := 'directorSection like ' + '''' + eCurDirRepresents.Text +
+      '%' + '''';
+  TEditChange(filterText);
+end;
+
+{ ----------------------------------------------------------------------+
+  TeditChange:
+  This procedure is called when the user changes the search TEdit
+  boxes. It changes the filters to the CurrentOwners dbGrid. It
+  also updates the status bars on both the CurrentOwners and the
+  Owners panels.
+  +----------------------------------------------------------------------- }
+procedure TSDIAppForm.TEditChange(filterText: string);
+var
+  numOfRecords: integer;
+begin
+  if (length(filterText) = 0) then
+  begin
+    adsCurrentDirectors.Filter := '';
+    adsCurrentDirectors.Filtered := True;
+//    adoTableOwners.Filter := '';
+//    adoTableOwners.Filtered := True;
+  end
+  else
+  begin
+    adsCurrentDirectors.Filtered := False;
+    adsCurrentDirectors.Filter := filterText;
+    adsCurrentDirectors.Filtered := True;
+  end;
+
+  sbCurDirs.Panels[0].Text := filterText;
+  numOfRecords := adsCurrentDirectors.RecordCount;
+  sbCurDirs.Panels[1].Text := 'Record Count: ' + IntToStr(numOfRecords);
+
+//  StatusBar1.Panels[0].Text := filterText;
+//  numOfRecords := adoTableOwners.RecordCount;
+//  StatusBar1.Panels[1].Text := 'Record Count: ' + IntToStr(numOfRecords);
+end;
+
+procedure TSDIAppForm.EditColorChangeOnEnter(Sender: TObject);
+begin
+  TEdit(Sender).Color := clMoneyGreen;
+  eCurDirLastName.Text := '';
+  eCurDirFirstName.Text := '';
+  eCurDirAcctNumber.Text := '';
+  eCurDirEmail.Text := '';
+  eCurDirRepresents.Text := '';
+end;
+
+procedure TSDIAppForm.EditColorChangeOnExit(Sender: TObject);
+begin
+  TEdit(Sender).Color := clWindow;
+end;
+
+
 procedure TSDIAppForm.FileExit1Execute(Sender: TObject);
 begin
   Close;
@@ -342,6 +477,21 @@ begin
     Width := pnlDirectors.Width - 3 * margin;
     Top := topGap;
     Height := pnlDirectors.Height - topGap - 2 * margin - sbDirectors.Height;
+  end;
+end;
+
+procedure TSDIAppForm.pnlSectionsResize(Sender: TObject);
+Const
+  margin = 5;
+  topGap = 40;
+begin
+  lblSections.Left := (pnlSections.Width - lblSections.Width) div 2;
+  dbNavSections.Left := pnlSections.Width - dbNavSections.Width - 3 * margin;
+  with dbGridSections do begin
+    Left := margin;
+    Width := pnlSections.Width - 3 * margin;
+    Top := topGap;
+    Height := pnlSections.Height - topGap - 2 * margin - sbSections.Height;
   end;
 end;
 

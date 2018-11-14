@@ -233,10 +233,10 @@ object SDIAppForm: TSDIAppForm
       OnClick = sbCurDirLastNameClick
     end
     object dbGridCurDirs: TDBGrid
-      Left = 17
+      Left = 15
       Top = 65
-      Width = 1175
-      Height = 326
+      Width = 1105
+      Height = 310
       Hint = 'Sort Order'
       DataSource = dsCurrentDirectors
       Font.Charset = ANSI_CHARSET
@@ -258,11 +258,6 @@ object SDIAppForm: TSDIAppForm
         item
           Expanded = False
           FieldName = 'lastName'
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -12
-          Font.Name = 'Arial'
-          Font.Style = []
           Title.Font.Charset = ANSI_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -12
@@ -273,11 +268,6 @@ object SDIAppForm: TSDIAppForm
         item
           Expanded = False
           FieldName = 'firstName'
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -12
-          Font.Name = 'Arial'
-          Font.Style = []
           Title.Font.Charset = ANSI_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -12
@@ -288,11 +278,6 @@ object SDIAppForm: TSDIAppForm
         item
           Expanded = False
           FieldName = 'houseAcct'
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -12
-          Font.Name = 'Arial'
-          Font.Style = []
           Title.Font.Charset = ANSI_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -12
@@ -303,11 +288,6 @@ object SDIAppForm: TSDIAppForm
         item
           Expanded = False
           FieldName = 'directorSection'
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -12
-          Font.Name = 'Arial'
-          Font.Style = []
           Title.Font.Charset = ANSI_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -12
@@ -318,11 +298,6 @@ object SDIAppForm: TSDIAppForm
         item
           Expanded = False
           FieldName = 'startDate'
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -12
-          Font.Name = 'Arial'
-          Font.Style = []
           Title.Font.Charset = ANSI_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -12
@@ -333,11 +308,6 @@ object SDIAppForm: TSDIAppForm
         item
           Expanded = False
           FieldName = 'stopDate'
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -12
-          Font.Name = 'Arial'
-          Font.Style = []
           Title.Font.Charset = ANSI_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -12
@@ -349,11 +319,6 @@ object SDIAppForm: TSDIAppForm
         item
           Expanded = False
           FieldName = 'emailAcct'
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -12
-          Font.Name = 'Arial'
-          Font.Style = []
           Title.Font.Charset = ANSI_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -12
@@ -365,11 +330,6 @@ object SDIAppForm: TSDIAppForm
         item
           Expanded = False
           FieldName = 'usePolicySigned'
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -12
-          Font.Name = 'Arial'
-          Font.Style = []
           Title.Font.Charset = ANSI_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -12
@@ -380,11 +340,6 @@ object SDIAppForm: TSDIAppForm
         item
           Expanded = False
           FieldName = 'policyDate'
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -12
-          Font.Name = 'Arial'
-          Font.Style = []
           Title.Font.Charset = ANSI_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -12
@@ -395,11 +350,6 @@ object SDIAppForm: TSDIAppForm
         item
           Expanded = False
           FieldName = 'sortOrder'
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -12
-          Font.Name = 'Arial'
-          Font.Style = []
           Title.Font.Charset = ANSI_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -12
@@ -423,49 +373,56 @@ object SDIAppForm: TSDIAppForm
         item
           Width = 300
         end>
-      ExplicitLeft = 192
-      ExplicitTop = 160
-      ExplicitWidth = 0
     end
     object eCurDirLastName: TEdit
-      Left = 19
+      Left = 29
       Top = 8
       Width = 65
       Height = 23
       TabOrder = 2
-      Text = 'eCurDirLastName'
+      OnChange = eCurDirLastNameChange
+      OnEnter = EditColorChangeOnEnter
+      OnExit = EditColorChangeOnExit
     end
     object eCurDirFirstName: TEdit
-      Left = 126
+      Left = 142
       Top = 8
       Width = 65
       Height = 23
       TabOrder = 3
-      Text = 'Edit2'
+      OnChange = eCurDirFirstNameChange
+      OnEnter = EditColorChangeOnEnter
+      OnExit = EditColorChangeOnExit
     end
     object eCurDirAcctNumber: TEdit
-      Left = 261
+      Left = 253
       Top = 8
       Width = 65
       Height = 23
       TabOrder = 4
-      Text = 'Edit2'
+      OnChange = eCurDirAcctNumberChange
+      OnEnter = EditColorChangeOnEnter
+      OnExit = EditColorChangeOnExit
     end
     object eCurDirEmail: TEdit
-      Left = 797
-      Top = 8
-      Width = 65
-      Height = 23
-      TabOrder = 5
-      Text = 'Edit2'
-    end
-    object eCurDirRepresents: TEdit
-      Left = 348
+      Left = 629
       Top = 8
       Width = 65
       Height = 23
       TabOrder = 6
-      Text = 'Edit2'
+      OnChange = eCurDirEmailChange
+      OnEnter = EditColorChangeOnEnter
+      OnExit = EditColorChangeOnExit
+    end
+    object eCurDirRepresents: TEdit
+      Left = 324
+      Top = 8
+      Width = 65
+      Height = 23
+      TabOrder = 5
+      OnChange = eCurDirRepresentsChange
+      OnEnter = EditColorChangeOnEnter
+      OnExit = EditColorChangeOnExit
     end
   end
   object pcEmail: TPageControl
@@ -477,15 +434,9 @@ object SDIAppForm: TSDIAppForm
     Align = alClient
     TabOrder = 1
     TabPosition = tpBottom
-    ExplicitLeft = 88
-    ExplicitTop = 145
-    ExplicitWidth = 1140
-    ExplicitHeight = 464
     object Directors: TTabSheet
       Caption = 'Directors'
       Highlighted = True
-      ExplicitWidth = 1168
-      ExplicitHeight = 403
       object pnlDirectors: TPanel
         Left = 0
         Top = 0
@@ -499,7 +450,6 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlDirectorsResize
-        ExplicitHeight = 461
         object sbDirectorsId: TSpeedButton
           Left = 72
           Top = 48
@@ -663,16 +613,12 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitLeft = -2
-          ExplicitTop = 436
         end
       end
     end
     object TabSheet4: TTabSheet
       Caption = 'Email Accts'
       ImageIndex = 3
-      ExplicitWidth = 1168
-      ExplicitHeight = 403
       object pnlEmailAccts: TPanel
         Left = 0
         Top = 0
@@ -683,8 +629,6 @@ object SDIAppForm: TSDIAppForm
         Color = 15743371
         ParentBackground = False
         TabOrder = 0
-        ExplicitWidth = 1168
-        ExplicitHeight = 403
         object spEmailAcct: TSpeedButton
           Left = 120
           Top = 56
@@ -822,16 +766,12 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitTop = 383
-          ExplicitWidth = 1166
         end
       end
     end
     object Houses: TTabSheet
       Caption = 'Houses'
       ImageIndex = 1
-      ExplicitWidth = 1168
-      ExplicitHeight = 403
       object pnlHouses: TPanel
         Left = 0
         Top = 0
@@ -842,8 +782,6 @@ object SDIAppForm: TSDIAppForm
         Color = 16675382
         ParentBackground = False
         TabOrder = 0
-        ExplicitWidth = 1168
-        ExplicitHeight = 403
         object sbHousesAcct: TSpeedButton
           Left = 120
           Top = 80
@@ -984,16 +922,12 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitTop = 383
-          ExplicitWidth = 1166
         end
       end
     end
     object TabSheet3: TTabSheet
       Caption = 'Passwords'
       ImageIndex = 2
-      ExplicitWidth = 1168
-      ExplicitHeight = 403
       object pnlPasswords: TPanel
         Left = 0
         Top = 0
@@ -1004,8 +938,6 @@ object SDIAppForm: TSDIAppForm
         Color = 1149183
         ParentBackground = False
         TabOrder = 0
-        ExplicitWidth = 1168
-        ExplicitHeight = 403
         object sbPasswordAcct: TSpeedButton
           Left = 240
           Top = 56
@@ -1125,18 +1057,12 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitTop = 383
-          ExplicitWidth = 1166
         end
       end
     end
     object Owners: TTabSheet
       Caption = 'Owners'
       ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 23
-      ExplicitWidth = 1220
-      ExplicitHeight = 435
       object sbOwnersFName: TSpeedButton
         Left = 64
         Top = 88
@@ -1288,8 +1214,6 @@ object SDIAppForm: TSDIAppForm
           item
             Width = 200
           end>
-        ExplicitTop = 384
-        ExplicitWidth = 1168
       end
       object gbPolicySigned: TGroupBox
         Left = 816
@@ -1325,69 +1249,85 @@ object SDIAppForm: TSDIAppForm
     object Sections: TTabSheet
       Caption = 'Sections'
       ImageIndex = 5
-      ExplicitWidth = 1168
-      ExplicitHeight = 403
-      object Label1: TLabel
-        Left = 496
-        Top = 3
-        Width = 92
-        Height = 27
-        Caption = 'Sections'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -19
-        Font.Name = 'Arial Black'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object DBGrid6: TDBGrid
-        Left = 3
-        Top = 42
-        Width = 1186
-        Height = 297
-        DataSource = dsSections
-        TabOrder = 0
-        TitleFont.Charset = DEFAULT_CHARSET
-        TitleFont.Color = clWindowText
-        TitleFont.Height = -13
-        TitleFont.Name = 'System'
-        TitleFont.Style = []
-        Columns = <
-          item
-            Expanded = False
-            FieldName = 'ID'
-            Visible = False
-          end
-          item
-            Expanded = False
-            FieldName = 'section'
-            Visible = True
-          end>
-      end
-      object dbNavSections: TDBNavigator
-        Left = 656
-        Top = 3
-        Width = 350
-        Height = 33
-        DataSource = dsSections
-        TabOrder = 1
-      end
-      object StatusBar6: TStatusBar
+      object pnlSections: TPanel
         Left = 0
-        Top = 345
+        Top = 0
         Width = 1192
-        Height = 19
-        Panels = <
-          item
-            Text = 'Record x of y'
-            Width = 200
-          end
-          item
-            Text = 'Panel 2'
-            Width = 50
-          end>
-        ExplicitTop = 384
-        ExplicitWidth = 1168
+        Height = 364
+        Align = alClient
+        TabOrder = 0
+        OnResize = pnlSectionsResize
+        ExplicitLeft = 25
+        ExplicitTop = 16
+        ExplicitWidth = 634
+        ExplicitHeight = 289
+        object lblSections: TLabel
+          Left = 536
+          Top = 7
+          Width = 103
+          Height = 27
+          Alignment = taCenter
+          Caption = 'Sections'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -19
+          Font.Name = 'Arial Black'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object dbNavSections: TDBNavigator
+          Left = 813
+          Top = 3
+          Width = 270
+          Height = 30
+          DataSource = dsSections
+          VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbEdit, nbPost, nbCancel, nbRefresh]
+          TabOrder = 0
+        end
+        object dbGridSections: TDBGrid
+          Left = 11
+          Top = 40
+          Width = 1105
+          Height = 297
+          DataSource = dsSections
+          TabOrder = 1
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -13
+          TitleFont.Name = 'System'
+          TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'ID'
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'section'
+              Visible = True
+            end>
+        end
+        object sbSections: TStatusBar
+          Left = 1
+          Top = 344
+          Width = 1190
+          Height = 19
+          Panels = <
+            item
+              Text = 'Record x of y'
+              Width = 200
+            end
+            item
+              Text = 'Panel 2'
+              Width = 50
+            end
+            item
+              Width = 50
+            end>
+          ExplicitLeft = 2
+          ExplicitTop = 345
+        end
       end
     end
   end
@@ -1512,7 +1452,7 @@ object SDIAppForm: TSDIAppForm
     Left = 616
     Top = 65528
     Bitmap = {
-      494C010102001800500020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010102001800540020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000001000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1972,6 +1912,7 @@ object SDIAppForm: TSDIAppForm
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
+    AfterScroll = aTblSectionsAfterScroll
     TableName = 'Sections'
     Left = 916
     Top = 48
