@@ -3,7 +3,7 @@ object SDIAppForm: TSDIAppForm
   Top = 111
   BorderWidth = 2
   Caption = 'SDI Application'
-  ClientHeight = 796
+  ClientHeight = 734
   ClientWidth = 1200
   Color = clBtnFace
   Constraints.MinHeight = 300
@@ -21,18 +21,17 @@ object SDIAppForm: TSDIAppForm
   TextHeight = 16
   object Splitter1: TSplitter
     Left = 0
-    Top = 400
+    Top = 289
     Width = 1200
     Height = 3
     Cursor = crVSplit
     Align = alTop
-    ExplicitTop = 225
   end
   object pnlCurrentDirectors: TPanel
     Left = 0
     Top = 0
     Width = 1200
-    Height = 400
+    Height = 289
     Align = alTop
     Caption = 'pnlCurrentDirectors'
     Font.Charset = ANSI_CHARSET
@@ -360,7 +359,7 @@ object SDIAppForm: TSDIAppForm
     end
     object sbCurDirs: TStatusBar
       Left = 1
-      Top = 380
+      Top = 269
       Width = 1198
       Height = 19
       Panels = <
@@ -373,6 +372,7 @@ object SDIAppForm: TSDIAppForm
         item
           Width = 300
         end>
+      ExplicitTop = 380
     end
     object eCurDirLastName: TEdit
       Left = 29
@@ -427,21 +427,22 @@ object SDIAppForm: TSDIAppForm
   end
   object pcEmail: TPageControl
     Left = 0
-    Top = 403
+    Top = 292
     Width = 1200
-    Height = 393
-    ActivePage = Sections
+    Height = 442
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 1
     TabPosition = tpBottom
     object Directors: TTabSheet
       Caption = 'Directors'
       Highlighted = True
+      ExplicitHeight = 364
       object pnlDirectors: TPanel
         Left = 0
         Top = 0
         Width = 1192
-        Height = 364
+        Height = 413
         Align = alClient
         BevelInner = bvRaised
         BevelKind = bkSoft
@@ -450,6 +451,7 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlDirectorsResize
+        ExplicitHeight = 364
         object sbDirectorsId: TSpeedButton
           Left = 72
           Top = 48
@@ -597,7 +599,7 @@ object SDIAppForm: TSDIAppForm
         end
         object sbDirectors: TStatusBar
           Left = 2
-          Top = 339
+          Top = 388
           Width = 1184
           Height = 19
           Panels = <
@@ -613,22 +615,25 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
+          ExplicitTop = 339
         end
       end
     end
     object TabSheet4: TTabSheet
       Caption = 'Email Accts'
       ImageIndex = 3
+      ExplicitHeight = 364
       object pnlEmailAccts: TPanel
         Left = 0
         Top = 0
         Width = 1192
-        Height = 364
+        Height = 413
         Align = alClient
         Caption = 'pnlEmailAccts'
         Color = 15743371
         ParentBackground = False
         TabOrder = 0
+        ExplicitHeight = 364
         object spEmailAcct: TSpeedButton
           Left = 120
           Top = 56
@@ -748,7 +753,7 @@ object SDIAppForm: TSDIAppForm
         end
         object sbEmailAccts: TStatusBar
           Left = 1
-          Top = 344
+          Top = 393
           Width = 1190
           Height = 19
           Panels = <
@@ -766,25 +771,30 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
+          ExplicitTop = 344
         end
       end
     end
     object Houses: TTabSheet
       Caption = 'Houses'
       ImageIndex = 1
+      ExplicitHeight = 364
       object pnlHouses: TPanel
         Left = 0
         Top = 0
         Width = 1192
-        Height = 364
+        Height = 413
         Align = alClient
-        Caption = 'pnlHouses'
         Color = 16675382
         ParentBackground = False
         TabOrder = 0
+        OnResize = pnlHousesResize
+        ExplicitLeft = 80
+        ExplicitTop = -1
+        ExplicitHeight = 475
         object sbHousesAcct: TSpeedButton
-          Left = 120
-          Top = 80
+          Left = 57
+          Top = 60
           Width = 25
           Height = 25
           Glyph.Data = {
@@ -805,8 +815,8 @@ object SDIAppForm: TSDIAppForm
         end
         object sbHousesAddress: TSpeedButton
           Tag = 2
-          Left = 216
-          Top = 80
+          Left = 178
+          Top = 60
           Width = 25
           Height = 25
           NumGlyphs = 2
@@ -814,8 +824,8 @@ object SDIAppForm: TSDIAppForm
         end
         object sbHousesStreetName: TSpeedButton
           Tag = 6
-          Left = 416
-          Top = 80
+          Left = 480
+          Top = 60
           Width = 25
           Height = 25
           NumGlyphs = 2
@@ -823,8 +833,8 @@ object SDIAppForm: TSDIAppForm
         end
         object sbHousesSection: TSpeedButton
           Tag = 4
-          Left = 336
-          Top = 80
+          Left = 320
+          Top = 60
           Width = 25
           Height = 25
           NumGlyphs = 2
@@ -832,29 +842,49 @@ object SDIAppForm: TSDIAppForm
         end
         object sbHousesStreetNumber: TSpeedButton
           Tag = 8
-          Left = 536
-          Top = 80
+          Left = 641
+          Top = 60
           Width = 25
           Height = 25
           NumGlyphs = 2
           OnClick = sbHousesAcctClick
         end
+        object Label1: TLabel
+          Left = 528
+          Top = 7
+          Width = 79
+          Height = 27
+          Caption = 'Houses'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -19
+          Font.Name = 'Arial Black'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
         object dbNavHouses: TDBNavigator
-          Left = 336
-          Top = 35
+          Left = 733
+          Top = 27
           Width = 350
           Height = 30
           DataSource = dsHouses
           TabOrder = 0
         end
-        object DBGrid2: TDBGrid
-          Left = 31
-          Top = 119
+        object dbGridHouses: TDBGrid
+          Left = 11
+          Top = 91
           Width = 1050
           Height = 233
           DataSource = dsHouses
           DrawingStyle = gdsClassic
           FixedColor = 16756364
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Options = [dgEditing, dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+          ParentFont = False
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -865,19 +895,22 @@ object SDIAppForm: TSDIAppForm
             item
               Expanded = False
               FieldName = 'acctID'
-              Width = 50
-              Visible = True
+              Title.Alignment = taCenter
+              Width = -1
+              Visible = False
             end
             item
               Expanded = False
               FieldName = 'houseAcct'
+              Title.Alignment = taCenter
               Title.Caption = 'Acct #'
-              Width = 70
+              Width = 91
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'Address'
+              Title.Alignment = taCenter
               Width = 150
               Visible = True
             end
@@ -885,19 +918,22 @@ object SDIAppForm: TSDIAppForm
               Alignment = taCenter
               Expanded = False
               FieldName = 'Section'
-              Width = 70
+              Title.Alignment = taCenter
+              Width = 128
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'StreetName'
+              Title.Alignment = taCenter
               Title.Caption = 'Street Name'
-              Width = 110
+              Width = 199
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'StreetNumber'
+              Title.Alignment = taCenter
               Title.Caption = 'Street Number'
               Width = 110
               Visible = True
@@ -905,7 +941,7 @@ object SDIAppForm: TSDIAppForm
         end
         object sbHouses: TStatusBar
           Left = 1
-          Top = 344
+          Top = 393
           Width = 1190
           Height = 19
           Panels = <
@@ -922,22 +958,65 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
+          ExplicitLeft = 0
+        end
+        object eHousesStreetName: TEdit
+          Left = 451
+          Top = 31
+          Width = 71
+          Height = 23
+          TabOrder = 3
+          OnChange = eHousesStreetNameChange
+          OnEnter = HousesEditColorChangeOnEnter
+          OnExit = EditColorChangeOnExit
+        end
+        object eHousesStreetNumber: TEdit
+          Left = 625
+          Top = 31
+          Width = 56
+          Height = 23
+          TabOrder = 4
+          OnChange = eHousesStreetNumberChange
+          OnEnter = HousesEditColorChangeOnEnter
+          OnExit = EditColorChangeOnExit
+        end
+        object eHousesAcctNumber: TEdit
+          Left = 41
+          Top = 31
+          Width = 65
+          Height = 23
+          TabOrder = 5
+          OnChange = eHousesAcctNumberChange
+          OnEnter = HousesEditColorChangeOnEnter
+          OnExit = EditColorChangeOnExit
+        end
+        object eHousesSection: TEdit
+          Left = 304
+          Top = 31
+          Width = 65
+          Height = 23
+          TabOrder = 6
+          OnChange = eHousesSectionChange
+          OnEnter = HousesEditColorChangeOnEnter
+          OnExit = EditColorChangeOnExit
         end
       end
     end
     object TabSheet3: TTabSheet
       Caption = 'Passwords'
       ImageIndex = 2
+      ExplicitHeight = 364
       object pnlPasswords: TPanel
         Left = 0
         Top = 0
         Width = 1192
-        Height = 364
+        Height = 413
         Align = alClient
         Caption = 'pnlPasswords'
         Color = 1149183
         ParentBackground = False
         TabOrder = 0
+        ExplicitHeight = 364
         object sbPasswordAcct: TSpeedButton
           Left = 240
           Top = 56
@@ -1039,7 +1118,7 @@ object SDIAppForm: TSDIAppForm
         end
         object sbPasswords: TStatusBar
           Left = 1
-          Top = 344
+          Top = 393
           Width = 1190
           Height = 19
           Panels = <
@@ -1057,214 +1136,341 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
+          ExplicitTop = 344
         end
       end
     end
     object Owners: TTabSheet
       Caption = 'Owners'
       ImageIndex = 4
-      object sbOwnersFName: TSpeedButton
-        Left = 64
-        Top = 88
-        Width = 25
-        Height = 25
-        NumGlyphs = 2
-        OnClick = sbOwnersClick
-      end
-      object sbOwnersLName: TSpeedButton
-        Tag = 2
-        Left = 200
-        Top = 88
-        Width = 25
-        Height = 25
-        Glyph.Data = {
-          76010000424D7601000000000000760000002800000020000000100000000100
-          04000000000000010000120B0000120B00001000000000000000000000000000
-          800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
-          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
-          333333333337F33333333333333033333333333333373F333333333333090333
-          33333333337F7F33333333333309033333333333337373F33333333330999033
-          3333333337F337F33333333330999033333333333733373F3333333309999903
-          333333337F33337F33333333099999033333333373333373F333333099999990
-          33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
-          33333333337F7F33333333333309033333333333337F7F333333333333090333
-          33333333337F7F33333333333309033333333333337F7F333333333333090333
-          33333333337F7F33333333333300033333333333337773333333}
-        NumGlyphs = 2
-        OnClick = sbOwnersClick
-      end
-      object sbOwnersHouseAcct: TSpeedButton
-        Tag = 4
-        Left = 312
-        Top = 87
-        Width = 25
-        Height = 25
-        NumGlyphs = 2
-        OnClick = sbOwnersClick
-      end
-      object sbOwnersUsePolicy: TSpeedButton
-        Tag = 6
-        Left = 416
-        Top = 88
-        Width = 25
-        Height = 25
-        NumGlyphs = 2
-        OnClick = sbOwnersClick
-      end
-      object sbOwnersPolicyDate: TSpeedButton
-        Tag = 8
-        Left = 520
-        Top = 88
-        Width = 25
-        Height = 25
-        NumGlyphs = 2
-        OnClick = sbOwnersClick
-      end
-      object sbOwnersStopDate: TSpeedButton
-        Tag = 10
-        Left = 672
-        Top = 88
-        Width = 25
-        Height = 25
-        NumGlyphs = 2
-        OnClick = sbOwnersClick
-      end
-      object dbgOwners: TDBGrid
-        Left = 15
-        Top = 119
-        Width = 1150
-        Height = 259
-        DataSource = dsOwners
-        TabOrder = 0
-        TitleFont.Charset = DEFAULT_CHARSET
-        TitleFont.Color = clWindowText
-        TitleFont.Height = -13
-        TitleFont.Name = 'System'
-        TitleFont.Style = []
-        Columns = <
-          item
-            Expanded = False
-            FieldName = 'ID'
-            Visible = False
-          end
-          item
-            Expanded = False
-            FieldName = 'firstName'
-            Title.Caption = 'First Name'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'lastName'
-            Title.Caption = 'Last Name'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'houseAcct'
-            Title.Caption = 'House Acct'
-            Visible = True
-          end
-          item
-            Alignment = taCenter
-            Expanded = False
-            FieldName = 'usePolicySigned'
-            Title.Caption = 'Use Policy Signed'
-            Visible = True
-          end
-          item
-            Alignment = taCenter
-            Expanded = False
-            FieldName = 'policyDate'
-            Title.Caption = 'Policy Date'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'stopDate'
-            Title.Caption = 'Stop Date'
-            Visible = True
-          end>
-      end
-      object dbNavOwners: TDBNavigator
-        Left = 392
-        Top = 32
-        Width = 350
-        Height = 33
-        DataSource = dsOwners
-        TabOrder = 1
-      end
-      object sbOwners: TStatusBar
+      ExplicitHeight = 364
+      object pnlOwners: TPanel
         Left = 0
-        Top = 345
+        Top = 0
         Width = 1192
-        Height = 19
-        Panels = <
-          item
-            Text = 'Record x of y'
-            Width = 200
-          end
-          item
-            Text = 'Panel 2'
-            Width = 200
-          end
-          item
-            Width = 200
-          end
-          item
-            Width = 200
-          end>
-      end
-      object gbPolicySigned: TGroupBox
-        Left = 816
-        Top = 56
-        Width = 137
-        Height = 49
-        Caption = ' Policy Signed '
-        TabOrder = 3
-        object cbPolicyYes: TCheckBox
-          Left = 16
-          Top = 24
-          Width = 49
-          Height = 17
-          Caption = 'Yes'
-          Checked = True
-          State = cbChecked
-          TabOrder = 0
-          OnClick = cbPolicyYesClick
+        Height = 413
+        Align = alClient
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Arial Black'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 0
+        ExplicitTop = -2
+        object sbOwnersFName: TSpeedButton
+          Left = 65
+          Top = 80
+          Width = 25
+          Height = 25
+          NumGlyphs = 2
+          OnClick = sbOwnersClick
         end
-        object cbPolicyNo: TCheckBox
-          Left = 88
-          Top = 23
-          Width = 41
-          Height = 17
-          Caption = 'No'
-          Checked = True
-          State = cbChecked
-          TabOrder = 1
-          OnClick = cbPolicyNoClick
+        object sbOwnersLName: TSpeedButton
+          Tag = 2
+          Left = 225
+          Top = 80
+          Width = 25
+          Height = 25
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000120B0000120B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+            333333333337F33333333333333033333333333333373F333333333333090333
+            33333333337F7F33333333333309033333333333337373F33333333330999033
+            3333333337F337F33333333330999033333333333733373F3333333309999903
+            333333337F33337F33333333099999033333333373333373F333333099999990
+            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333300033333333333337773333333}
+          NumGlyphs = 2
+          OnClick = sbOwnersClick
+        end
+        object sbOwnersPolicySigned: TSpeedButton
+          Tag = 6
+          Left = 362
+          Top = 85
+          Width = 25
+          Height = 25
+          NumGlyphs = 2
+          OnClick = sbOwnersClick
+        end
+        object sbOwnersPolicyDate: TSpeedButton
+          Tag = 8
+          Left = 480
+          Top = 80
+          Width = 25
+          Height = 25
+          NumGlyphs = 2
+          OnClick = sbOwnersClick
+        end
+        object sbOwnersStopDate: TSpeedButton
+          Tag = 10
+          Left = 599
+          Top = 80
+          Width = 25
+          Height = 25
+          NumGlyphs = 2
+          OnClick = sbOwnersClick
+        end
+        object Label2: TLabel
+          Left = 544
+          Top = 2
+          Width = 80
+          Height = 27
+          Caption = 'Owners'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -19
+          Font.Name = 'Arial Black'
+          Font.Style = []
+          ParentFont = False
+        end
+        object dbgOwners: TDBGrid
+          Left = 11
+          Top = 116
+          Width = 1158
+          Height = 257
+          DataSource = dsOwners
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Arial Black'
+          Font.Style = []
+          Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+          ParentFont = False
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -12
+          TitleFont.Name = 'Arial Black'
+          TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'ID'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -12
+              Title.Font.Name = 'Arial'
+              Title.Font.Style = [fsBold]
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'firstName'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'First Name'
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -12
+              Title.Font.Name = 'Arial'
+              Title.Font.Style = [fsBold]
+              Width = 136
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'lastName'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'Last Name'
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -12
+              Title.Font.Name = 'Arial'
+              Title.Font.Style = [fsBold]
+              Width = 156
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'houseAcct'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'House Acct'
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -12
+              Title.Font.Name = 'Arial'
+              Title.Font.Style = [fsBold]
+              Visible = False
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'usePolicySigned'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'Use Policy Signed'
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -12
+              Title.Font.Name = 'Arial'
+              Title.Font.Style = [fsBold]
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'policyDate'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'Policy Date'
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -12
+              Title.Font.Name = 'Arial'
+              Title.Font.Style = [fsBold]
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'stopDate'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'Stop Date'
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -12
+              Title.Font.Name = 'Arial'
+              Title.Font.Style = [fsBold]
+              Visible = True
+            end>
+        end
+        object sbOwners: TStatusBar
+          Left = 1
+          Top = 393
+          Width = 1190
+          Height = 19
+          Panels = <
+            item
+              Width = 200
+            end
+            item
+              Width = 200
+            end
+            item
+              Width = 200
+            end
+            item
+              Width = 200
+            end>
+          ExplicitTop = 345
+          ExplicitWidth = 1063
+        end
+        object eOwnersLName: TEdit
+          Left = 201
+          Top = 51
+          Width = 65
+          Height = 23
+          TabOrder = 2
+          OnChange = eOwnersLNameChange
+          OnEnter = OwnersEditColorChangeOnEnter
+          OnExit = EditColorChangeOnExit
+        end
+        object eOwnersFName: TEdit
+          Left = 46
+          Top = 51
+          Width = 65
+          Height = 23
+          TabOrder = 3
+          OnChange = eOwnersFNameChange
+          OnEnter = OwnersEditColorChangeOnEnter
+          OnExit = EditColorChangeOnExit
+        end
+        object dbNavOwners: TDBNavigator
+          Left = 808
+          Top = 16
+          Width = 287
+          Height = 33
+          DataSource = dsOwners
+          VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbEdit, nbCancel, nbRefresh]
+          TabOrder = 4
+        end
+        object rgPolicySigned: TRadioGroup
+          Left = 320
+          Top = 32
+          Width = 119
+          Height = 47
+          Caption = ' Policy Signed '
+          Columns = 3
+          ItemIndex = 2
+          Items.Strings = (
+            'Y'
+            'N'
+            'All')
+          TabOrder = 5
+          OnClick = rgPolicySignedClick
+        end
+        object rgSellDate: TRadioGroup
+          Left = 544
+          Top = 27
+          Width = 161
+          Height = 52
+          Caption = ' Sell Date '
+          Columns = 3
+          ItemIndex = 0
+          Items.Strings = (
+            'All'
+            'Null'
+            'Not Null')
+          TabOrder = 6
+          WordWrap = True
+          OnClick = rgSellDateClick
         end
       end
     end
     object Sections: TTabSheet
       Caption = 'Sections'
       ImageIndex = 5
+      ExplicitHeight = 364
       object pnlSections: TPanel
         Left = 0
         Top = 0
         Width = 1192
-        Height = 364
+        Height = 413
         Align = alClient
         TabOrder = 0
         OnResize = pnlSectionsResize
-        ExplicitLeft = 25
-        ExplicitTop = 16
-        ExplicitWidth = 634
-        ExplicitHeight = 289
+        ExplicitHeight = 364
         object lblSections: TLabel
           Left = 536
           Top = 7
-          Width = 103
+          Width = 92
           Height = 27
           Alignment = taCenter
           Caption = 'Sections'
@@ -1277,7 +1483,7 @@ object SDIAppForm: TSDIAppForm
         end
         object dbNavSections: TDBNavigator
           Left = 813
-          Top = 3
+          Top = 8
           Width = 270
           Height = 30
           DataSource = dsSections
@@ -1286,10 +1492,16 @@ object SDIAppForm: TSDIAppForm
         end
         object dbGridSections: TDBGrid
           Left = 11
-          Top = 40
+          Top = 56
           Width = 1105
           Height = 297
           DataSource = dsSections
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          ParentFont = False
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -1303,30 +1515,307 @@ object SDIAppForm: TSDIAppForm
               Visible = False
             end
             item
+              Alignment = taRightJustify
               Expanded = False
               FieldName = 'section'
+              Title.Alignment = taCenter
+              Title.Caption = 'Section'
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -13
+              Title.Font.Name = 'System'
+              Title.Font.Style = [fsBold]
               Visible = True
             end>
         end
         object sbSections: TStatusBar
           Left = 1
-          Top = 344
+          Top = 393
           Width = 1190
           Height = 19
           Panels = <
             item
-              Text = 'Record x of y'
               Width = 200
             end
             item
-              Text = 'Panel 2'
-              Width = 50
+              Width = 200
             end
             item
-              Width = 50
+              Width = 200
             end>
-          ExplicitLeft = 2
-          ExplicitTop = 345
+          ExplicitTop = 344
+        end
+      end
+    end
+    object TabSheet1: TTabSheet
+      Caption = 'Add Owner'
+      ImageIndex = 6
+      ExplicitLeft = 0
+      ExplicitTop = 36
+      object Splitter2: TSplitter
+        Left = 0
+        Top = 137
+        Width = 1192
+        Height = 3
+        Cursor = crVSplit
+        Align = alTop
+        ExplicitTop = 153
+        ExplicitWidth = 260
+      end
+      object pnlOwnerHouse: TPanel
+        Left = 0
+        Top = 0
+        Width = 1192
+        Height = 137
+        Align = alTop
+        TabOrder = 0
+        OnResize = pnlOwnerHouseResize
+        object dbGridOwnerHouse: TDBGrid
+          Left = 0
+          Top = 2
+          Width = 1105
+          Height = 120
+          DataSource = dsHouses
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+          ParentFont = False
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -13
+          TitleFont.Name = 'System'
+          TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'acctID'
+              Title.Alignment = taCenter
+              Width = -1
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'houseAcct'
+              Title.Alignment = taCenter
+              Title.Caption = 'Acct #'
+              Width = 75
+              Visible = True
+            end
+            item
+              Alignment = taRightJustify
+              Expanded = False
+              FieldName = 'Address'
+              Title.Alignment = taCenter
+              Width = 150
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'Section'
+              Title.Alignment = taCenter
+              Width = 75
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'StreetNumber'
+              Title.Alignment = taCenter
+              Title.Caption = 'Street #'
+              Width = 75
+              Visible = True
+            end
+            item
+              Alignment = taRightJustify
+              Expanded = False
+              FieldName = 'StreetName'
+              Title.Alignment = taCenter
+              Title.Caption = 'Street Name'
+              Width = 150
+              Visible = True
+            end>
+        end
+      end
+      object pnlOwnersOwners: TPanel
+        Left = 0
+        Top = 140
+        Width = 1192
+        Height = 273
+        Align = alClient
+        TabOrder = 1
+        OnResize = pnlOwnersOwnersResize
+        ExplicitLeft = 808
+        ExplicitTop = 280
+        ExplicitWidth = 185
+        ExplicitHeight = 41
+        object lblAddOwner: TLabel
+          Left = 544
+          Top = 6
+          Width = 128
+          Height = 29
+          Caption = 'Add Owner'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -24
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object dbGridAddOwner: TDBGrid
+          Left = 11
+          Top = 45
+          Width = 1158
+          Height = 217
+          DataSource = dsOwners
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Arial Black'
+          Font.Style = []
+          Options = [dgEditing, dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+          ParentFont = False
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -12
+          TitleFont.Name = 'Arial Black'
+          TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'ID'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -12
+              Title.Font.Name = 'Arial'
+              Title.Font.Style = [fsBold]
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'firstName'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'First Name'
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -12
+              Title.Font.Name = 'Arial'
+              Title.Font.Style = [fsBold]
+              Width = 136
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'lastName'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'Last Name'
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -12
+              Title.Font.Name = 'Arial'
+              Title.Font.Style = [fsBold]
+              Width = 156
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'houseAcct'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'House Acct'
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -12
+              Title.Font.Name = 'Arial'
+              Title.Font.Style = [fsBold]
+              Visible = False
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'usePolicySigned'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'Use Policy Signed'
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -12
+              Title.Font.Name = 'Arial'
+              Title.Font.Style = [fsBold]
+              Visible = True
+            end
+            item
+              Alignment = taCenter
+              Expanded = False
+              FieldName = 'policyDate'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'Policy Date'
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -12
+              Title.Font.Name = 'Arial'
+              Title.Font.Style = [fsBold]
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'stopDate'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'Stop Date'
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -12
+              Title.Font.Name = 'Arial'
+              Title.Font.Style = [fsBold]
+              Visible = True
+            end>
+        end
+        object DBNavigator1: TDBNavigator
+          Left = 882
+          Top = 10
+          Width = 234
+          Height = 25
+          DataSource = dsOwners
+          VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbEdit, nbPost, nbCancel, nbRefresh]
+          TabOrder = 1
         end
       end
     end
@@ -1452,7 +1941,7 @@ object SDIAppForm: TSDIAppForm
     Left = 616
     Top = 65528
     Bitmap = {
-      494C010102001800540020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010102001800580020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000001000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1769,6 +2258,7 @@ object SDIAppForm: TSDIAppForm
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
+    AfterScroll = aDsHousesAfterScroll
     CommandText = 'select * from Houses'
     IndexFieldNames = 'houseAcct ASC'
     Parameters = <>
@@ -1877,6 +2367,7 @@ object SDIAppForm: TSDIAppForm
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
+    AfterScroll = aTblOwnersAfterScroll
     IndexFieldNames = 'lastName  ASC'
     TableName = 'Owners'
     Left = 824
