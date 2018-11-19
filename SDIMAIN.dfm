@@ -233,7 +233,7 @@ object SDIAppForm: TSDIAppForm
     end
     object dbGridCurDirs: TDBGrid
       Left = 15
-      Top = 65
+      Top = 68
       Width = 1105
       Height = 310
       Hint = 'Sort Order'
@@ -372,7 +372,6 @@ object SDIAppForm: TSDIAppForm
         item
           Width = 300
         end>
-      ExplicitTop = 380
     end
     object eCurDirLastName: TEdit
       Left = 29
@@ -430,14 +429,13 @@ object SDIAppForm: TSDIAppForm
     Top = 292
     Width = 1200
     Height = 442
-    ActivePage = TabSheet1
+    ActivePage = TabSheet3
     Align = alClient
     TabOrder = 1
     TabPosition = tpBottom
     object Directors: TTabSheet
       Caption = 'Directors'
       Highlighted = True
-      ExplicitHeight = 364
       object pnlDirectors: TPanel
         Left = 0
         Top = 0
@@ -451,7 +449,6 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlDirectorsResize
-        ExplicitHeight = 364
         object sbDirectorsId: TSpeedButton
           Left = 72
           Top = 48
@@ -615,14 +612,12 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitTop = 339
         end
       end
     end
     object TabSheet4: TTabSheet
       Caption = 'Email Accts'
       ImageIndex = 3
-      ExplicitHeight = 364
       object pnlEmailAccts: TPanel
         Left = 0
         Top = 0
@@ -633,7 +628,7 @@ object SDIAppForm: TSDIAppForm
         Color = 15743371
         ParentBackground = False
         TabOrder = 0
-        ExplicitHeight = 364
+        OnResize = pnlEmailAcctsResize
         object spEmailAcct: TSpeedButton
           Left = 120
           Top = 56
@@ -657,7 +652,7 @@ object SDIAppForm: TSDIAppForm
         end
         object spEmailSection: TSpeedButton
           Tag = 2
-          Left = 333
+          Left = 305
           Top = 56
           Width = 25
           Height = 25
@@ -666,8 +661,8 @@ object SDIAppForm: TSDIAppForm
         end
         object spEmailDateCreated: TSpeedButton
           Tag = 4
-          Left = 440
-          Top = 55
+          Left = 384
+          Top = 56
           Width = 25
           Height = 25
           NumGlyphs = 2
@@ -675,7 +670,7 @@ object SDIAppForm: TSDIAppForm
         end
         object spEmailDateRetired: TSpeedButton
           Tag = 6
-          Left = 576
+          Left = 522
           Top = 56
           Width = 25
           Height = 25
@@ -684,7 +679,7 @@ object SDIAppForm: TSDIAppForm
         end
         object spEmailDomain: TSpeedButton
           Tag = 8
-          Left = 728
+          Left = 634
           Top = 56
           Width = 25
           Height = 25
@@ -692,21 +687,28 @@ object SDIAppForm: TSDIAppForm
           OnClick = sbEmailClick
         end
         object dbNavEmailAccts: TDBNavigator
-          Left = 364
-          Top = 16
-          Width = 350
-          Height = 33
+          Left = 555
+          Top = 9
+          Width = 297
+          Height = 24
           DataSource = dsEmailAccts
+          VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbEdit, nbPost, nbCancel, nbRefresh]
           TabOrder = 0
         end
-        object DBGrid4: TDBGrid
-          Left = 52
-          Top = 87
-          Width = 988
+        object dbGridEmails: TDBGrid
+          Left = 5
+          Top = 85
+          Width = 789
           Height = 273
           DataSource = dsEmailAccts
           DrawingStyle = gdsClassic
           FixedColor = 16294857
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          ParentFont = False
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -723,28 +725,35 @@ object SDIAppForm: TSDIAppForm
               Expanded = False
               FieldName = 'acct'
               Title.Caption = 'Email Acct'
-              Width = 250
+              Width = 221
               Visible = True
             end
             item
+              Alignment = taCenter
               Expanded = False
               FieldName = 'section'
               Title.Caption = 'Section'
+              Width = 105
               Visible = True
             end
             item
+              Alignment = taRightJustify
               Expanded = False
               FieldName = 'dateCreated'
               Title.Caption = 'Date Created'
+              Width = 96
               Visible = True
             end
             item
+              Alignment = taRightJustify
               Expanded = False
               FieldName = 'dateRetired'
               Title.Caption = 'Date Retired'
+              Width = 101
               Visible = True
             end
             item
+              Alignment = taRightJustify
               Expanded = False
               FieldName = 'Domain'
               Width = 150
@@ -758,11 +767,9 @@ object SDIAppForm: TSDIAppForm
           Height = 19
           Panels = <
             item
-              Text = 'Record x of y'
               Width = 200
             end
             item
-              Text = 'Panel 2'
               Width = 200
             end
             item
@@ -771,14 +778,72 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitTop = 344
+          ExplicitLeft = 0
+        end
+        object dbGridEmailSections: TDBGrid
+          Left = 960
+          Top = 85
+          Width = 145
+          Height = 302
+          DataSource = dsSections
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+          ParentFont = False
+          TabOrder = 3
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -13
+          TitleFont.Name = 'System'
+          TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'ID'
+              Visible = False
+            end
+            item
+              Alignment = taRightJustify
+              Expanded = False
+              FieldName = 'section'
+              Title.Alignment = taCenter
+              Title.Caption = 'Section'
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -13
+              Title.Font.Name = 'System'
+              Title.Font.Style = [fsBold]
+              Visible = True
+            end>
+        end
+        object eEmailSection: TEdit
+          Left = 1004
+          Top = 56
+          Width = 65
+          Height = 23
+          TabOrder = 4
+          OnChange = eEmailSectionChange
+          OnEnter = EditColorChangeOnEnter
+          OnExit = EditColorChangeOnExit
+        end
+        object eMailSectionSearch: TEdit
+          Left = 290
+          Top = 27
+          Width = 65
+          Height = 23
+          TabOrder = 5
+          OnChange = eMailSectionSearchChange
+          OnEnter = EditColorChangeOnEnter
+          OnExit = EditColorChangeOnExit
         end
       end
     end
     object Houses: TTabSheet
       Caption = 'Houses'
       ImageIndex = 1
-      ExplicitHeight = 364
       object pnlHouses: TPanel
         Left = 0
         Top = 0
@@ -789,9 +854,6 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlHousesResize
-        ExplicitLeft = 80
-        ExplicitTop = -1
-        ExplicitHeight = 475
         object sbHousesAcct: TSpeedButton
           Left = 57
           Top = 60
@@ -896,7 +958,6 @@ object SDIAppForm: TSDIAppForm
               Expanded = False
               FieldName = 'acctID'
               Title.Alignment = taCenter
-              Width = -1
               Visible = False
             end
             item
@@ -958,13 +1019,12 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitLeft = 0
         end
         object eHousesStreetName: TEdit
           Left = 451
           Top = 31
           Width = 71
-          Height = 23
+          Height = 24
           TabOrder = 3
           OnChange = eHousesStreetNameChange
           OnEnter = HousesEditColorChangeOnEnter
@@ -974,7 +1034,7 @@ object SDIAppForm: TSDIAppForm
           Left = 625
           Top = 31
           Width = 56
-          Height = 23
+          Height = 24
           TabOrder = 4
           OnChange = eHousesStreetNumberChange
           OnEnter = HousesEditColorChangeOnEnter
@@ -984,7 +1044,7 @@ object SDIAppForm: TSDIAppForm
           Left = 41
           Top = 31
           Width = 65
-          Height = 23
+          Height = 24
           TabOrder = 5
           OnChange = eHousesAcctNumberChange
           OnEnter = HousesEditColorChangeOnEnter
@@ -994,7 +1054,7 @@ object SDIAppForm: TSDIAppForm
           Left = 304
           Top = 31
           Width = 65
-          Height = 23
+          Height = 24
           TabOrder = 6
           OnChange = eHousesSectionChange
           OnEnter = HousesEditColorChangeOnEnter
@@ -1005,7 +1065,6 @@ object SDIAppForm: TSDIAppForm
     object TabSheet3: TTabSheet
       Caption = 'Passwords'
       ImageIndex = 2
-      ExplicitHeight = 364
       object pnlPasswords: TPanel
         Left = 0
         Top = 0
@@ -1016,7 +1075,7 @@ object SDIAppForm: TSDIAppForm
         Color = 1149183
         ParentBackground = False
         TabOrder = 0
-        ExplicitHeight = 364
+        OnResize = pnlPasswordsResize
         object sbPasswordAcct: TSpeedButton
           Left = 240
           Top = 56
@@ -1065,15 +1124,21 @@ object SDIAppForm: TSDIAppForm
           NumGlyphs = 2
           OnClick = sbPasswordClick
         end
-        object DBGrid3: TDBGrid
-          Left = 28
-          Top = 104
-          Width = 1005
+        object dbGridPasswords: TDBGrid
+          Left = 5
+          Top = 85
+          Width = 800
           Height = 273
           Color = clWhite
           DataSource = dsPasswords
           DrawingStyle = gdsClassic
           FixedColor = 7846911
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          ParentFont = False
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -1084,34 +1149,46 @@ object SDIAppForm: TSDIAppForm
             item
               Expanded = False
               FieldName = 'ID'
-              Visible = True
+              Visible = False
             end
             item
               Expanded = False
               FieldName = 'acct'
+              Title.Alignment = taCenter
+              Title.Caption = 'Email Account'
+              Width = 286
               Visible = True
             end
             item
+              Alignment = taRightJustify
               Expanded = False
               FieldName = 'password'
+              Title.Alignment = taCenter
+              Title.Caption = 'Password'
               Visible = True
             end
             item
+              Alignment = taRightJustify
               Expanded = False
               FieldName = 'startDate'
+              Title.Alignment = taCenter
+              Title.Caption = 'Start Date'
               Visible = True
             end
             item
+              Alignment = taRightJustify
               Expanded = False
               FieldName = 'stopDate'
+              Title.Alignment = taCenter
+              Title.Caption = 'Stop Date'
               Visible = True
             end>
         end
         object dbNavPasswords: TDBNavigator
-          Left = 387
+          Left = 528
           Top = 16
-          Width = 342
-          Height = 33
+          Width = 315
+          Height = 25
           DataSource = dsPasswords
           VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbEdit, nbPost, nbCancel, nbRefresh]
           TabOrder = 1
@@ -1123,11 +1200,9 @@ object SDIAppForm: TSDIAppForm
           Height = 19
           Panels = <
             item
-              Text = 'Record x of y'
               Width = 200
             end
             item
-              Text = 'Panel 2'
               Width = 200
             end
             item
@@ -1136,14 +1211,12 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitTop = 344
         end
       end
     end
     object Owners: TTabSheet
       Caption = 'Owners'
       ImageIndex = 4
-      ExplicitHeight = 364
       object pnlOwners: TPanel
         Left = 0
         Top = 0
@@ -1157,7 +1230,6 @@ object SDIAppForm: TSDIAppForm
         Font.Style = []
         ParentFont = False
         TabOrder = 0
-        ExplicitTop = -2
         object sbOwnersFName: TSpeedButton
           Left = 65
           Top = 80
@@ -1389,14 +1461,12 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitTop = 345
-          ExplicitWidth = 1063
         end
         object eOwnersLName: TEdit
           Left = 201
           Top = 51
           Width = 65
-          Height = 23
+          Height = 25
           TabOrder = 2
           OnChange = eOwnersLNameChange
           OnEnter = OwnersEditColorChangeOnEnter
@@ -1406,7 +1476,7 @@ object SDIAppForm: TSDIAppForm
           Left = 46
           Top = 51
           Width = 65
-          Height = 23
+          Height = 25
           TabOrder = 3
           OnChange = eOwnersFNameChange
           OnEnter = OwnersEditColorChangeOnEnter
@@ -1457,7 +1527,6 @@ object SDIAppForm: TSDIAppForm
     object Sections: TTabSheet
       Caption = 'Sections'
       ImageIndex = 5
-      ExplicitHeight = 364
       object pnlSections: TPanel
         Left = 0
         Top = 0
@@ -1466,7 +1535,6 @@ object SDIAppForm: TSDIAppForm
         Align = alClient
         TabOrder = 0
         OnResize = pnlSectionsResize
-        ExplicitHeight = 364
         object lblSections: TLabel
           Left = 536
           Top = 7
@@ -1543,15 +1611,12 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitTop = 344
         end
       end
     end
     object TabSheet1: TTabSheet
       Caption = 'Add Owner'
       ImageIndex = 6
-      ExplicitLeft = 0
-      ExplicitTop = 36
       object Splitter2: TSplitter
         Left = 0
         Top = 137
@@ -1594,7 +1659,6 @@ object SDIAppForm: TSDIAppForm
               Expanded = False
               FieldName = 'acctID'
               Title.Alignment = taCenter
-              Width = -1
               Visible = False
             end
             item
@@ -1648,10 +1712,6 @@ object SDIAppForm: TSDIAppForm
         Align = alClient
         TabOrder = 1
         OnResize = pnlOwnersOwnersResize
-        ExplicitLeft = 808
-        ExplicitTop = 280
-        ExplicitWidth = 185
-        ExplicitHeight = 41
         object lblAddOwner: TLabel
           Left = 544
           Top = 6
@@ -1941,7 +2001,7 @@ object SDIAppForm: TSDIAppForm
     Left = 616
     Top = 65528
     Bitmap = {
-      494C010102001800580020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101020018005C0020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000001000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2292,6 +2352,7 @@ object SDIAppForm: TSDIAppForm
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
+    AfterScroll = aTblPasswordsAfterScroll
     IndexFieldNames = 'acct ASC'
     TableDirect = True
     TableName = 'Passwords'
@@ -2325,6 +2386,8 @@ object SDIAppForm: TSDIAppForm
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
+    AfterInsert = aTblEmailAcctsAfterInsert
+    AfterScroll = aTblEmailAcctsAfterScroll
     IndexFieldNames = 'acct ASC'
     TableDirect = True
     TableName = 'EmailAccts'
