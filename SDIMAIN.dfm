@@ -3,8 +3,8 @@ object SDIAppForm: TSDIAppForm
   Top = 111
   BorderWidth = 2
   Caption = 'SDI Application'
-  ClientHeight = 734
-  ClientWidth = 1200
+  ClientHeight = 762
+  ClientWidth = 1212
   Color = clBtnFace
   Constraints.MinHeight = 300
   Constraints.MinWidth = 300
@@ -22,15 +22,16 @@ object SDIAppForm: TSDIAppForm
   object Splitter1: TSplitter
     Left = 0
     Top = 289
-    Width = 1200
+    Width = 1212
     Height = 3
     Cursor = crVSplit
     Align = alTop
+    ExplicitWidth = 1200
   end
   object pnlCurrentDirectors: TPanel
     Left = 0
     Top = 0
-    Width = 1200
+    Width = 1212
     Height = 289
     Align = alTop
     Caption = 'pnlCurrentDirectors'
@@ -44,6 +45,7 @@ object SDIAppForm: TSDIAppForm
     ShowHint = True
     TabOrder = 0
     OnResize = pnlCurrentDirectorsResize
+    ExplicitWidth = 1200
     object sbCurDirLastName: TSpeedButton
       Left = 29
       Top = 37
@@ -360,7 +362,7 @@ object SDIAppForm: TSDIAppForm
     object sbCurDirs: TStatusBar
       Left = 1
       Top = 269
-      Width = 1198
+      Width = 1210
       Height = 19
       Panels = <
         item
@@ -372,6 +374,7 @@ object SDIAppForm: TSDIAppForm
         item
           Width = 300
         end>
+      ExplicitWidth = 1198
     end
     object eCurDirLastName: TEdit
       Left = 29
@@ -427,20 +430,34 @@ object SDIAppForm: TSDIAppForm
   object pcEmail: TPageControl
     Left = 0
     Top = 292
-    Width = 1200
-    Height = 442
-    ActivePage = TabSheet3
+    Width = 1212
+    Height = 470
+    ActivePage = Directors
     Align = alClient
     TabOrder = 1
     TabPosition = tpBottom
+    ExplicitWidth = 1200
+    ExplicitHeight = 442
     object Directors: TTabSheet
       Caption = 'Directors'
       Highlighted = True
+      ExplicitWidth = 1192
+      ExplicitHeight = 413
+      object Splitter3: TSplitter
+        Left = 0
+        Top = 184
+        Width = 1204
+        Height = 3
+        Cursor = crVSplit
+        Align = alTop
+        ExplicitTop = 105
+        ExplicitWidth = 336
+      end
       object pnlDirectors: TPanel
         Left = 0
-        Top = 0
-        Width = 1192
-        Height = 413
+        Top = 187
+        Width = 1204
+        Height = 254
         Align = alClient
         BevelInner = bvRaised
         BevelKind = bkSoft
@@ -449,9 +466,12 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlDirectorsResize
+        ExplicitTop = 176
+        ExplicitWidth = 1192
+        ExplicitHeight = 237
         object sbDirectorsId: TSpeedButton
-          Left = 72
-          Top = 48
+          Left = 48
+          Top = 49
           Width = 25
           Height = 25
           Glyph.Data = {
@@ -490,8 +510,8 @@ object SDIAppForm: TSDIAppForm
         end
         object sbDirectorsStopDate: TSpeedButton
           Tag = 6
-          Left = 320
-          Top = 56
+          Left = 318
+          Top = 49
           Width = 25
           Height = 25
           NumGlyphs = 2
@@ -500,7 +520,7 @@ object SDIAppForm: TSDIAppForm
         object sbDirectorsEmailAcct: TSpeedButton
           Tag = 8
           Left = 456
-          Top = 56
+          Top = 49
           Width = 25
           Height = 25
           NumGlyphs = 2
@@ -509,7 +529,7 @@ object SDIAppForm: TSDIAppForm
         object sbDirectorsSortOrder: TSpeedButton
           Tag = 10
           Left = 648
-          Top = 56
+          Top = 49
           Width = 25
           Height = 25
           NumGlyphs = 2
@@ -517,9 +537,9 @@ object SDIAppForm: TSDIAppForm
         end
         object dbgDirectors: TDBGrid
           Left = 13
-          Top = 79
+          Top = 80
           Width = 1164
-          Height = 249
+          Height = 140
           DataSource = dsDirectors
           DrawingStyle = gdsClassic
           FixedColor = 7143276
@@ -587,17 +607,18 @@ object SDIAppForm: TSDIAppForm
             end>
         end
         object dbNavDirectors: TDBNavigator
-          Left = 387
-          Top = 27
-          Width = 350
+          Left = 768
+          Top = 19
+          Width = 315
           Height = 30
           DataSource = dsDirectors
+          VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbEdit, nbPost, nbCancel, nbRefresh]
           TabOrder = 1
         end
         object sbDirectors: TStatusBar
           Left = 2
-          Top = 388
-          Width = 1184
+          Top = 229
+          Width = 1196
           Height = 19
           Panels = <
             item
@@ -612,23 +633,215 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
+          ExplicitTop = 388
+          ExplicitWidth = 1184
+        end
+      end
+      object pnlAllOwners: TPanel
+        Left = 0
+        Top = 0
+        Width = 1204
+        Height = 184
+        Align = alTop
+        TabOrder = 1
+        OnResize = pnlAllOwnersResize
+        ExplicitTop = -1
+        object SpeedButton1: TSpeedButton
+          Left = 50
+          Top = 35
+          Width = 25
+          Height = 25
+          Hint = 'First Name'
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000120B0000120B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+            333333333337F33333333333333033333333333333373F333333333333090333
+            33333333337F7F33333333333309033333333333337373F33333333330999033
+            3333333337F337F33333333330999033333333333733373F3333333309999903
+            333333337F33337F33333333099999033333333373333373F333333099999990
+            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333300033333333333337773333333}
+          NumGlyphs = 2
+          OnClick = sbOwnersClick
+        end
+        object SpeedButton2: TSpeedButton
+          Tag = 2
+          Left = 189
+          Top = 35
+          Width = 25
+          Height = 25
+          Hint = 'Last Name'
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000120B0000120B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+            333333333337F33333333333333033333333333333373F333333333333090333
+            33333333337F7F33333333333309033333333333337373F33333333330999033
+            3333333337F337F33333333330999033333333333733373F3333333309999903
+            333333337F33337F33333333099999033333333373333373F333333099999990
+            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333300033333333333337773333333}
+          NumGlyphs = 2
+          ParentShowHint = False
+          ShowHint = True
+          OnClick = sbOwnersClick
+        end
+        object SpeedButton3: TSpeedButton
+          Tag = 4
+          Left = 289
+          Top = 35
+          Width = 25
+          Height = 25
+          Hint = 'Acct #'
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000120B0000120B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+            333333333337F33333333333333033333333333333373F333333333333090333
+            33333333337F7F33333333333309033333333333337373F33333333330999033
+            3333333337F337F33333333330999033333333333733373F3333333309999903
+            333333337F33337F33333333099999033333333373333373F333333099999990
+            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333300033333333333337773333333}
+          NumGlyphs = 2
+          OnClick = sbOwnersClick
+        end
+        object SpeedButton4: TSpeedButton
+          Tag = 8
+          Left = 496
+          Top = 35
+          Width = 25
+          Height = 25
+          NumGlyphs = 2
+          OnClick = sbOwnersClick
+        end
+        object SpeedButton5: TSpeedButton
+          Tag = 10
+          Left = 665
+          Top = 35
+          Width = 25
+          Height = 25
+          NumGlyphs = 2
+          OnClick = sbOwnersClick
+        end
+        object SpeedButton6: TSpeedButton
+          Tag = 6
+          Left = 394
+          Top = 35
+          Width = 25
+          Height = 25
+          NumGlyphs = 2
+          OnClick = sbOwnersClick
+        end
+        object dbGridDirOwners: TDBGrid
+          Left = 4
+          Top = 66
+          Width = 1196
+          Height = 94
+          DataSource = dsOwners
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -13
+          TitleFont.Name = 'System'
+          TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'ID'
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'firstName'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'lastName'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'houseAcct'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'usePolicySigned'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'policyDate'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'stopDate'
+              Visible = True
+            end>
+        end
+        object sbDirOwners: TStatusBar
+          Left = 1
+          Top = 164
+          Width = 1202
+          Height = 19
+          Panels = <>
+          ExplicitLeft = 264
+          ExplicitTop = 168
+          ExplicitWidth = 0
+        end
+        object eDirOwnersLName: TEdit
+          Left = 180
+          Top = 5
+          Width = 65
+          Height = 25
+          TabOrder = 2
+          OnChange = eOwnersLNameChange
+          OnEnter = OwnersEditColorChangeOnEnter
+          OnExit = EditColorChangeOnExit
+        end
+        object eDirOwnersFName: TEdit
+          Left = 25
+          Top = 5
+          Width = 65
+          Height = 25
+          TabOrder = 3
+          OnChange = eOwnersFNameChange
+          OnEnter = OwnersEditColorChangeOnEnter
+          OnExit = EditColorChangeOnExit
         end
       end
     end
     object TabSheet4: TTabSheet
       Caption = 'Email Accts'
       ImageIndex = 3
+      ExplicitWidth = 1192
+      ExplicitHeight = 413
       object pnlEmailAccts: TPanel
         Left = 0
         Top = 0
-        Width = 1192
-        Height = 413
+        Width = 1204
+        Height = 441
         Align = alClient
         Caption = 'pnlEmailAccts'
         Color = 15743371
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlEmailAcctsResize
+        ExplicitWidth = 1192
+        ExplicitHeight = 413
         object spEmailAcct: TSpeedButton
           Left = 120
           Top = 56
@@ -762,8 +975,8 @@ object SDIAppForm: TSDIAppForm
         end
         object sbEmailAccts: TStatusBar
           Left = 1
-          Top = 393
-          Width = 1190
+          Top = 421
+          Width = 1202
           Height = 19
           Panels = <
             item
@@ -778,7 +991,8 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitLeft = 0
+          ExplicitTop = 393
+          ExplicitWidth = 1190
         end
         object dbGridEmailSections: TDBGrid
           Left = 960
@@ -823,7 +1037,7 @@ object SDIAppForm: TSDIAppForm
           Left = 1004
           Top = 56
           Width = 65
-          Height = 23
+          Height = 24
           TabOrder = 4
           OnChange = eEmailSectionChange
           OnEnter = EditColorChangeOnEnter
@@ -833,7 +1047,7 @@ object SDIAppForm: TSDIAppForm
           Left = 290
           Top = 27
           Width = 65
-          Height = 23
+          Height = 24
           TabOrder = 5
           OnChange = eMailSectionSearchChange
           OnEnter = EditColorChangeOnEnter
@@ -844,16 +1058,20 @@ object SDIAppForm: TSDIAppForm
     object Houses: TTabSheet
       Caption = 'Houses'
       ImageIndex = 1
+      ExplicitWidth = 1192
+      ExplicitHeight = 413
       object pnlHouses: TPanel
         Left = 0
         Top = 0
-        Width = 1192
-        Height = 413
+        Width = 1204
+        Height = 441
         Align = alClient
         Color = 16675382
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlHousesResize
+        ExplicitWidth = 1192
+        ExplicitHeight = 413
         object sbHousesAcct: TSpeedButton
           Left = 57
           Top = 60
@@ -1002,8 +1220,8 @@ object SDIAppForm: TSDIAppForm
         end
         object sbHouses: TStatusBar
           Left = 1
-          Top = 393
-          Width = 1190
+          Top = 421
+          Width = 1202
           Height = 19
           Panels = <
             item
@@ -1019,6 +1237,8 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
+          ExplicitTop = 393
+          ExplicitWidth = 1190
         end
         object eHousesStreetName: TEdit
           Left = 451
@@ -1065,20 +1285,24 @@ object SDIAppForm: TSDIAppForm
     object TabSheet3: TTabSheet
       Caption = 'Passwords'
       ImageIndex = 2
+      ExplicitWidth = 1192
+      ExplicitHeight = 413
       object pnlPasswords: TPanel
         Left = 0
         Top = 0
-        Width = 1192
-        Height = 413
+        Width = 1204
+        Height = 441
         Align = alClient
         Caption = 'pnlPasswords'
         Color = 1149183
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlPasswordsResize
+        ExplicitWidth = 1192
+        ExplicitHeight = 413
         object sbPasswordAcct: TSpeedButton
-          Left = 240
-          Top = 56
+          Left = 128
+          Top = 54
           Width = 25
           Height = 25
           Glyph.Data = {
@@ -1099,8 +1323,8 @@ object SDIAppForm: TSDIAppForm
         end
         object sbPasswordPassword: TSpeedButton
           Tag = 2
-          Left = 568
-          Top = 55
+          Left = 384
+          Top = 54
           Width = 25
           Height = 25
           NumGlyphs = 2
@@ -1108,8 +1332,8 @@ object SDIAppForm: TSDIAppForm
         end
         object sbPasswordStartDate: TSpeedButton
           Tag = 4
-          Left = 784
-          Top = 56
+          Left = 536
+          Top = 54
           Width = 25
           Height = 25
           NumGlyphs = 2
@@ -1117,8 +1341,8 @@ object SDIAppForm: TSDIAppForm
         end
         object sbPasswordStopDate: TSpeedButton
           Tag = 6
-          Left = 928
-          Top = 55
+          Left = 665
+          Top = 54
           Width = 25
           Height = 25
           NumGlyphs = 2
@@ -1195,8 +1419,8 @@ object SDIAppForm: TSDIAppForm
         end
         object sbPasswords: TStatusBar
           Left = 1
-          Top = 393
-          Width = 1190
+          Top = 421
+          Width = 1202
           Height = 19
           Panels = <
             item
@@ -1211,17 +1435,21 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
+          ExplicitTop = 393
+          ExplicitWidth = 1190
         end
       end
     end
     object Owners: TTabSheet
       Caption = 'Owners'
       ImageIndex = 4
+      ExplicitWidth = 1192
+      ExplicitHeight = 413
       object pnlOwners: TPanel
         Left = 0
         Top = 0
-        Width = 1192
-        Height = 413
+        Width = 1204
+        Height = 441
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -1230,6 +1458,8 @@ object SDIAppForm: TSDIAppForm
         Font.Style = []
         ParentFont = False
         TabOrder = 0
+        ExplicitWidth = 1192
+        ExplicitHeight = 413
         object sbOwnersFName: TSpeedButton
           Left = 65
           Top = 80
@@ -1445,8 +1675,8 @@ object SDIAppForm: TSDIAppForm
         end
         object sbOwners: TStatusBar
           Left = 1
-          Top = 393
-          Width = 1190
+          Top = 421
+          Width = 1202
           Height = 19
           Panels = <
             item
@@ -1461,6 +1691,8 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
+          ExplicitTop = 393
+          ExplicitWidth = 1190
         end
         object eOwnersLName: TEdit
           Left = 201
@@ -1527,14 +1759,18 @@ object SDIAppForm: TSDIAppForm
     object Sections: TTabSheet
       Caption = 'Sections'
       ImageIndex = 5
+      ExplicitWidth = 1192
+      ExplicitHeight = 413
       object pnlSections: TPanel
         Left = 0
         Top = 0
-        Width = 1192
-        Height = 413
+        Width = 1204
+        Height = 441
         Align = alClient
         TabOrder = 0
         OnResize = pnlSectionsResize
+        ExplicitWidth = 1192
+        ExplicitHeight = 413
         object lblSections: TLabel
           Left = 536
           Top = 7
@@ -1598,8 +1834,8 @@ object SDIAppForm: TSDIAppForm
         end
         object sbSections: TStatusBar
           Left = 1
-          Top = 393
-          Width = 1190
+          Top = 421
+          Width = 1202
           Height = 19
           Panels = <
             item
@@ -1611,16 +1847,20 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
+          ExplicitTop = 393
+          ExplicitWidth = 1190
         end
       end
     end
     object TabSheet1: TTabSheet
       Caption = 'Add Owner'
       ImageIndex = 6
+      ExplicitWidth = 1192
+      ExplicitHeight = 413
       object Splitter2: TSplitter
         Left = 0
         Top = 137
-        Width = 1192
+        Width = 1204
         Height = 3
         Cursor = crVSplit
         Align = alTop
@@ -1630,11 +1870,12 @@ object SDIAppForm: TSDIAppForm
       object pnlOwnerHouse: TPanel
         Left = 0
         Top = 0
-        Width = 1192
+        Width = 1204
         Height = 137
         Align = alTop
         TabOrder = 0
         OnResize = pnlOwnerHouseResize
+        ExplicitWidth = 1192
         object dbGridOwnerHouse: TDBGrid
           Left = 0
           Top = 2
@@ -1707,11 +1948,13 @@ object SDIAppForm: TSDIAppForm
       object pnlOwnersOwners: TPanel
         Left = 0
         Top = 140
-        Width = 1192
-        Height = 273
+        Width = 1204
+        Height = 301
         Align = alClient
         TabOrder = 1
         OnResize = pnlOwnersOwnersResize
+        ExplicitWidth = 1192
+        ExplicitHeight = 273
         object lblAddOwner: TLabel
           Left = 544
           Top = 6
@@ -2001,7 +2244,7 @@ object SDIAppForm: TSDIAppForm
     Left = 616
     Top = 65528
     Bitmap = {
-      494C0101020018005C0020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010102001800600020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000001000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2352,8 +2595,10 @@ object SDIAppForm: TSDIAppForm
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
+    BeforeInsert = aTblPasswordsBeforeInsert
+    AfterInsert = aTblPasswordsAfterInsert
     AfterScroll = aTblPasswordsAfterScroll
-    IndexFieldNames = 'acct ASC'
+    IndexFieldNames = 'startDate DESC'
     TableDirect = True
     TableName = 'Passwords'
     Left = 756

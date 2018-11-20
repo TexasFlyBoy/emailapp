@@ -6,7 +6,7 @@ uses Winapi.Windows, System.Classes, Vcl.Graphics, Vcl.Forms, Vcl.Controls,
   Vcl.Menus, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ComCtrls,
   Vcl.ImgList, Vcl.StdActns, Vcl.ActnList, Vcl.ToolWin, System.ImageList,
   System.Actions, Data.DB, Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids, Data.Win.ADODB,
-  Vcl.WinXCtrls, SysUtils;
+  Vcl.WinXCtrls, SysUtils, StrUtils, Variants;
 
 type
   TSDIAppForm = class(TForm)
@@ -181,6 +181,18 @@ type
     dbGridEmailSections: TDBGrid;
     eEmailSection: TEdit;
     eMailSectionSearch: TEdit;
+    pnlAllOwners: TPanel;
+    dbGridDirOwners: TDBGrid;
+    Splitter3: TSplitter;
+    sbDirOwners: TStatusBar;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    SpeedButton3: TSpeedButton;
+    SpeedButton4: TSpeedButton;
+    SpeedButton5: TSpeedButton;
+    eDirOwnersLName: TEdit;
+    eDirOwnersFName: TEdit;
+    SpeedButton6: TSpeedButton;
     procedure FileNew1Execute(Sender: TObject);
     procedure FileOpen1Execute(Sender: TObject);
     procedure FileSave1Execute(Sender: TObject);
@@ -234,6 +246,9 @@ type
     procedure pnlEmailAcctsResize(Sender: TObject);
     procedure pnlPasswordsResize(Sender: TObject);
     procedure aTblPasswordsAfterScroll(DataSet: TDataSet);
+    procedure aTblPasswordsAfterInsert(DataSet: TDataSet);
+    procedure aTblPasswordsBeforeInsert(DataSet: TDataSet);
+    procedure pnlAllOwnersResize(Sender: TObject);
   private
     procedure TEditChange(filterText: string);
     procedure THousesEditChange(filterText: string);
@@ -275,9 +290,7 @@ begin
   sbCurDirs.Panels[1].Text := 'Record ' + IntToStr(adsCurrentDirectors.RecNo) + ' of ' + IntToStr(adsCurrentDirectors.RecordCount);
   with aTblPasswords do begin
     Filtered := False;
-
     Filter := 'acct = ' + '''' + adsCurrentDirectors.FieldByName('emailAcct').Value + '''';
-
     Filtered := True;
   end;
 
@@ -305,13 +318,47 @@ begin
 end;
 
 procedure TSDIAppForm.aTblOwnersAfterScroll(DataSet: TDataSet);
+var
+  i: Integer;
 begin
   sbOwners.Panels[1].Text := 'Record ' + IntToStr(aTblOwners.RecNo) + ' of ' + IntToStr(aTblOwners.RecordCount);
+  i := aTblOwners.FieldByName('ID').AsInteger;
+  aTblDirectors.Filtered := False;
+  aTblDirectors.Filter := 'OwnerID = ' + IntToStr(i);
+  aTblDirectors.Filtered := True;
+
+end;
+
+procedure TSDIAppForm.aTblPasswordsAfterInsert(DataSet: TDataSet);
+begin
+  // If the stopDate is NULL then we can insert a new record
+  If VarIsNull(aTblPasswords.FieldByName('stopDate').Value) then begin
+    aTblPasswords.FieldByName('startdate').AsDateTime := Now;
+    aTblPasswords.FieldByName('acct').Value := adsCurrentDirectors.FieldByName('emailAcct').Value;
+  end
+  else
+  begin
+    // do something here
+  end;
 end;
 
 procedure TSDIAppForm.aTblPasswordsAfterScroll(DataSet: TDataSet);
 begin
   sbPasswords.Panels[1].Text := 'Record ' + IntToStr(aTblPasswords.RecNo) + ' of ' + IntToStr(aTblPasswords.RecordCount);
+  pnlPasswordsResize(sbPasswordAcct);
+end;
+
+procedure TSDIAppForm.aTblPasswordsBeforeInsert(DataSet: TDataSet);
+begin
+  If VarIsNull(aTblPasswords.FieldByName('stopDate').Value) then begin
+    aTblPasswords.Edit;
+    aTblPasswords.FieldByName('stopDate').Value := Now;
+    aTblPasswords.Post;
+  end
+  else
+  begin
+    Abort;
+  end;
 end;
 
 procedure TSDIAppForm.aTblSectionsAfterScroll(DataSet: TDataSet);
@@ -742,11 +789,11 @@ begin
   // First we ignore the wildcard as the first character
   rgPolicySigned.ItemIndex := 2;
   rgSellDate.ItemIndex := 0;
-  if (eOwnersFName.Text = '%') then
+  if (Tedit(Sender).Text = '%') then
     Exit;
   filterText := '';
-  if (length(eOwnersFName.Text) > 0) then
-    filterText := 'firstName like ' + '''' + eOwnersFName.Text +
+  if (length(Tedit(Sender).Text) > 0) then
+    filterText := 'firstName like ' + '''' + Tedit(Sender).Text +
       '%' + '''';
   TOwnersEditChange(filterText);
 end;
@@ -758,11 +805,11 @@ begin
   rgPolicySigned.ItemIndex := 2;
   rgSellDate.ItemIndex := 0;
   // First we ignore the wildcard as the first character
-  if (eOwnersLName.Text = '%') then
+  if (Tedit(Sender).Text = '%') then
     Exit;
   filterText := '';
-  if (length(eOwnersLName.Text) > 0) then
-    filterText := 'lastName like ' + '''' + eOwnersLName.Text +
+  if (length(Tedit(Sender).Text) > 0) then
+    filterText := 'lastName like ' + '''' + Tedit(Sender).Text +
       '%' + '''';
   TOwnersEditChange(filterText);
 end;
@@ -773,6 +820,8 @@ begin
   TEdit(Sender).Color := clMoneyGreen;
   eOwnersLName.Text := '';
   eOwnersFName.Text := '';
+  eDirOwnersLName.Text := '';
+  eDirOwnersFName.Text := '';
 end;
 
 procedure TSDIAppForm.FileExit1Execute(Sender: TObject);
@@ -784,6 +833,20 @@ procedure TSDIAppForm.HelpAbout1Execute(Sender: TObject);
 begin
   AboutBox.ShowModal;
 end;
+
+procedure TSDIAppForm.pnlAllOwnersResize(Sender: TObject);
+Const
+  margin = 5;
+  topGap = 65;
+begin
+  with dbGridDirOwners do begin
+    Left := margin;
+    Width := pnlAllOwners.Width - 2 * margin;
+    Top := topGap;
+    Height := pnlAllOwners.Height - topGap - 2 * margin - sbDirOwners.Height;
+  end;
+end;
+
 
 procedure TSDIAppForm.pnlCurrentDirectorsResize(Sender: TObject);
 Const
@@ -801,7 +864,7 @@ end;
 procedure TSDIAppForm.pnlDirectorsResize(Sender: TObject);
 Const
   margin = 5;
-  topGap = 15;
+  topGap = 80;
 begin
   with dbgDirectors do begin
     Left := margin;
@@ -885,28 +948,21 @@ begin
     Height := sbPasswords.Top - topGap - margin;
   end;
   i := margin + 15;
-  j := dbGridPasswords.Columns[1].Width;
-  ShowMessage('i: ' + IntToStr(i) +  '   j: ' + IntToStr(j));
 
+  j := dbGridPasswords.Columns[1].Width;
   sbPasswordAcct.Left := i + (j div 2);
   i := i + j;
-  ShowMessage('i: ' + IntToStr(i) +  '   j: ' + IntToStr(j));
 
   j := dbGridPasswords.Columns[2].Width;
   sbPasswordPassword.Left := i + (j div 2);
   i := i + j;
-  ShowMessage('i: ' + IntToStr(i) +  '   j: ' + IntToStr(j));
 
   j := dbGridPasswords.Columns[3].Width;
-  sbPasswordPassword.Left := i + (j div 2);
+  sbPasswordStartDate.Left := i + (j div 2);
   i := i + j;
-  ShowMessage('i: ' + IntToStr(i) +  '   j: ' + IntToStr(j));
 
   j := dbGridPasswords.Columns[4].Width;
-  sbPasswordPassword.Left := i + (j div 2);
-  i := i + j;
-  ShowMessage('i: ' + IntToStr(i) +  '   j: ' + IntToStr(j));
-
+  sbPasswordStopDate.Left := i + (j div 2);
 end;
 
 procedure TSDIAppForm.pnlSectionsResize(Sender: TObject);
