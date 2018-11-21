@@ -4,7 +4,7 @@ object SDIAppForm: TSDIAppForm
   BorderWidth = 2
   Caption = 'SDI Application'
   ClientHeight = 762
-  ClientWidth = 1212
+  ClientWidth = 1214
   Color = clBtnFace
   Constraints.MinHeight = 300
   Constraints.MinWidth = 300
@@ -22,7 +22,7 @@ object SDIAppForm: TSDIAppForm
   object Splitter1: TSplitter
     Left = 0
     Top = 289
-    Width = 1212
+    Width = 1214
     Height = 3
     Cursor = crVSplit
     Align = alTop
@@ -31,7 +31,7 @@ object SDIAppForm: TSDIAppForm
   object pnlCurrentDirectors: TPanel
     Left = 0
     Top = 0
-    Width = 1212
+    Width = 1214
     Height = 289
     Align = alTop
     Caption = 'pnlCurrentDirectors'
@@ -45,7 +45,7 @@ object SDIAppForm: TSDIAppForm
     ShowHint = True
     TabOrder = 0
     OnResize = pnlCurrentDirectorsResize
-    ExplicitWidth = 1200
+    ExplicitWidth = 1212
     object sbCurDirLastName: TSpeedButton
       Left = 29
       Top = 37
@@ -362,7 +362,7 @@ object SDIAppForm: TSDIAppForm
     object sbCurDirs: TStatusBar
       Left = 1
       Top = 269
-      Width = 1210
+      Width = 1212
       Height = 19
       Panels = <
         item
@@ -374,10 +374,7 @@ object SDIAppForm: TSDIAppForm
         item
           Width = 300
         end>
-<<<<<<< HEAD
-      ExplicitWidth = 1198
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+      ExplicitWidth = 1210
     end
     object eCurDirLastName: TEdit
       Left = 29
@@ -433,42 +430,31 @@ object SDIAppForm: TSDIAppForm
   object pcEmail: TPageControl
     Left = 0
     Top = 292
-<<<<<<< HEAD
-    Width = 1212
+    Width = 1214
     Height = 470
-    ActivePage = Directors
-=======
-    Width = 1200
-    Height = 442
-    ActivePage = TabSheet3
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 1
     TabPosition = tpBottom
-    ExplicitWidth = 1200
-    ExplicitHeight = 442
+    ExplicitWidth = 1212
     object Directors: TTabSheet
       Caption = 'Directors'
       Highlighted = True
-<<<<<<< HEAD
-      ExplicitWidth = 1192
-      ExplicitHeight = 413
+      ExplicitWidth = 1204
       object Splitter3: TSplitter
         Left = 0
         Top = 184
-        Width = 1204
+        Width = 1206
         Height = 3
         Cursor = crVSplit
         Align = alTop
         ExplicitTop = 105
         ExplicitWidth = 336
       end
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
       object pnlDirectors: TPanel
         Left = 0
         Top = 187
-        Width = 1204
+        Width = 1206
         Height = 254
         Align = alClient
         BevelInner = bvRaised
@@ -478,12 +464,7 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlDirectorsResize
-<<<<<<< HEAD
-        ExplicitTop = 176
-        ExplicitWidth = 1192
-        ExplicitHeight = 237
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+        ExplicitWidth = 1204
         object sbDirectorsId: TSpeedButton
           Left = 48
           Top = 49
@@ -633,7 +614,7 @@ object SDIAppForm: TSDIAppForm
         object sbDirectors: TStatusBar
           Left = 2
           Top = 229
-          Width = 1196
+          Width = 1198
           Height = 19
           Panels = <
             item
@@ -648,20 +629,18 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-<<<<<<< HEAD
-          ExplicitTop = 388
-          ExplicitWidth = 1184
+          ExplicitWidth = 1196
         end
       end
       object pnlAllOwners: TPanel
         Left = 0
         Top = 0
-        Width = 1204
+        Width = 1206
         Height = 184
         Align = alTop
         TabOrder = 1
         OnResize = pnlAllOwnersResize
-        ExplicitTop = -1
+        ExplicitWidth = 1204
         object SpeedButton1: TSpeedButton
           Left = 50
           Top = 35
@@ -771,6 +750,7 @@ object SDIAppForm: TSDIAppForm
           TitleFont.Height = -13
           TitleFont.Name = 'System'
           TitleFont.Style = []
+          OnCellClick = dbGridDirOwnersCellClick
           Columns = <
             item
               Expanded = False
@@ -811,18 +791,16 @@ object SDIAppForm: TSDIAppForm
         object sbDirOwners: TStatusBar
           Left = 1
           Top = 164
-          Width = 1202
+          Width = 1204
           Height = 19
           Panels = <>
-          ExplicitLeft = 264
-          ExplicitTop = 168
-          ExplicitWidth = 0
+          ExplicitWidth = 1202
         end
         object eDirOwnersLName: TEdit
           Left = 180
           Top = 5
           Width = 65
-          Height = 25
+          Height = 24
           TabOrder = 2
           OnChange = eOwnersLNameChange
           OnEnter = OwnersEditColorChangeOnEnter
@@ -832,28 +810,22 @@ object SDIAppForm: TSDIAppForm
           Left = 25
           Top = 5
           Width = 65
-          Height = 25
+          Height = 24
           TabOrder = 3
           OnChange = eOwnersFNameChange
           OnEnter = OwnersEditColorChangeOnEnter
           OnExit = EditColorChangeOnExit
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
         end
       end
     end
     object TabSheet4: TTabSheet
       Caption = 'Email Accts'
       ImageIndex = 3
-<<<<<<< HEAD
-      ExplicitWidth = 1192
-      ExplicitHeight = 413
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+      ExplicitWidth = 1204
       object pnlEmailAccts: TPanel
         Left = 0
         Top = 0
-        Width = 1204
+        Width = 1206
         Height = 441
         Align = alClient
         Caption = 'pnlEmailAccts'
@@ -861,11 +833,7 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlEmailAcctsResize
-<<<<<<< HEAD
-        ExplicitWidth = 1192
-        ExplicitHeight = 413
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+        ExplicitWidth = 1204
         object spEmailAcct: TSpeedButton
           Left = 120
           Top = 56
@@ -1000,7 +968,7 @@ object SDIAppForm: TSDIAppForm
         object sbEmailAccts: TStatusBar
           Left = 1
           Top = 421
-          Width = 1202
+          Width = 1204
           Height = 19
           Panels = <
             item
@@ -1015,12 +983,7 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-<<<<<<< HEAD
-          ExplicitTop = 393
-          ExplicitWidth = 1190
-=======
-          ExplicitLeft = 0
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+          ExplicitWidth = 1202
         end
         object dbGridEmailSections: TDBGrid
           Left = 960
@@ -1065,11 +1028,7 @@ object SDIAppForm: TSDIAppForm
           Left = 1004
           Top = 56
           Width = 65
-<<<<<<< HEAD
           Height = 24
-=======
-          Height = 23
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
           TabOrder = 4
           OnChange = eEmailSectionChange
           OnEnter = EditColorChangeOnEnter
@@ -1079,11 +1038,7 @@ object SDIAppForm: TSDIAppForm
           Left = 290
           Top = 27
           Width = 65
-<<<<<<< HEAD
           Height = 24
-=======
-          Height = 23
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
           TabOrder = 5
           OnChange = eMailSectionSearchChange
           OnEnter = EditColorChangeOnEnter
@@ -1094,26 +1049,18 @@ object SDIAppForm: TSDIAppForm
     object Houses: TTabSheet
       Caption = 'Houses'
       ImageIndex = 1
-<<<<<<< HEAD
-      ExplicitWidth = 1192
-      ExplicitHeight = 413
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+      ExplicitWidth = 1204
       object pnlHouses: TPanel
         Left = 0
         Top = 0
-        Width = 1204
+        Width = 1206
         Height = 441
         Align = alClient
         Color = 16675382
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlHousesResize
-<<<<<<< HEAD
-        ExplicitWidth = 1192
-        ExplicitHeight = 413
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+        ExplicitWidth = 1204
         object sbHousesAcct: TSpeedButton
           Left = 57
           Top = 60
@@ -1156,7 +1103,7 @@ object SDIAppForm: TSDIAppForm
         object sbHousesSection: TSpeedButton
           Tag = 4
           Left = 320
-          Top = 60
+          Top = 61
           Width = 25
           Height = 25
           NumGlyphs = 2
@@ -1164,7 +1111,7 @@ object SDIAppForm: TSDIAppForm
         end
         object sbHousesStreetNumber: TSpeedButton
           Tag = 8
-          Left = 641
+          Left = 634
           Top = 60
           Width = 25
           Height = 25
@@ -1263,7 +1210,7 @@ object SDIAppForm: TSDIAppForm
         object sbHouses: TStatusBar
           Left = 1
           Top = 421
-          Width = 1202
+          Width = 1204
           Height = 19
           Panels = <
             item
@@ -1279,15 +1226,11 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-<<<<<<< HEAD
-          ExplicitTop = 393
-          ExplicitWidth = 1190
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+          ExplicitWidth = 1202
         end
         object eHousesStreetName: TEdit
           Left = 451
-          Top = 31
+          Top = 30
           Width = 71
           Height = 24
           TabOrder = 3
@@ -1307,7 +1250,7 @@ object SDIAppForm: TSDIAppForm
         end
         object eHousesAcctNumber: TEdit
           Left = 41
-          Top = 31
+          Top = 30
           Width = 65
           Height = 24
           TabOrder = 5
@@ -1325,20 +1268,26 @@ object SDIAppForm: TSDIAppForm
           OnEnter = HousesEditColorChangeOnEnter
           OnExit = EditColorChangeOnExit
         end
+        object eHousesAddress: TEdit
+          Left = 169
+          Top = 30
+          Width = 65
+          Height = 24
+          TabOrder = 7
+          OnChange = eHousesAddressChange
+          OnEnter = HousesEditColorChangeOnEnter
+          OnExit = EditColorChangeOnExit
+        end
       end
     end
     object TabSheet3: TTabSheet
       Caption = 'Passwords'
       ImageIndex = 2
-<<<<<<< HEAD
-      ExplicitWidth = 1192
-      ExplicitHeight = 413
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+      ExplicitWidth = 1204
       object pnlPasswords: TPanel
         Left = 0
         Top = 0
-        Width = 1204
+        Width = 1206
         Height = 441
         Align = alClient
         Caption = 'pnlPasswords'
@@ -1346,11 +1295,7 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlPasswordsResize
-<<<<<<< HEAD
-        ExplicitWidth = 1192
-        ExplicitHeight = 413
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+        ExplicitWidth = 1204
         object sbPasswordAcct: TSpeedButton
           Left = 128
           Top = 54
@@ -1471,7 +1416,7 @@ object SDIAppForm: TSDIAppForm
         object sbPasswords: TStatusBar
           Left = 1
           Top = 421
-          Width = 1202
+          Width = 1204
           Height = 19
           Panels = <
             item
@@ -1486,26 +1431,18 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-<<<<<<< HEAD
-          ExplicitTop = 393
-          ExplicitWidth = 1190
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+          ExplicitWidth = 1202
         end
       end
     end
     object Owners: TTabSheet
       Caption = 'Owners'
       ImageIndex = 4
-<<<<<<< HEAD
-      ExplicitWidth = 1192
-      ExplicitHeight = 413
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+      ExplicitWidth = 1204
       object pnlOwners: TPanel
         Left = 0
         Top = 0
-        Width = 1204
+        Width = 1206
         Height = 441
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
@@ -1515,11 +1452,7 @@ object SDIAppForm: TSDIAppForm
         Font.Style = []
         ParentFont = False
         TabOrder = 0
-<<<<<<< HEAD
-        ExplicitWidth = 1192
-        ExplicitHeight = 413
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+        ExplicitWidth = 1204
         object sbOwnersFName: TSpeedButton
           Left = 65
           Top = 80
@@ -1736,7 +1669,7 @@ object SDIAppForm: TSDIAppForm
         object sbOwners: TStatusBar
           Left = 1
           Top = 421
-          Width = 1202
+          Width = 1204
           Height = 19
           Panels = <
             item
@@ -1751,11 +1684,7 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-<<<<<<< HEAD
-          ExplicitTop = 393
-          ExplicitWidth = 1190
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+          ExplicitWidth = 1202
         end
         object eOwnersLName: TEdit
           Left = 201
@@ -1822,24 +1751,16 @@ object SDIAppForm: TSDIAppForm
     object Sections: TTabSheet
       Caption = 'Sections'
       ImageIndex = 5
-<<<<<<< HEAD
-      ExplicitWidth = 1192
-      ExplicitHeight = 413
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+      ExplicitWidth = 1204
       object pnlSections: TPanel
         Left = 0
         Top = 0
-        Width = 1204
+        Width = 1206
         Height = 441
         Align = alClient
         TabOrder = 0
         OnResize = pnlSectionsResize
-<<<<<<< HEAD
-        ExplicitWidth = 1192
-        ExplicitHeight = 413
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+        ExplicitWidth = 1204
         object lblSections: TLabel
           Left = 536
           Top = 7
@@ -1904,7 +1825,7 @@ object SDIAppForm: TSDIAppForm
         object sbSections: TStatusBar
           Left = 1
           Top = 421
-          Width = 1202
+          Width = 1204
           Height = 19
           Panels = <
             item
@@ -1916,26 +1837,18 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-<<<<<<< HEAD
-          ExplicitTop = 393
-          ExplicitWidth = 1190
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+          ExplicitWidth = 1202
         end
       end
     end
     object TabSheet1: TTabSheet
       Caption = 'Add Owner'
       ImageIndex = 6
-<<<<<<< HEAD
-      ExplicitWidth = 1192
-      ExplicitHeight = 413
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+      ExplicitWidth = 1204
       object Splitter2: TSplitter
         Left = 0
-        Top = 137
-        Width = 1204
+        Top = 249
+        Width = 1206
         Height = 3
         Cursor = crVSplit
         Align = alTop
@@ -1945,15 +1858,141 @@ object SDIAppForm: TSDIAppForm
       object pnlOwnerHouse: TPanel
         Left = 0
         Top = 0
-        Width = 1204
-        Height = 137
+        Width = 1206
+        Height = 249
         Align = alTop
         TabOrder = 0
         OnResize = pnlOwnerHouseResize
-        ExplicitWidth = 1192
-        object dbGridOwnerHouse: TDBGrid
-          Left = 0
+        object sbOwnersAcct: TSpeedButton
+          Left = 46
+          Top = 29
+          Width = 25
+          Height = 25
+          Hint = 'Acct #'
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000120B0000120B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+            333333333337F33333333333333033333333333333373F333333333333090333
+            33333333337F7F33333333333309033333333333337373F33333333330999033
+            3333333337F337F33333333330999033333333333733373F3333333309999903
+            333333337F33337F33333333099999033333333373333373F333333099999990
+            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333300033333333333337773333333}
+          NumGlyphs = 2
+          OnClick = sbHousesAcctClick
+        end
+        object sbOwnersSec: TSpeedButton
+          Tag = 4
+          Left = 434
+          Top = 29
+          Width = 25
+          Height = 25
+          Hint = 'Acct #'
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000120B0000120B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+            333333333337F33333333333333033333333333333373F333333333333090333
+            33333333337F7F33333333333309033333333333337373F33333333330999033
+            3333333337F337F33333333330999033333333333733373F3333333309999903
+            333333337F33337F33333333099999033333333373333373F333333099999990
+            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333300033333333333337773333333}
+          NumGlyphs = 2
+          OnClick = sbHousesAcctClick
+        end
+        object sbOwnersStrNum: TSpeedButton
+          Tag = 8
+          Left = 512
+          Top = 30
+          Width = 25
+          Height = 25
+          Hint = 'Acct #'
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000120B0000120B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+            333333333337F33333333333333033333333333333373F333333333333090333
+            33333333337F7F33333333333309033333333333337373F33333333330999033
+            3333333337F337F33333333330999033333333333733373F3333333309999903
+            333333337F33337F33333333099999033333333373333373F333333099999990
+            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333300033333333333337773333333}
+          NumGlyphs = 2
+          OnClick = sbHousesAcctClick
+        end
+        object sbOwnersStrName: TSpeedButton
+          Tag = 6
+          Left = 710
+          Top = 29
+          Width = 25
+          Height = 25
+          Hint = 'Acct #'
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000120B0000120B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+            333333333337F33333333333333033333333333333373F333333333333090333
+            33333333337F7F33333333333309033333333333337373F33333333330999033
+            3333333337F337F33333333330999033333333333733373F3333333309999903
+            333333337F33337F33333333099999033333333373333373F333333099999990
+            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333300033333333333337773333333}
+          NumGlyphs = 2
+          OnClick = sbHousesAcctClick
+        end
+        object sbOwnersAddr: TSpeedButton
+          Tag = 2
+          Left = 246
+          Top = 31
+          Width = 25
+          Height = 25
+          Hint = 'Acct #'
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000120B0000120B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+            333333333337F33333333333333033333333333333373F333333333333090333
+            33333333337F7F33333333333309033333333333337373F33333333330999033
+            3333333337F337F33333333330999033333333333733373F3333333309999903
+            333333337F33337F33333333099999033333333373333373F333333099999990
+            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333300033333333333337773333333}
+          NumGlyphs = 2
+          OnClick = sbHousesAcctClick
+        end
+        object lblHouses: TLabel
+          Left = 869
           Top = 2
+          Width = 86
+          Height = 29
+          Caption = 'Houses'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -24
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object dbGridOwnerHouse: TDBGrid
+          Left = 11
+          Top = 61
           Width = 1105
           Height = 120
           DataSource = dsHouses
@@ -1982,7 +2021,7 @@ object SDIAppForm: TSDIAppForm
               FieldName = 'houseAcct'
               Title.Alignment = taCenter
               Title.Caption = 'Acct #'
-              Width = 75
+              Width = 84
               Visible = True
             end
             item
@@ -1990,7 +2029,7 @@ object SDIAppForm: TSDIAppForm
               Expanded = False
               FieldName = 'Address'
               Title.Alignment = taCenter
-              Width = 150
+              Width = 300
               Visible = True
             end
             item
@@ -1998,7 +2037,7 @@ object SDIAppForm: TSDIAppForm
               Expanded = False
               FieldName = 'Section'
               Title.Alignment = taCenter
-              Width = 75
+              Width = 78
               Visible = True
             end
             item
@@ -2006,7 +2045,7 @@ object SDIAppForm: TSDIAppForm
               FieldName = 'StreetNumber'
               Title.Alignment = taCenter
               Title.Caption = 'Street #'
-              Width = 75
+              Width = 84
               Visible = True
             end
             item
@@ -2015,24 +2054,94 @@ object SDIAppForm: TSDIAppForm
               FieldName = 'StreetName'
               Title.Alignment = taCenter
               Title.Caption = 'Street Name'
-              Width = 150
+              Width = 262
               Visible = True
             end>
+        end
+        object eHousesAcct: TEdit
+          Left = 25
+          Top = 2
+          Width = 65
+          Height = 23
+          TabOrder = 1
+          OnChange = eHousesAcctNumberChange
+          OnEnter = HousesEditColorChangeOnEnter
+          OnExit = EditColorChangeOnExit
+        end
+        object eHousesAddr: TEdit
+          Left = 226
+          Top = 2
+          Width = 65
+          Height = 23
+          TabOrder = 2
+          OnChange = eHousesAddressChange
+          OnEnter = HousesEditColorChangeOnEnter
+          OnExit = EditColorChangeOnExit
+        end
+        object eHousesSec: TEdit
+          Left = 409
+          Top = 2
+          Width = 65
+          Height = 23
+          TabOrder = 3
+          OnChange = eHousesSectionChange
+          OnEnter = HousesEditColorChangeOnEnter
+          OnExit = EditColorChangeOnExit
+        end
+        object eHousesStrNum: TEdit
+          Left = 497
+          Top = 2
+          Width = 65
+          Height = 23
+          TabOrder = 4
+          OnChange = eHousesStreetNumberChange
+          OnEnter = HousesEditColorChangeOnEnter
+          OnExit = EditColorChangeOnExit
+        end
+        object eHousesStrName: TEdit
+          Left = 689
+          Top = 2
+          Width = 65
+          Height = 23
+          TabOrder = 5
+          OnChange = eHousesStreetNameChange
+          OnEnter = HousesEditColorChangeOnEnter
+          OnExit = EditColorChangeOnExit
+        end
+        object sbOwnersHouses: TStatusBar
+          Left = 1
+          Top = 229
+          Width = 1204
+          Height = 19
+          Panels = <
+            item
+              Width = 200
+            end
+            item
+              Width = 200
+            end
+            item
+              Width = 200
+            end
+            item
+              Width = 200
+            end>
+          ExplicitLeft = 216
+          ExplicitTop = 232
+          ExplicitWidth = 0
         end
       end
       object pnlOwnersOwners: TPanel
         Left = 0
-        Top = 140
-        Width = 1204
-        Height = 301
+        Top = 252
+        Width = 1206
+        Height = 189
         Align = alClient
         TabOrder = 1
         OnResize = pnlOwnersOwnersResize
-<<<<<<< HEAD
-        ExplicitWidth = 1192
-        ExplicitHeight = 273
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+        ExplicitTop = 140
+        ExplicitWidth = 1204
+        ExplicitHeight = 301
         object lblAddOwner: TLabel
           Left = 544
           Top = 6
@@ -2048,9 +2157,9 @@ object SDIAppForm: TSDIAppForm
         end
         object dbGridAddOwner: TDBGrid
           Left = 11
-          Top = 45
+          Top = 41
           Width = 1158
-          Height = 217
+          Height = 150
           DataSource = dsOwners
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -2081,6 +2190,23 @@ object SDIAppForm: TSDIAppForm
               Title.Font.Name = 'Arial'
               Title.Font.Style = [fsBold]
               Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'houseAcct'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'Acct #'
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -12
+              Title.Font.Name = 'Arial'
+              Title.Font.Style = [fsBold]
+              Visible = True
             end
             item
               Expanded = False
@@ -2117,23 +2243,6 @@ object SDIAppForm: TSDIAppForm
               Title.Font.Style = [fsBold]
               Width = 156
               Visible = True
-            end
-            item
-              Expanded = False
-              FieldName = 'houseAcct'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -12
-              Font.Name = 'Arial'
-              Font.Style = []
-              Title.Alignment = taCenter
-              Title.Caption = 'House Acct'
-              Title.Font.Charset = DEFAULT_CHARSET
-              Title.Font.Color = clWindowText
-              Title.Font.Height = -12
-              Title.Font.Name = 'Arial'
-              Title.Font.Style = [fsBold]
-              Visible = False
             end
             item
               Alignment = taCenter
@@ -2322,11 +2431,7 @@ object SDIAppForm: TSDIAppForm
     Left = 616
     Top = 65528
     Bitmap = {
-<<<<<<< HEAD
-      494C010102001800600020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
-=======
-      494C0101020018005C0020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+      494C010102001800640020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000001000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2614,16 +2719,23 @@ object SDIAppForm: TSDIAppForm
   object ADOConnection1: TADOConnection
     Connected = True
     ConnectionString = 
-      'Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Mandy.SSC' +
-      'A-FRONTOFFIC\Documents\SscaEmail.accdb;Persist Security Info=Fal' +
-      'se'
+      'Provider=Microsoft.ACE.OLEDB.12.0;User ID=Admin;Data Source=C:\U' +
+      'sers\Mandy.SSCA-FRONTOFFIC\Documents\SandBoxEmail.accdb;Mode=Sha' +
+      're Deny None;Jet OLEDB:System database="";Jet OLEDB:Registry Pat' +
+      'h="";Jet OLEDB:Database Password="";Jet OLEDB:Engine Type=6;Jet ' +
+      'OLEDB:Database Locking Mode=1;Jet OLEDB:Global Partial Bulk Ops=' +
+      '2;Jet OLEDB:Global Bulk Transactions=1;Jet OLEDB:New Database Pa' +
+      'ssword="";Jet OLEDB:Create System Database=False;Jet OLEDB:Encry' +
+      'pt Database=False;Jet OLEDB:Don'#39't Copy Locale on Compact=False;J' +
+      'et OLEDB:Compact Without Replica Repair=False;Jet OLEDB:SFP=Fals' +
+      'e;Jet OLEDB:Support Complex Data=False;Jet OLEDB:Bypass UserInfo' +
+      ' Validation=False;'
     Mode = cmShareDenyNone
     Provider = 'Microsoft.ACE.OLEDB.12.0'
-    Left = 1048
+    Left = 984
     Top = 16
   end
   object aTblDirectors: TADOTable
-    Active = True
     AutoCalcFields = False
     Connection = ADOConnection1
     CursorType = ctStatic
@@ -2640,7 +2752,6 @@ object SDIAppForm: TSDIAppForm
     Top = 128
   end
   object aDsHouses: TADODataSet
-    Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
     AfterScroll = aDsHousesAfterScroll
@@ -2674,18 +2785,12 @@ object SDIAppForm: TSDIAppForm
     end
   end
   object aTblPasswords: TADOTable
-    Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
-<<<<<<< HEAD
     BeforeInsert = aTblPasswordsBeforeInsert
     AfterInsert = aTblPasswordsAfterInsert
     AfterScroll = aTblPasswordsAfterScroll
     IndexFieldNames = 'startDate DESC'
-=======
-    AfterScroll = aTblPasswordsAfterScroll
-    IndexFieldNames = 'acct ASC'
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
     TableDirect = True
     TableName = 'Passwords'
     Left = 756
@@ -2715,7 +2820,6 @@ object SDIAppForm: TSDIAppForm
     Top = 128
   end
   object aTblEmailAccts: TADOTable
-    Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
     AfterInsert = aTblEmailAcctsAfterInsert
@@ -2759,7 +2863,6 @@ object SDIAppForm: TSDIAppForm
     Top = 128
   end
   object aTblOwners: TADOTable
-    Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
     AfterScroll = aTblOwnersAfterScroll
@@ -2795,7 +2898,6 @@ object SDIAppForm: TSDIAppForm
     end
   end
   object aTblSections: TADOTable
-    Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
     AfterScroll = aTblSectionsAfterScroll

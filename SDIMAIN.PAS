@@ -181,7 +181,6 @@ type
     dbGridEmailSections: TDBGrid;
     eEmailSection: TEdit;
     eMailSectionSearch: TEdit;
-<<<<<<< HEAD
     pnlAllOwners: TPanel;
     dbGridDirOwners: TDBGrid;
     Splitter3: TSplitter;
@@ -194,8 +193,19 @@ type
     eDirOwnersLName: TEdit;
     eDirOwnersFName: TEdit;
     SpeedButton6: TSpeedButton;
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+    eHousesAcct: TEdit;
+    sbOwnersAcct: TSpeedButton;
+    eHousesAddr: TEdit;
+    eHousesSec: TEdit;
+    eHousesStrNum: TEdit;
+    eHousesStrName: TEdit;
+    sbOwnersSec: TSpeedButton;
+    sbOwnersStrNum: TSpeedButton;
+    sbOwnersStrName: TSpeedButton;
+    sbOwnersAddr: TSpeedButton;
+    lblHouses: TLabel;
+    eHousesAddress: TEdit;
+    sbOwnersHouses: TStatusBar;
     procedure FileNew1Execute(Sender: TObject);
     procedure FileOpen1Execute(Sender: TObject);
     procedure FileSave1Execute(Sender: TObject);
@@ -249,12 +259,13 @@ type
     procedure pnlEmailAcctsResize(Sender: TObject);
     procedure pnlPasswordsResize(Sender: TObject);
     procedure aTblPasswordsAfterScroll(DataSet: TDataSet);
-<<<<<<< HEAD
     procedure aTblPasswordsAfterInsert(DataSet: TDataSet);
     procedure aTblPasswordsBeforeInsert(DataSet: TDataSet);
     procedure pnlAllOwnersResize(Sender: TObject);
-=======
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
+    procedure eHousesAcctChange(Sender: TObject);
+    procedure sbHousesAddressClick(Sender: TObject);
+    procedure eHousesAddressChange(Sender: TObject);
+    procedure dbGridDirOwnersCellClick(Column: TColumn);
   private
     procedure TEditChange(filterText: string);
     procedure THousesEditChange(filterText: string);
@@ -282,8 +293,66 @@ begin
 end;
 
 procedure TSDIAppForm.FileOpen1Execute(Sender: TObject);
+const
+  { Connection string }
+  ConnString = 'Provider=Microsoft.ACE.OLEDB.12.0;' + 'User ID=Admin;' +
+    'Data Source=%s;' + 'Mode=Share Deny None;' +
+    'Jet OLEDB:System database="";' + 'Jet OLEDB:Registry Path="";' +
+    'Jet OLEDB:Database Password="";' + 'Jet OLEDB:Engine Type=6;' +
+    'Jet OLEDB:Database Locking Mode=1;' +
+    'Jet OLEDB:Global Partial Bulk Ops=2;' +
+    'Jet OLEDB:Global Bulk Transactions=1;' +
+    'Jet OLEDB:New Database Password="";' +
+    'Jet OLEDB:Create System Database=False;' +
+    'Jet OLEDB:Encrypt Database=False;' +
+    'Jet OLEDB:Don''t Copy Locale on Compact=False;' +
+    'Jet OLEDB:Compact Without Replica Repair=False;' + 'Jet OLEDB:SFP=False;' +
+    'Jet OLEDB:Support Complex Data=False;' +
+    'Jet OLEDB:Bypass UserInfo Validation=False;';
+var
+  WhichConnection: string;
 begin
-  OpenDialog.Execute;
+  { execute an open file dialog }
+  if OpenDialog.Execute then
+    { first check if file exists }
+    if FileExists(OpenDialog.FileName) then
+    begin
+      { if it exists, connect to the database }
+      { First we start with a known condition }
+      ADOConnection1.Connected := False;
+      { Setup the connection string }
+      ADOConnection1.ConnectionString :=
+        Format(ConnString, [OpenDialog.FileName]);
+      { Disable login prompt }
+      ADOConnection1.LoginPrompt := False;
+      { connect -- or die trying }
+      try
+        WhichConnection := 'ADOConnection1';
+        ADOConnection1.Connected := True;
+      except
+        on e: EADOError do
+        begin
+          MessageDlg('Error while connecting', mtError, [mbOK], 0);
+          ShowMessage('Error with ' + WhichConnection);
+          Exit;
+        end;
+      end; // try-except
+    end
+    else
+    begin
+      { otherwise raise an exception }
+      raise Exception.Create('File does not exist.');
+      Exit
+    end;
+  { Success - now open the connection and connect the tables }
+  aTblDirectors.Active := True;
+  aTblPasswords.Active := True;
+  aTblEmailAccts.Active := True;
+  aTblOwners.Active := True;
+  aTblSections.Active := True;
+  aDsHouses.Active := True;
+  adsCurrentDirectors.Active := True;
+  // ShowMessage(ADOConnection1.ConnectionString);
 end;
 
 procedure TSDIAppForm.FileSave1Execute(Sender: TObject);
@@ -296,16 +365,20 @@ begin
   sbCurDirs.Panels[1].Text := 'Record ' + IntToStr(adsCurrentDirectors.RecNo) + ' of ' + IntToStr(adsCurrentDirectors.RecordCount);
   with aTblPasswords do begin
     Filtered := False;
-<<<<<<< HEAD
     Filter := 'acct = ' + '''' + adsCurrentDirectors.FieldByName('emailAcct').Value + '''';
-=======
-
-    Filter := 'acct = ' + '''' + adsCurrentDirectors.FieldByName('emailAcct').Value + '''';
-
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
     Filtered := True;
   end;
-
+  with aTblOwners do begin
+    Filtered := False;
+    Filter := 'houseAcct = ' + '''' + IntToStr(adsCurrentDirectors.FieldByName('houseAcct').Value) + '''';
+    Filtered := True;
+  end;
+  with aDsHouses
+   do begin
+    Filtered := False;
+    Filter := 'houseAcct = ' + '''' + IntToStr(adsCurrentDirectors.FieldByName('houseAcct').Value) + '''';
+    Filtered := True;
+  end;
 end;
 
 procedure TSDIAppForm.aDsHousesAfterScroll(DataSet: TDataSet);
@@ -338,7 +411,6 @@ begin
   aTblDirectors.Filtered := False;
   aTblDirectors.Filter := 'OwnerID = ' + IntToStr(i);
   aTblDirectors.Filtered := True;
-
 end;
 
 procedure TSDIAppForm.aTblPasswordsAfterInsert(DataSet: TDataSet);
@@ -371,11 +443,6 @@ begin
   begin
     Abort;
   end;
-end;
-
-procedure TSDIAppForm.aTblPasswordsAfterScroll(DataSet: TDataSet);
-begin
-  sbPasswords.Panels[1].Text := 'Record ' + IntToStr(aTblPasswords.RecNo) + ' of ' + IntToStr(aTblPasswords.RecordCount);
 end;
 
 procedure TSDIAppForm.aTblSectionsAfterScroll(DataSet: TDataSet);
@@ -468,6 +535,15 @@ begin
   (Sender as TDBGrid).Columns[ToIndex].Index := FromIndex;
 end;
 
+procedure TSDIAppForm.dbGridDirOwnersCellClick(Column: TColumn);
+begin
+  with adsCurrentDirectors do begin
+    Filtered := False;
+    Filter := 'houseAcct = ' + IntToStr(aTblOwners.FieldByName('houseAcct').Value);
+    Filtered := True;
+  end;
+end;
+
 procedure TSDIAppForm.eCurDirAcctNumberChange(Sender: TObject);
 var
   filterText: string;
@@ -552,8 +628,6 @@ begin
   begin
     adsCurrentDirectors.Filter := '';
     adsCurrentDirectors.Filtered := True;
-//    adoTableOwners.Filter := '';
-//    adoTableOwners.Filtered := True;
   end
   else
   begin
@@ -565,10 +639,6 @@ begin
   sbCurDirs.Panels[0].Text := filterText;
   numOfRecords := adsCurrentDirectors.RecordCount;
   sbCurDirs.Panels[1].Text := 'Record ' + IntToStr(adsCurrentDirectors.RecNo) + ' of ' + IntToStr(adsCurrentDirectors.RecordCount);
-
-//  StatusBar1.Panels[0].Text := filterText;
-//  numOfRecords := adoTableOwners.RecordCount;
-//  StatusBar1.Panels[1].Text := 'Record Count: ' + IntToStr(numOfRecords);
 end;
 
 
@@ -587,8 +657,6 @@ begin
   begin
     aDsHouses.Filter := '';
     aDsHouses.Filtered := True;
-//    adoTableOwners.Filter := '';
-//    adoTableOwners.Filtered := True;
   end
   else
   begin
@@ -598,12 +666,10 @@ begin
   end;
 
   sbHouses.Panels[0].Text := filterText;
+  sbOwnersHouses.Panels[0].Text := filterText;
   numOfRecords := aDsHouses.RecordCount;
   sbHouses.Panels[1].Text := 'Record ' + IntToStr(aDsHouses.RecNo) + ' of ' + IntToStr(aDsHouses.RecordCount);
-
-//  StatusBar1.Panels[0].Text := filterText;
-//  numOfRecords := adoTableOwners.RecordCount;
-//  StatusBar1.Panels[1].Text := 'Record Count: ' + IntToStr(numOfRecords);
+  sbOwnersHouses.Panels[1].Text := 'Record ' + IntToStr(aDsHouses.RecNo) + ' of ' + IntToStr(aDsHouses.RecordCount);
 end;
 
 { ----------------------------------------------------------------------+
@@ -621,8 +687,6 @@ begin
   begin
     aTblOwners.Filter := '';
     aTblOwners.Filtered := True;
-//    adoTableOwners.Filter := '';
-//    adoTableOwners.Filtered := True;
   end
   else
   begin
@@ -634,29 +698,37 @@ begin
   sbOwners.Panels[0].Text := filterText;
   numOfRecords := aTblOwners.RecordCount;
   sbOwners.Panels[1].Text := 'Record ' + IntToStr(aTblOwners.RecNo) + ' of ' + IntToStr(aTblOwners.RecordCount);
-
-//  StatusBar1.Panels[0].Text := filterText;
-//  numOfRecords := adoTableOwners.RecordCount;
-//  StatusBar1.Panels[1].Text := 'Record Count: ' + IntToStr(numOfRecords);
 end;
 
 procedure TSDIAppForm.EditColorChangeOnEnter(Sender: TObject);
 begin
   TEdit(Sender).Color := clMoneyGreen;
+  TEdit(Sender).Text := '';
   eCurDirLastName.Text := '';
   eCurDirFirstName.Text := '';
   eCurDirAcctNumber.Text := '';
   eCurDirEmail.Text := '';
   eCurDirRepresents.Text := '';
+  adsCurrentDirectors.Filtered := False;
+  adsCurrentDirectors.Filter := '';
 end;
 
 procedure TSDIAppForm.HousesEditColorChangeOnEnter(Sender: TObject);
 begin
   TEdit(Sender).Color := clMoneyGreen;
+  TEdit(Sender).Text := '';
+  eHousesAddress.Text := '';
   eHousesStreetName.Text := '';
   eHousesStreetNumber.Text := '';
   eHousesAcctNumber.Text := '';
   eHousesSection.Text := '';
+  eHousesAcct.Text := '';
+  eHousesAddr.Text := '';
+  eHousesSec.Text := '';
+  eHousesStrNum.Text := '';
+  eHousesStrName.Text := '';
+  aDsHouses.Filtered := False;
+  aDsHouses.Filter := '';
 end;
 
 procedure TSDIAppForm.EditColorChangeOnExit(Sender: TObject);
@@ -695,16 +767,43 @@ begin
   end;
 end;
 
+procedure TSDIAppForm.eHousesAcctChange(Sender: TObject);
+var
+  filterText: string;
+begin
+  // First we ignore the wildcard as the first character
+  if (TEdit(Sender).Text = '%') then
+    TEdit(Sender).Text := '';
+  filterText := '';
+  if (length(TEdit(Sender).Text) > 0) then
+    filterText := 'houseAcct = ' + '''' + TEdit(Sender).Text + '''';
+  THousesEditChange(filterText);
+end;
+
 procedure TSDIAppForm.eHousesAcctNumberChange(Sender: TObject);
 var
   filterText: string;
 begin
   // First we ignore the wildcard as the first character
-  if (eHousesAcctNumber.Text = '%') then
-    eHousesAcctNumber.Text := '';
+  if (TEdit(Sender).Text = '%') then
+    TEdit(Sender).Text := '';
   filterText := '';
-  if (length(eHousesAcctNumber.Text) > 0) then
-    filterText := 'houseAcct = ' + '''' + eHousesAcctNumber.Text + '''';
+  if (length(TEdit(Sender).Text) > 0) then
+    filterText := 'houseAcct = ' + '''' + TEdit(Sender).Text + '''';
+  THousesEditChange(filterText);
+end;
+
+procedure TSDIAppForm.eHousesAddressChange(Sender: TObject);
+var
+  filterText: string;
+begin
+  // First we ignore the wildcard as the first character
+  if (TEdit(Sender).Text = '%') then
+    Exit;
+  filterText := '';
+  if (length(TEdit(Sender).Text) > 0) then
+    filterText := 'address like ' + '''' + TEdit(Sender).Text +
+      '%' + '''';
   THousesEditChange(filterText);
 end;
 
@@ -713,11 +812,11 @@ var
   filterText: string;
 begin
   // First we ignore the wildcard as the first character
-  if (eHousesSection.Text = '%') then
+  if (TEdit(Sender).Text = '%') then
     Exit;
   filterText := '';
-  if (length(eHousesSection.Text) > 0) then
-    filterText := 'Section like ' + '''' + eHousesSection.Text +
+  if (length(TEdit(Sender).Text) > 0) then
+    filterText := 'Section like ' + '''' + TEdit(Sender).Text +
       '%' + '''';
   THousesEditChange(filterText);
 end;
@@ -727,11 +826,11 @@ var
   filterText: string;
 begin
   // First we ignore the wildcard as the first character
-  if (eHousesStreetName.Text = '%') then
+  if (TEdit(Sender).Text = '%') then
     Exit;
   filterText := '';
-  if (length(eHousesStreetName.Text) > 0) then
-    filterText := 'streetName like ' + '''' + eHousesStreetName.Text +
+  if (length(TEdit(Sender).Text) > 0) then
+    filterText := 'streetName like ' + '''' + TEdit(Sender).Text +
       '%' + '''';
   THousesEditChange(filterText);
 end;
@@ -741,11 +840,11 @@ var
   filterText: string;
 begin
   // First we ignore the wildcard as the first character
-  if (eHousesStreetNumber.Text = '%') then
-    eHousesStreetNumber.Text := '';
+  if (TEdit(Sender).Text = '%') then
+    TEdit(Sender).Text := '';
   filterText := '';
-  if (length(eHousesStreetNumber.Text) > 0) then
-    filterText := 'streetNumber = ' + '''' + eHousesStreetNumber.Text + '''';
+  if (length(TEdit(Sender).Text) > 0) then
+    filterText := 'streetNumber = ' + '''' + TEdit(Sender).Text + '''';
   THousesEditChange(filterText);
 end;
 
@@ -754,11 +853,11 @@ var
   filterText: string;
 begin
   // First we ignore the wildcard as the first character
-  if (eMailSectionSearch.Text = '%') then
+  if (TEdit(Sender).Text = '%') then
     Exit;
   filterText := '';
-  if (length(eMailSectionSearch.Text) > 0) then
-    filterText := 'Section like ' + '''' + eMailSectionSearch.Text +
+  if (length(TEdit(Sender).Text) > 0) then
+    filterText := 'Section like ' + '''' + TEdit(Sender).Text +
       '%' + '''';
   TeMailSectionChange(filterText);
 end;
@@ -835,10 +934,15 @@ end;
 procedure TSDIAppForm.OwnersEditColorChangeOnEnter(Sender: TObject);
 begin
   TEdit(Sender).Color := clMoneyGreen;
+  TEdit(Sender).Text := '';
   eOwnersLName.Text := '';
   eOwnersFName.Text := '';
   eDirOwnersLName.Text := '';
   eDirOwnersFName.Text := '';
+  adsCurrentDirectors.Filtered := False;
+  adsCurrentDirectors.Filter := '';
+  aTblOwners.Filtered := False;
+  aTblOwners.Filter := '';
 end;
 
 procedure TSDIAppForm.FileExit1Execute(Sender: TObject);
@@ -928,13 +1032,13 @@ end;
 procedure TSDIAppForm.pnlOwnerHouseResize(Sender: TObject);
 Const
   margin = 5;
-  topGap = 10;
+  topGap = 61;
 begin
   with dbGridOwnerHouse do begin
     Left := margin;
     Width := pnlOwnerHouse.Width - 3 * margin;
     Top := topGap;
-    Height := pnlOwnerHouse.Height - topGap - 2 * margin;
+    Height := pnlOwnerHouse.Height - topGap - 2 * margin - sbOwnersHouses.Height;
   end;
 end;
 
@@ -965,24 +1069,14 @@ begin
     Height := sbPasswords.Top - topGap - margin;
   end;
   i := margin + 15;
-<<<<<<< HEAD
 
   j := dbGridPasswords.Columns[1].Width;
   sbPasswordAcct.Left := i + (j div 2);
   i := i + j;
-=======
-  j := dbGridPasswords.Columns[1].Width;
-  ShowMessage('i: ' + IntToStr(i) +  '   j: ' + IntToStr(j));
-
-  sbPasswordAcct.Left := i + (j div 2);
-  i := i + j;
-  ShowMessage('i: ' + IntToStr(i) +  '   j: ' + IntToStr(j));
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
 
   j := dbGridPasswords.Columns[2].Width;
   sbPasswordPassword.Left := i + (j div 2);
   i := i + j;
-<<<<<<< HEAD
 
   j := dbGridPasswords.Columns[3].Width;
   sbPasswordStartDate.Left := i + (j div 2);
@@ -990,20 +1084,6 @@ begin
 
   j := dbGridPasswords.Columns[4].Width;
   sbPasswordStopDate.Left := i + (j div 2);
-=======
-  ShowMessage('i: ' + IntToStr(i) +  '   j: ' + IntToStr(j));
-
-  j := dbGridPasswords.Columns[3].Width;
-  sbPasswordPassword.Left := i + (j div 2);
-  i := i + j;
-  ShowMessage('i: ' + IntToStr(i) +  '   j: ' + IntToStr(j));
-
-  j := dbGridPasswords.Columns[4].Width;
-  sbPasswordPassword.Left := i + (j div 2);
-  i := i + j;
-  ShowMessage('i: ' + IntToStr(i) +  '   j: ' + IntToStr(j));
-
->>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
 end;
 
 procedure TSDIAppForm.pnlSectionsResize(Sender: TObject);
@@ -1079,6 +1159,11 @@ begin
     if (pnlHouses.Controls[i].ClassName = 'TSpeedButton')then
       TSpeedButton(pnlHouses.Controls[i]).Glyph := nil;
   end;
+    for i := 0 to (pnlOwnerHouse.ControlCount - 1) do
+  begin
+    if (pnlOwnerHouse.Controls[i].ClassName = 'TSpeedButton')then
+      TSpeedButton(pnlOwnerHouse.Controls[i]).Glyph := nil;
+  end;
   // Determine sort direction and glyph
   if odd(tagNumber) then begin
     oddEven := True;
@@ -1108,6 +1193,11 @@ begin
   sbHouses.Panels[2].Text := 'Index: ' + TADOTable(dsHouses.DataSet).IndexFieldNames;
 end;
 
+
+procedure TSDIAppForm.sbHousesAddressClick(Sender: TObject);
+begin
+
+end;
 
 {------------------------------------------------------------------+
 | sbOwnersClick(Sender: TObject)
