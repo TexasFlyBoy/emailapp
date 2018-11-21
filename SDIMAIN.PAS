@@ -181,6 +181,7 @@ type
     dbGridEmailSections: TDBGrid;
     eEmailSection: TEdit;
     eMailSectionSearch: TEdit;
+<<<<<<< HEAD
     pnlAllOwners: TPanel;
     dbGridDirOwners: TDBGrid;
     Splitter3: TSplitter;
@@ -193,6 +194,8 @@ type
     eDirOwnersLName: TEdit;
     eDirOwnersFName: TEdit;
     SpeedButton6: TSpeedButton;
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
     procedure FileNew1Execute(Sender: TObject);
     procedure FileOpen1Execute(Sender: TObject);
     procedure FileSave1Execute(Sender: TObject);
@@ -246,9 +249,12 @@ type
     procedure pnlEmailAcctsResize(Sender: TObject);
     procedure pnlPasswordsResize(Sender: TObject);
     procedure aTblPasswordsAfterScroll(DataSet: TDataSet);
+<<<<<<< HEAD
     procedure aTblPasswordsAfterInsert(DataSet: TDataSet);
     procedure aTblPasswordsBeforeInsert(DataSet: TDataSet);
     procedure pnlAllOwnersResize(Sender: TObject);
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
   private
     procedure TEditChange(filterText: string);
     procedure THousesEditChange(filterText: string);
@@ -290,7 +296,13 @@ begin
   sbCurDirs.Panels[1].Text := 'Record ' + IntToStr(adsCurrentDirectors.RecNo) + ' of ' + IntToStr(adsCurrentDirectors.RecordCount);
   with aTblPasswords do begin
     Filtered := False;
+<<<<<<< HEAD
     Filter := 'acct = ' + '''' + adsCurrentDirectors.FieldByName('emailAcct').Value + '''';
+=======
+
+    Filter := 'acct = ' + '''' + adsCurrentDirectors.FieldByName('emailAcct').Value + '''';
+
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
     Filtered := True;
   end;
 
@@ -359,6 +371,11 @@ begin
   begin
     Abort;
   end;
+end;
+
+procedure TSDIAppForm.aTblPasswordsAfterScroll(DataSet: TDataSet);
+begin
+  sbPasswords.Panels[1].Text := 'Record ' + IntToStr(aTblPasswords.RecNo) + ' of ' + IntToStr(aTblPasswords.RecordCount);
 end;
 
 procedure TSDIAppForm.aTblSectionsAfterScroll(DataSet: TDataSet);
@@ -948,14 +965,24 @@ begin
     Height := sbPasswords.Top - topGap - margin;
   end;
   i := margin + 15;
+<<<<<<< HEAD
 
   j := dbGridPasswords.Columns[1].Width;
   sbPasswordAcct.Left := i + (j div 2);
   i := i + j;
+=======
+  j := dbGridPasswords.Columns[1].Width;
+  ShowMessage('i: ' + IntToStr(i) +  '   j: ' + IntToStr(j));
+
+  sbPasswordAcct.Left := i + (j div 2);
+  i := i + j;
+  ShowMessage('i: ' + IntToStr(i) +  '   j: ' + IntToStr(j));
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
 
   j := dbGridPasswords.Columns[2].Width;
   sbPasswordPassword.Left := i + (j div 2);
   i := i + j;
+<<<<<<< HEAD
 
   j := dbGridPasswords.Columns[3].Width;
   sbPasswordStartDate.Left := i + (j div 2);
@@ -963,6 +990,20 @@ begin
 
   j := dbGridPasswords.Columns[4].Width;
   sbPasswordStopDate.Left := i + (j div 2);
+=======
+  ShowMessage('i: ' + IntToStr(i) +  '   j: ' + IntToStr(j));
+
+  j := dbGridPasswords.Columns[3].Width;
+  sbPasswordPassword.Left := i + (j div 2);
+  i := i + j;
+  ShowMessage('i: ' + IntToStr(i) +  '   j: ' + IntToStr(j));
+
+  j := dbGridPasswords.Columns[4].Width;
+  sbPasswordPassword.Left := i + (j div 2);
+  i := i + j;
+  ShowMessage('i: ' + IntToStr(i) +  '   j: ' + IntToStr(j));
+
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
 end;
 
 procedure TSDIAppForm.pnlSectionsResize(Sender: TObject);

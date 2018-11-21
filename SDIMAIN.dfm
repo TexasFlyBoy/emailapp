@@ -374,7 +374,10 @@ object SDIAppForm: TSDIAppForm
         item
           Width = 300
         end>
+<<<<<<< HEAD
       ExplicitWidth = 1198
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
     end
     object eCurDirLastName: TEdit
       Left = 29
@@ -430,9 +433,15 @@ object SDIAppForm: TSDIAppForm
   object pcEmail: TPageControl
     Left = 0
     Top = 292
+<<<<<<< HEAD
     Width = 1212
     Height = 470
     ActivePage = Directors
+=======
+    Width = 1200
+    Height = 442
+    ActivePage = TabSheet3
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
     Align = alClient
     TabOrder = 1
     TabPosition = tpBottom
@@ -441,6 +450,7 @@ object SDIAppForm: TSDIAppForm
     object Directors: TTabSheet
       Caption = 'Directors'
       Highlighted = True
+<<<<<<< HEAD
       ExplicitWidth = 1192
       ExplicitHeight = 413
       object Splitter3: TSplitter
@@ -453,6 +463,8 @@ object SDIAppForm: TSDIAppForm
         ExplicitTop = 105
         ExplicitWidth = 336
       end
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
       object pnlDirectors: TPanel
         Left = 0
         Top = 187
@@ -466,9 +478,12 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlDirectorsResize
+<<<<<<< HEAD
         ExplicitTop = 176
         ExplicitWidth = 1192
         ExplicitHeight = 237
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
         object sbDirectorsId: TSpeedButton
           Left = 48
           Top = 49
@@ -633,6 +648,7 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
+<<<<<<< HEAD
           ExplicitTop = 388
           ExplicitWidth = 1184
         end
@@ -821,14 +837,19 @@ object SDIAppForm: TSDIAppForm
           OnChange = eOwnersFNameChange
           OnEnter = OwnersEditColorChangeOnEnter
           OnExit = EditColorChangeOnExit
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
         end
       end
     end
     object TabSheet4: TTabSheet
       Caption = 'Email Accts'
       ImageIndex = 3
+<<<<<<< HEAD
       ExplicitWidth = 1192
       ExplicitHeight = 413
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
       object pnlEmailAccts: TPanel
         Left = 0
         Top = 0
@@ -840,8 +861,11 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlEmailAcctsResize
+<<<<<<< HEAD
         ExplicitWidth = 1192
         ExplicitHeight = 413
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
         object spEmailAcct: TSpeedButton
           Left = 120
           Top = 56
@@ -991,8 +1015,12 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
+<<<<<<< HEAD
           ExplicitTop = 393
           ExplicitWidth = 1190
+=======
+          ExplicitLeft = 0
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
         end
         object dbGridEmailSections: TDBGrid
           Left = 960
@@ -1037,7 +1065,11 @@ object SDIAppForm: TSDIAppForm
           Left = 1004
           Top = 56
           Width = 65
+<<<<<<< HEAD
           Height = 24
+=======
+          Height = 23
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
           TabOrder = 4
           OnChange = eEmailSectionChange
           OnEnter = EditColorChangeOnEnter
@@ -1047,7 +1079,11 @@ object SDIAppForm: TSDIAppForm
           Left = 290
           Top = 27
           Width = 65
+<<<<<<< HEAD
           Height = 24
+=======
+          Height = 23
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
           TabOrder = 5
           OnChange = eMailSectionSearchChange
           OnEnter = EditColorChangeOnEnter
@@ -1058,8 +1094,11 @@ object SDIAppForm: TSDIAppForm
     object Houses: TTabSheet
       Caption = 'Houses'
       ImageIndex = 1
+<<<<<<< HEAD
       ExplicitWidth = 1192
       ExplicitHeight = 413
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
       object pnlHouses: TPanel
         Left = 0
         Top = 0
@@ -1070,8 +1109,11 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlHousesResize
+<<<<<<< HEAD
         ExplicitWidth = 1192
         ExplicitHeight = 413
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
         object sbHousesAcct: TSpeedButton
           Left = 57
           Top = 60
@@ -1237,8 +1279,11 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
+<<<<<<< HEAD
           ExplicitTop = 393
           ExplicitWidth = 1190
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
         end
         object eHousesStreetName: TEdit
           Left = 451
@@ -1285,8 +1330,11 @@ object SDIAppForm: TSDIAppForm
     object TabSheet3: TTabSheet
       Caption = 'Passwords'
       ImageIndex = 2
+<<<<<<< HEAD
       ExplicitWidth = 1192
       ExplicitHeight = 413
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
       object pnlPasswords: TPanel
         Left = 0
         Top = 0
@@ -1298,8 +1346,11 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlPasswordsResize
+<<<<<<< HEAD
         ExplicitWidth = 1192
         ExplicitHeight = 413
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
         object sbPasswordAcct: TSpeedButton
           Left = 128
           Top = 54
@@ -1435,16 +1486,22 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
+<<<<<<< HEAD
           ExplicitTop = 393
           ExplicitWidth = 1190
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
         end
       end
     end
     object Owners: TTabSheet
       Caption = 'Owners'
       ImageIndex = 4
+<<<<<<< HEAD
       ExplicitWidth = 1192
       ExplicitHeight = 413
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
       object pnlOwners: TPanel
         Left = 0
         Top = 0
@@ -1458,8 +1515,11 @@ object SDIAppForm: TSDIAppForm
         Font.Style = []
         ParentFont = False
         TabOrder = 0
+<<<<<<< HEAD
         ExplicitWidth = 1192
         ExplicitHeight = 413
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
         object sbOwnersFName: TSpeedButton
           Left = 65
           Top = 80
@@ -1691,8 +1751,11 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
+<<<<<<< HEAD
           ExplicitTop = 393
           ExplicitWidth = 1190
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
         end
         object eOwnersLName: TEdit
           Left = 201
@@ -1759,8 +1822,11 @@ object SDIAppForm: TSDIAppForm
     object Sections: TTabSheet
       Caption = 'Sections'
       ImageIndex = 5
+<<<<<<< HEAD
       ExplicitWidth = 1192
       ExplicitHeight = 413
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
       object pnlSections: TPanel
         Left = 0
         Top = 0
@@ -1769,8 +1835,11 @@ object SDIAppForm: TSDIAppForm
         Align = alClient
         TabOrder = 0
         OnResize = pnlSectionsResize
+<<<<<<< HEAD
         ExplicitWidth = 1192
         ExplicitHeight = 413
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
         object lblSections: TLabel
           Left = 536
           Top = 7
@@ -1847,16 +1916,22 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
+<<<<<<< HEAD
           ExplicitTop = 393
           ExplicitWidth = 1190
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
         end
       end
     end
     object TabSheet1: TTabSheet
       Caption = 'Add Owner'
       ImageIndex = 6
+<<<<<<< HEAD
       ExplicitWidth = 1192
       ExplicitHeight = 413
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
       object Splitter2: TSplitter
         Left = 0
         Top = 137
@@ -1953,8 +2028,11 @@ object SDIAppForm: TSDIAppForm
         Align = alClient
         TabOrder = 1
         OnResize = pnlOwnersOwnersResize
+<<<<<<< HEAD
         ExplicitWidth = 1192
         ExplicitHeight = 273
+=======
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
         object lblAddOwner: TLabel
           Left = 544
           Top = 6
@@ -2244,7 +2322,11 @@ object SDIAppForm: TSDIAppForm
     Left = 616
     Top = 65528
     Bitmap = {
+<<<<<<< HEAD
       494C010102001800600020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+=======
+      494C0101020018005C0020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
       0000000000003600000028000000800000001000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2595,10 +2677,15 @@ object SDIAppForm: TSDIAppForm
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
+<<<<<<< HEAD
     BeforeInsert = aTblPasswordsBeforeInsert
     AfterInsert = aTblPasswordsAfterInsert
     AfterScroll = aTblPasswordsAfterScroll
     IndexFieldNames = 'startDate DESC'
+=======
+    AfterScroll = aTblPasswordsAfterScroll
+    IndexFieldNames = 'acct ASC'
+>>>>>>> 71aa91c70a6ceb2918ee97eaaf95a0b22c8580f4
     TableDirect = True
     TableName = 'Passwords'
     Left = 756
