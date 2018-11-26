@@ -206,6 +206,11 @@ type
     lblHouses: TLabel;
     eHousesAddress: TEdit;
     sbOwnersHouses: TStatusBar;
+    SqlViewer: TTabSheet;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Splitter4: TSplitter;
+    Panel3: TPanel;
     procedure FileNew1Execute(Sender: TObject);
     procedure FileOpen1Execute(Sender: TObject);
     procedure FileSave1Execute(Sender: TObject);
@@ -266,6 +271,8 @@ type
     procedure sbHousesAddressClick(Sender: TObject);
     procedure eHousesAddressChange(Sender: TObject);
     procedure dbGridDirOwnersCellClick(Column: TColumn);
+    procedure pcEmailDrawTab(Control: TCustomTabControl; TabIndex: Integer;
+      const Rect: TRect; Active: Boolean);
   private
     procedure TEditChange(filterText: string);
     procedure THousesEditChange(filterText: string);
@@ -277,6 +284,9 @@ type
   public
     { Public declarations }
   end;
+
+  procedure DrawTab( oControl: TCustomTabControl; TabIndex: Integer;
+    const Rect: TRect; Active: Boolean);
 
 var
   SDIAppForm: TSDIAppForm;
@@ -954,6 +964,61 @@ procedure TSDIAppForm.HelpAbout1Execute(Sender: TObject);
 begin
   AboutBox.ShowModal;
 end;
+
+procedure TSDIAppForm.pcEmailDrawTab(Control: TCustomTabControl;
+  TabIndex: Integer; const Rect: TRect; Active: Boolean);
+begin
+  DrawTab(Control, TabIndex, Rect, Active);
+end;
+
+procedure DrawTab( oControl: TCustomTabControl; TabIndex: Integer;
+const Rect: TRect; Active: Boolean);
+var
+  oRect: TRect;
+  sCaption: string;
+  iTop: Integer;
+  iLeft: Integer;
+  cTabColor: TColor;
+  iTabTag: Integer;
+begin
+  oRect := Rect;
+  sCaption := TPageControl(oControl).Pages[TabIndex].Caption;
+  // Default color for the tab
+  cTabColor := clBtnFace;
+  // Color the tab the same as the Major panel
+  iTabTag := TPageControl(oControl).Pages[TabIndex].Tag;
+  case iTabTag of
+    0:  cTabColor := $0086ce80;  // Directors
+    1:  cTabColor := $00f8a3c9;  // Email Accounts
+    2:  cTabColor := $00ffae8c;  // Houses
+    3:  cTabColor := $0077bbff;  // Passwords
+    4:  cTabColor := $00a4ddf2;  // Owners
+    5:  cTabColor := $00ffffc1;  // Sections
+    6:  cTabColor := $00b0E0b0 ;
+    7:  cTabColor := $00eec29b;
+    8:  cTabColor := $00fb5942;
+    9:  cTabColor := clBtnFace;
+    10: cTabColor := $00e68cc8;
+  end;
+
+  iTop  := Rect.Top  + ((Rect.Bottom - Rect.Top - oControl.Canvas.TextHeight(sCaption)) div 2) + 1;
+  iLeft := Rect.Left + ((Rect.Right  - Rect.Left - oControl.Canvas.TextWidth(sCaption)) div 2) + 1;
+
+  if (Active) then begin
+    oControl.Canvas.Brush.Color := cTabColor;
+    oControl.Canvas.FillRect(Rect);
+    Frame3D(oControl.Canvas, oRect, clBtnHighlight, clBtnShadow, 2);
+  end else begin
+    oControl.Canvas.Brush.Color := clBtnFace;
+    oControl.Canvas.FillRect(Rect);
+  end;
+  oControl.Canvas.TextOut(iLeft,iTop,sCaption);
+end;
+
+
+
+//////////////////////////////////////////////////////
+
 
 procedure TSDIAppForm.pnlAllOwnersResize(Sender: TObject);
 Const

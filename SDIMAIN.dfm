@@ -35,17 +35,18 @@ object SDIAppForm: TSDIAppForm
     Height = 289
     Align = alTop
     Caption = 'pnlCurrentDirectors'
+    Color = 8107899
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -12
     Font.Name = 'Arial'
     Font.Style = []
+    ParentBackground = False
     ParentFont = False
     ParentShowHint = False
     ShowHint = True
     TabOrder = 0
     OnResize = pnlCurrentDirectorsResize
-    ExplicitWidth = 1212
     object sbCurDirLastName: TSpeedButton
       Left = 29
       Top = 37
@@ -240,6 +241,8 @@ object SDIAppForm: TSDIAppForm
       Height = 310
       Hint = 'Sort Order'
       DataSource = dsCurrentDirectors
+      DrawingStyle = gdsClassic
+      FixedColor = 13099207
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
@@ -374,7 +377,6 @@ object SDIAppForm: TSDIAppForm
         item
           Width = 300
         end>
-      ExplicitWidth = 1210
     end
     object eCurDirLastName: TEdit
       Left = 29
@@ -432,15 +434,15 @@ object SDIAppForm: TSDIAppForm
     Top = 292
     Width = 1214
     Height = 470
-    ActivePage = TabSheet1
+    ActivePage = SqlViewer
     Align = alClient
+    OwnerDraw = True
     TabOrder = 1
     TabPosition = tpBottom
-    ExplicitWidth = 1212
+    OnDrawTab = pcEmailDrawTab
     object Directors: TTabSheet
       Caption = 'Directors'
       Highlighted = True
-      ExplicitWidth = 1204
       object Splitter3: TSplitter
         Left = 0
         Top = 184
@@ -464,7 +466,6 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlDirectorsResize
-        ExplicitWidth = 1204
         object sbDirectorsId: TSpeedButton
           Left = 48
           Top = 49
@@ -538,7 +539,7 @@ object SDIAppForm: TSDIAppForm
           Height = 140
           DataSource = dsDirectors
           DrawingStyle = gdsClassic
-          FixedColor = 7143276
+          FixedColor = 8834688
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
@@ -629,7 +630,6 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitWidth = 1196
         end
       end
       object pnlAllOwners: TPanel
@@ -638,9 +638,10 @@ object SDIAppForm: TSDIAppForm
         Width = 1206
         Height = 184
         Align = alTop
+        Color = 2139610
+        ParentBackground = False
         TabOrder = 1
         OnResize = pnlAllOwnersResize
-        ExplicitWidth = 1204
         object SpeedButton1: TSpeedButton
           Left = 50
           Top = 35
@@ -744,6 +745,8 @@ object SDIAppForm: TSDIAppForm
           Width = 1196
           Height = 94
           DataSource = dsOwners
+          DrawingStyle = gdsClassic
+          FixedColor = 10804722
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -794,7 +797,6 @@ object SDIAppForm: TSDIAppForm
           Width = 1204
           Height = 19
           Panels = <>
-          ExplicitWidth = 1202
         end
         object eDirOwnersLName: TEdit
           Left = 180
@@ -819,9 +821,9 @@ object SDIAppForm: TSDIAppForm
       end
     end
     object TabSheet4: TTabSheet
+      Tag = 1
       Caption = 'Email Accts'
       ImageIndex = 3
-      ExplicitWidth = 1204
       object pnlEmailAccts: TPanel
         Left = 0
         Top = 0
@@ -833,7 +835,6 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlEmailAcctsResize
-        ExplicitWidth = 1204
         object spEmailAcct: TSpeedButton
           Left = 120
           Top = 56
@@ -983,7 +984,6 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitWidth = 1202
         end
         object dbGridEmailSections: TDBGrid
           Left = 960
@@ -1047,9 +1047,9 @@ object SDIAppForm: TSDIAppForm
       end
     end
     object Houses: TTabSheet
+      Tag = 2
       Caption = 'Houses'
       ImageIndex = 1
-      ExplicitWidth = 1204
       object pnlHouses: TPanel
         Left = 0
         Top = 0
@@ -1060,7 +1060,6 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlHousesResize
-        ExplicitWidth = 1204
         object sbHousesAcct: TSpeedButton
           Left = 57
           Top = 60
@@ -1226,7 +1225,6 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitWidth = 1202
         end
         object eHousesStreetName: TEdit
           Left = 451
@@ -1281,9 +1279,9 @@ object SDIAppForm: TSDIAppForm
       end
     end
     object TabSheet3: TTabSheet
+      Tag = 3
       Caption = 'Passwords'
       ImageIndex = 2
-      ExplicitWidth = 1204
       object pnlPasswords: TPanel
         Left = 0
         Top = 0
@@ -1295,7 +1293,6 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlPasswordsResize
-        ExplicitWidth = 1204
         object sbPasswordAcct: TSpeedButton
           Left = 128
           Top = 54
@@ -1431,28 +1428,28 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitWidth = 1202
         end
       end
     end
     object Owners: TTabSheet
+      Tag = 4
       Caption = 'Owners'
       ImageIndex = 4
-      ExplicitWidth = 1204
       object pnlOwners: TPanel
         Left = 0
         Top = 0
         Width = 1206
         Height = 441
         Align = alClient
+        Color = 2139610
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -12
         Font.Name = 'Arial Black'
         Font.Style = []
+        ParentBackground = False
         ParentFont = False
         TabOrder = 0
-        ExplicitWidth = 1204
         object sbOwnersFName: TSpeedButton
           Left = 65
           Top = 80
@@ -1529,6 +1526,8 @@ object SDIAppForm: TSDIAppForm
           Width = 1158
           Height = 257
           DataSource = dsOwners
+          DrawingStyle = gdsClassic
+          FixedColor = 10804722
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -12
@@ -1684,7 +1683,6 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitWidth = 1202
         end
         object eOwnersLName: TEdit
           Left = 201
@@ -1749,18 +1747,19 @@ object SDIAppForm: TSDIAppForm
       end
     end
     object Sections: TTabSheet
+      Tag = 5
       Caption = 'Sections'
       ImageIndex = 5
-      ExplicitWidth = 1204
       object pnlSections: TPanel
         Left = 0
         Top = 0
         Width = 1206
         Height = 441
         Align = alClient
+        Color = 14276864
+        ParentBackground = False
         TabOrder = 0
         OnResize = pnlSectionsResize
-        ExplicitWidth = 1204
         object lblSections: TLabel
           Left = 536
           Top = 7
@@ -1790,6 +1789,8 @@ object SDIAppForm: TSDIAppForm
           Width = 1105
           Height = 297
           DataSource = dsSections
+          DrawingStyle = gdsClassic
+          FixedColor = 16777153
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -12
@@ -1837,14 +1838,13 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitWidth = 1202
         end
       end
     end
     object TabSheet1: TTabSheet
+      Tag = 6
       Caption = 'Add Owner'
       ImageIndex = 6
-      ExplicitWidth = 1204
       object Splitter2: TSplitter
         Left = 0
         Top = 249
@@ -1861,6 +1861,8 @@ object SDIAppForm: TSDIAppForm
         Width = 1206
         Height = 249
         Align = alTop
+        Color = 16675382
+        ParentBackground = False
         TabOrder = 0
         OnResize = pnlOwnerHouseResize
         object sbOwnersAcct: TSpeedButton
@@ -1996,6 +1998,8 @@ object SDIAppForm: TSDIAppForm
           Width = 1105
           Height = 120
           DataSource = dsHouses
+          DrawingStyle = gdsClassic
+          FixedColor = 16756364
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -12
@@ -2062,7 +2066,7 @@ object SDIAppForm: TSDIAppForm
           Left = 25
           Top = 2
           Width = 65
-          Height = 23
+          Height = 24
           TabOrder = 1
           OnChange = eHousesAcctNumberChange
           OnEnter = HousesEditColorChangeOnEnter
@@ -2072,7 +2076,7 @@ object SDIAppForm: TSDIAppForm
           Left = 226
           Top = 2
           Width = 65
-          Height = 23
+          Height = 24
           TabOrder = 2
           OnChange = eHousesAddressChange
           OnEnter = HousesEditColorChangeOnEnter
@@ -2082,7 +2086,7 @@ object SDIAppForm: TSDIAppForm
           Left = 409
           Top = 2
           Width = 65
-          Height = 23
+          Height = 24
           TabOrder = 3
           OnChange = eHousesSectionChange
           OnEnter = HousesEditColorChangeOnEnter
@@ -2092,7 +2096,7 @@ object SDIAppForm: TSDIAppForm
           Left = 497
           Top = 2
           Width = 65
-          Height = 23
+          Height = 24
           TabOrder = 4
           OnChange = eHousesStreetNumberChange
           OnEnter = HousesEditColorChangeOnEnter
@@ -2102,7 +2106,7 @@ object SDIAppForm: TSDIAppForm
           Left = 689
           Top = 2
           Width = 65
-          Height = 23
+          Height = 24
           TabOrder = 5
           OnChange = eHousesStreetNameChange
           OnEnter = HousesEditColorChangeOnEnter
@@ -2126,9 +2130,6 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitLeft = 216
-          ExplicitTop = 232
-          ExplicitWidth = 0
         end
       end
       object pnlOwnersOwners: TPanel
@@ -2137,11 +2138,12 @@ object SDIAppForm: TSDIAppForm
         Width = 1206
         Height = 189
         Align = alClient
+        Color = 2139610
+        ParentBackground = False
         TabOrder = 1
         OnResize = pnlOwnersOwnersResize
-        ExplicitTop = 140
-        ExplicitWidth = 1204
-        ExplicitHeight = 301
+        ExplicitLeft = 1
+        ExplicitTop = 254
         object lblAddOwner: TLabel
           Left = 544
           Top = 6
@@ -2161,6 +2163,8 @@ object SDIAppForm: TSDIAppForm
           Width = 1158
           Height = 150
           DataSource = dsOwners
+          DrawingStyle = gdsClassic
+          FixedColor = 10804722
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -12
@@ -2309,6 +2313,57 @@ object SDIAppForm: TSDIAppForm
         end
       end
     end
+    object SqlViewer: TTabSheet
+      Caption = 'SqlViewer'
+      ImageIndex = 7
+      ExplicitLeft = 29
+      ExplicitTop = 2
+      object Splitter4: TSplitter
+        Left = 185
+        Top = 41
+        Height = 400
+        ExplicitLeft = 376
+        ExplicitTop = 224
+        ExplicitHeight = 100
+      end
+      object Panel1: TPanel
+        Left = 0
+        Top = 0
+        Width = 1206
+        Height = 41
+        Align = alTop
+        Caption = 'Panel1'
+        TabOrder = 0
+        ExplicitLeft = 688
+        ExplicitTop = 56
+        ExplicitWidth = 185
+      end
+      object Panel2: TPanel
+        Left = 0
+        Top = 41
+        Width = 185
+        Height = 400
+        Align = alLeft
+        Caption = 'Panel2'
+        TabOrder = 1
+        ExplicitLeft = 232
+        ExplicitTop = 256
+        ExplicitHeight = 41
+      end
+      object Panel3: TPanel
+        Left = 188
+        Top = 41
+        Width = 1018
+        Height = 400
+        Align = alClient
+        Caption = 'Panel3'
+        TabOrder = 2
+        ExplicitLeft = 600
+        ExplicitTop = 240
+        ExplicitWidth = 185
+        ExplicitHeight = 41
+      end
+    end
   end
   object MainMenu1: TMainMenu
     Images = ImageList1
@@ -2431,7 +2486,7 @@ object SDIAppForm: TSDIAppForm
     Left = 616
     Top = 65528
     Bitmap = {
-      494C010102001800640020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010102001800680020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000001000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
