@@ -211,6 +211,12 @@ type
     Panel2: TPanel;
     Splitter4: TSplitter;
     Panel3: TPanel;
+    Panel4: TPanel;
+    DBGrid1: TDBGrid;
+    Panel5: TPanel;
+    Splitter5: TSplitter;
+    dbNavCurDir: TDBNavigator;
+    Label3: TLabel;
     procedure FileNew1Execute(Sender: TObject);
     procedure FileOpen1Execute(Sender: TObject);
     procedure FileSave1Execute(Sender: TObject);
@@ -273,6 +279,9 @@ type
     procedure dbGridDirOwnersCellClick(Column: TColumn);
     procedure pcEmailDrawTab(Control: TCustomTabControl; TabIndex: Integer;
       const Rect: TRect; Active: Boolean);
+    procedure aTblOwnersBeforePost(DataSet: TDataSet);
+    procedure aTblOwnersAfterInsert(DataSet: TDataSet);
+    procedure aTblDirectorsAfterInsert(DataSet: TDataSet);
   private
     procedure TEditChange(filterText: string);
     procedure THousesEditChange(filterText: string);
@@ -396,6 +405,40 @@ begin
   sbHouses.Panels[1].Text := 'Record ' + IntToStr(aDsHouses.RecNo) + ' of ' + IntToStr(aDsHouses.RecordCount);
 end;
 
+procedure TSDIAppForm.aTblDirectorsAfterInsert(DataSet: TDataSet);
+var
+  emailFiltered: Boolean;
+  emailFilter, emailIndexField: string;
+begin
+  aTblDirectors.FieldByName('directorSection').AsString := aTblSections.FieldByName('section').AsString;
+  aTblDirectors.FieldByName('ownerId').AsInteger := aTblOwners.FieldByName('Id').AsInteger;
+  // Remember the current state
+  emailFiltered := aTblEmailAccts.Filtered;
+  emailFilter := aTblEmailAccts.Filter;
+  emailIndexField := aTblEmailAccts.IndexFieldNames;
+  // get the appropriate information
+  aTblEmailAccts.Filtered := False;
+  aTblEmailAccts.Filter := 'section = ''' + aTblSections.FieldByName('section').AsString + '''';
+  aTblEmailAccts.Filtered := True;
+
+  aTblEmailAccts.First;
+  while (aTblEmailAccts.RecNo <= aTblEmailAccts.RecordCount) do begin
+    If (VarIsNull(aTblEmailAccts.FieldByName('dateRetired').Value)) then begin
+      aTblDirectors.FieldByName('emailAcct').AsString := aTblEmailAccts.FieldByName('acct').AsString;
+      Break;
+    end
+    else
+    begin
+      aTblEmailAccts.Next;
+    end;
+  end;
+  // Return to previous state
+  aTblEmailAccts.Filtered := False;
+  aTblEmailAccts.Filter := emailFilter;
+  aTblEmailAccts.IndexFieldNames := emailIndexField;
+  aTblEmailAccts.Filtered := emailFiltered;
+end;
+
 procedure TSDIAppForm.aTblDirectorsAfterScroll(DataSet: TDataSet);
 begin
   sbDirectors.Panels[1].Text := 'Record ' + IntToStr(aTblDirectors.RecNo) + ' of ' + IntToStr(aTblDirectors.RecordCount);
@@ -412,6 +455,11 @@ begin
   sbEmailAccts.Panels[1].Text := 'Record ' + IntToStr(aTblEmailAccts.RecNo) + ' of ' + IntToStr(aTblEmailAccts.RecordCount);
 end;
 
+procedure TSDIAppForm.aTblOwnersAfterInsert(DataSet: TDataSet);
+begin
+  aTblOwners.FieldByName('houseAcct').AsInteger := aDsHouses.FieldByName('houseAcct').AsInteger;
+end;
+
 procedure TSDIAppForm.aTblOwnersAfterScroll(DataSet: TDataSet);
 var
   i: Integer;
@@ -421,6 +469,14 @@ begin
   aTblDirectors.Filtered := False;
   aTblDirectors.Filter := 'OwnerID = ' + IntToStr(i);
   aTblDirectors.Filtered := True;
+end;
+
+
+procedure TSDIAppForm.aTblOwnersBeforePost(DataSet: TDataSet);
+begin
+  if (aTblOwners.FieldByName('usePolicySigned').AsString = '') then begin
+    aTblOwners.FieldByName('usePolicySigned').AsBoolean := False;
+  end;
 end;
 
 procedure TSDIAppForm.aTblPasswordsAfterInsert(DataSet: TDataSet);
@@ -1045,6 +1101,7 @@ begin
     Top := topGap;
     Height := pnlCurrentDirectors.Height - topGap - 2 * margin - sbCurDirs.Height;
   end;
+  dbNavCurDir.Left := pnlCurrentDirectors.Width - dbNavCurDir.Width - 10;
 end;
 
 procedure TSDIAppForm.pnlDirectorsResize(Sender: TObject);
