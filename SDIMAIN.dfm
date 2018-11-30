@@ -47,7 +47,6 @@ object SDIAppForm: TSDIAppForm
     ShowHint = True
     TabOrder = 0
     OnResize = pnlCurrentDirectorsResize
-    ExplicitWidth = 1214
     object sbCurDirLastName: TSpeedButton
       Left = 29
       Top = 37
@@ -378,7 +377,6 @@ object SDIAppForm: TSDIAppForm
         item
           Width = 300
         end>
-      ExplicitWidth = 1212
     end
     object eCurDirLastName: TEdit
       Left = 29
@@ -445,18 +443,15 @@ object SDIAppForm: TSDIAppForm
     Top = 292
     Width = 1255
     Height = 470
-    ActivePage = Directors
+    ActivePage = Owners
     Align = alClient
     OwnerDraw = True
     TabOrder = 1
     TabPosition = tpBottom
     OnDrawTab = pcEmailDrawTab
-    ExplicitLeft = 8
-    ExplicitTop = 324
     object Directors: TTabSheet
       Caption = 'Directors'
       Highlighted = True
-      ExplicitWidth = 1206
       object Splitter3: TSplitter
         Left = 1144
         Top = 0
@@ -509,10 +504,6 @@ object SDIAppForm: TSDIAppForm
         Align = alClient
         Caption = 'Panel5'
         TabOrder = 1
-        ExplicitLeft = 347
-        ExplicitTop = 63
-        ExplicitWidth = 655
-        ExplicitHeight = 338
         object Splitter5: TSplitter
           Left = 1
           Top = 209
@@ -532,9 +523,6 @@ object SDIAppForm: TSDIAppForm
           ParentBackground = False
           TabOrder = 0
           OnResize = pnlAllOwnersResize
-          ExplicitLeft = -322
-          ExplicitTop = -35
-          ExplicitWidth = 873
           object SpeedButton1: TSpeedButton
             Left = 50
             Top = 35
@@ -703,7 +691,6 @@ object SDIAppForm: TSDIAppForm
             Width = 1140
             Height = 19
             Panels = <>
-            ExplicitWidth = 871
           end
           object eDirOwnersLName: TEdit
             Left = 180
@@ -739,10 +726,6 @@ object SDIAppForm: TSDIAppForm
           ParentBackground = False
           TabOrder = 1
           OnResize = pnlDirectorsResize
-          ExplicitLeft = 46
-          ExplicitTop = 252
-          ExplicitWidth = 761
-          ExplicitHeight = 166
           object sbDirectorsId: TSpeedButton
             Left = 48
             Top = 49
@@ -906,8 +889,6 @@ object SDIAppForm: TSDIAppForm
               item
                 Width = 200
               end>
-            ExplicitTop = 141
-            ExplicitWidth = 753
           end
         end
       end
@@ -916,7 +897,6 @@ object SDIAppForm: TSDIAppForm
       Tag = 1
       Caption = 'Email Accts'
       ImageIndex = 3
-      ExplicitWidth = 1206
       object pnlEmailAccts: TPanel
         Left = 0
         Top = 0
@@ -928,7 +908,6 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlEmailAcctsResize
-        ExplicitWidth = 1206
         object spEmailAcct: TSpeedButton
           Left = 120
           Top = 56
@@ -1078,7 +1057,6 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitWidth = 1204
         end
         object dbGridEmailSections: TDBGrid
           Left = 960
@@ -1145,7 +1123,6 @@ object SDIAppForm: TSDIAppForm
       Tag = 2
       Caption = 'Houses'
       ImageIndex = 1
-      ExplicitWidth = 1206
       object pnlHouses: TPanel
         Left = 0
         Top = 0
@@ -1156,7 +1133,6 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlHousesResize
-        ExplicitWidth = 1206
         object sbHousesAcct: TSpeedButton
           Left = 57
           Top = 60
@@ -1322,7 +1298,6 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitWidth = 1204
         end
         object eHousesStreetName: TEdit
           Left = 451
@@ -1380,7 +1355,6 @@ object SDIAppForm: TSDIAppForm
       Tag = 3
       Caption = 'Passwords'
       ImageIndex = 2
-      ExplicitWidth = 1206
       object pnlPasswords: TPanel
         Left = 0
         Top = 0
@@ -1392,7 +1366,6 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlPasswordsResize
-        ExplicitWidth = 1206
         object sbPasswordAcct: TSpeedButton
           Left = 128
           Top = 54
@@ -1528,7 +1501,6 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitWidth = 1204
         end
       end
     end
@@ -1536,7 +1508,6 @@ object SDIAppForm: TSDIAppForm
       Tag = 4
       Caption = 'Owners'
       ImageIndex = 4
-      ExplicitWidth = 1206
       object pnlOwners: TPanel
         Left = 0
         Top = 0
@@ -1552,10 +1523,9 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         ParentFont = False
         TabOrder = 0
-        ExplicitWidth = 1206
         object sbOwnersFName: TSpeedButton
-          Left = 65
-          Top = 80
+          Left = 147
+          Top = 85
           Width = 25
           Height = 25
           NumGlyphs = 2
@@ -1563,8 +1533,8 @@ object SDIAppForm: TSDIAppForm
         end
         object sbOwnersLName: TSpeedButton
           Tag = 2
-          Left = 225
-          Top = 80
+          Left = 307
+          Top = 85
           Width = 25
           Height = 25
           Glyph.Data = {
@@ -1585,8 +1555,8 @@ object SDIAppForm: TSDIAppForm
         end
         object sbOwnersPolicySigned: TSpeedButton
           Tag = 6
-          Left = 362
-          Top = 85
+          Left = 444
+          Top = 90
           Width = 25
           Height = 25
           NumGlyphs = 2
@@ -1594,8 +1564,8 @@ object SDIAppForm: TSDIAppForm
         end
         object sbOwnersPolicyDate: TSpeedButton
           Tag = 8
-          Left = 480
-          Top = 80
+          Left = 562
+          Top = 85
           Width = 25
           Height = 25
           NumGlyphs = 2
@@ -1603,16 +1573,16 @@ object SDIAppForm: TSDIAppForm
         end
         object sbOwnersStopDate: TSpeedButton
           Tag = 10
-          Left = 599
-          Top = 80
+          Left = 681
+          Top = 85
           Width = 25
           Height = 25
           NumGlyphs = 2
           OnClick = sbOwnersClick
         end
         object Label2: TLabel
-          Left = 544
-          Top = 2
+          Left = 626
+          Top = 7
           Width = 80
           Height = 27
           Caption = 'Owners'
@@ -1663,6 +1633,23 @@ object SDIAppForm: TSDIAppForm
             end
             item
               Expanded = False
+              FieldName = 'houseAcct'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -12
+              Font.Name = 'Arial'
+              Font.Style = []
+              Title.Alignment = taCenter
+              Title.Caption = 'House Acct'
+              Title.Font.Charset = DEFAULT_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -12
+              Title.Font.Name = 'Arial'
+              Title.Font.Style = [fsBold]
+              Visible = True
+            end
+            item
+              Expanded = False
               FieldName = 'firstName'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
@@ -1696,23 +1683,6 @@ object SDIAppForm: TSDIAppForm
               Title.Font.Style = [fsBold]
               Width = 156
               Visible = True
-            end
-            item
-              Expanded = False
-              FieldName = 'houseAcct'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -12
-              Font.Name = 'Arial'
-              Font.Style = []
-              Title.Alignment = taCenter
-              Title.Caption = 'House Acct'
-              Title.Font.Charset = DEFAULT_CHARSET
-              Title.Font.Color = clWindowText
-              Title.Font.Height = -12
-              Title.Font.Name = 'Arial'
-              Title.Font.Style = [fsBold]
-              Visible = False
             end
             item
               Alignment = taCenter
@@ -1786,11 +1756,10 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitWidth = 1204
         end
         object eOwnersLName: TEdit
-          Left = 201
-          Top = 51
+          Left = 283
+          Top = 56
           Width = 65
           Height = 25
           TabOrder = 2
@@ -1799,8 +1768,8 @@ object SDIAppForm: TSDIAppForm
           OnExit = EditColorChangeOnExit
         end
         object eOwnersFName: TEdit
-          Left = 46
-          Top = 51
+          Left = 128
+          Top = 56
           Width = 65
           Height = 25
           TabOrder = 3
@@ -1809,7 +1778,7 @@ object SDIAppForm: TSDIAppForm
           OnExit = EditColorChangeOnExit
         end
         object dbNavOwners: TDBNavigator
-          Left = 808
+          Left = 928
           Top = 16
           Width = 287
           Height = 33
@@ -1818,8 +1787,8 @@ object SDIAppForm: TSDIAppForm
           TabOrder = 4
         end
         object rgPolicySigned: TRadioGroup
-          Left = 320
-          Top = 32
+          Left = 402
+          Top = 37
           Width = 119
           Height = 47
           Caption = ' Policy Signed '
@@ -1833,8 +1802,8 @@ object SDIAppForm: TSDIAppForm
           OnClick = rgPolicySignedClick
         end
         object rgSellDate: TRadioGroup
-          Left = 544
-          Top = 27
+          Left = 626
+          Top = 32
           Width = 161
           Height = 52
           Caption = ' Sell Date '
@@ -1854,7 +1823,6 @@ object SDIAppForm: TSDIAppForm
       Tag = 5
       Caption = 'Sections'
       ImageIndex = 5
-      ExplicitWidth = 1206
       object pnlSections: TPanel
         Left = 0
         Top = 0
@@ -1865,7 +1833,6 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlSectionsResize
-        ExplicitWidth = 1206
         object lblSections: TLabel
           Left = 536
           Top = 7
@@ -1944,7 +1911,6 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitWidth = 1204
         end
       end
     end
@@ -1952,7 +1918,6 @@ object SDIAppForm: TSDIAppForm
       Tag = 6
       Caption = 'Add Owner'
       ImageIndex = 6
-      ExplicitWidth = 1206
       object Splitter2: TSplitter
         Left = 0
         Top = 249
@@ -1973,7 +1938,6 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlOwnerHouseResize
-        ExplicitWidth = 1206
         object sbOwnersAcct: TSpeedButton
           Left = 46
           Top = 29
@@ -2239,7 +2203,6 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitWidth = 1204
         end
       end
       object pnlOwnersOwners: TPanel
@@ -2252,7 +2215,6 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 1
         OnResize = pnlOwnersOwnersResize
-        ExplicitWidth = 1206
         object lblAddOwner: TLabel
           Left = 544
           Top = 6
@@ -2425,7 +2387,6 @@ object SDIAppForm: TSDIAppForm
     object SqlViewer: TTabSheet
       Caption = 'SqlViewer'
       ImageIndex = 7
-      ExplicitWidth = 1206
       object Splitter4: TSplitter
         Left = 185
         Top = 41
@@ -2442,7 +2403,6 @@ object SDIAppForm: TSDIAppForm
         Align = alTop
         Caption = 'Panel1'
         TabOrder = 0
-        ExplicitWidth = 1206
       end
       object Panel2: TPanel
         Left = 0
@@ -2461,7 +2421,6 @@ object SDIAppForm: TSDIAppForm
         Align = alClient
         Caption = 'Panel3'
         TabOrder = 2
-        ExplicitWidth = 1018
       end
     end
   end
@@ -2586,7 +2545,7 @@ object SDIAppForm: TSDIAppForm
     Left = 616
     Top = 65528
     Bitmap = {
-      494C0101020018006C0020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010102001800700020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000001000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
