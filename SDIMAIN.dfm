@@ -16,6 +16,7 @@ object SDIAppForm: TSDIAppForm
   Menu = MainMenu1
   OldCreateOrder = False
   Scaled = False
+  OnCreate = FormCreate
   OnResize = pnlCurrentDirectorsResize
   PixelsPerInch = 96
   TextHeight = 16
@@ -443,7 +444,7 @@ object SDIAppForm: TSDIAppForm
     Top = 292
     Width = 1255
     Height = 470
-    ActivePage = Owners
+    ActivePage = SqlViewer
     Align = alClient
     OwnerDraw = True
     TabOrder = 1
@@ -2545,7 +2546,7 @@ object SDIAppForm: TSDIAppForm
     Left = 616
     Top = 65528
     Bitmap = {
-      494C010102001800700020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010102001800740020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000001000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

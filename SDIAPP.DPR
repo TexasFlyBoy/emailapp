@@ -2,15 +2,28 @@ program Sdiapp;
 
 uses
   Forms,
+  Dialogs,
   SDIMAIN in 'SDIMAIN.PAS' {SDIAppForm},
-  ABOUT in 'ABOUT.PAS' {AboutBox};
+  ABOUT in 'ABOUT.PAS' {AboutBox},
+  ini_file in 'ini_file.pas',
+  Splash in 'Splash.pas' {frmSplashScreen},
+  AccDb in 'AccDb.pas';
 
 {$R *.RES}
 
 begin
   Application.Initialize;
+  Application.Title := 'SSCA Email Database';
+  frmSplashScreen := TfrmSplashScreen.Create(Application);
+  frmSplashScreen.Show;
+  frmSplashScreen.Update;
   Application.CreateForm(TSDIAppForm, SDIAppForm);
   Application.CreateForm(TAboutBox, AboutBox);
+  while not frmSplashScreen.Completed do
+    Application.ProcessMessages;
+  frmSplashScreen.Hide;
+  frmSplashScreen.Free;
   Application.Run;
 end.
- 
+
+

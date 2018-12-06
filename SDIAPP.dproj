@@ -98,6 +98,11 @@
         <DCCReference Include="ABOUT.PAS">
             <Form>AboutBox</Form>
         </DCCReference>
+        <DCCReference Include="ini_file.pas"/>
+        <DCCReference Include="Splash.pas">
+            <Form>frmSplashScreen</Form>
+        </DCCReference>
+        <DCCReference Include="AccDb.pas"/>
         <None Include="ModelSupport_SDIAPP\default.txaPackage"/>
         <None Include="ModelSupport_SDIAPP\default.txvpck"/>
         <None Include="ModelSupport_SDIAPP\SDIMAIN\default.txvpck"/>
@@ -166,7 +171,7 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="ModelSupport_SDIAPP\default.txaPackage" Configuration="Debug" Class="ProjectFile">
+                <DeployFile LocalName="ModelSupport_SDIAPP\default.txvpck" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
@@ -184,13 +189,13 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="SDIMAIN.PAS" Configuration="Debug" Class="ProjectFile">
+                <DeployFile LocalName="ModelSupport_SDIAPP\default.txaPackage" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="ModelSupport_SDIAPP\default.txvpck" Configuration="Debug" Class="ProjectFile">
+                <DeployFile LocalName="SDIMAIN.PAS" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>

@@ -282,6 +282,7 @@ type
     procedure aTblOwnersBeforePost(DataSet: TDataSet);
     procedure aTblOwnersAfterInsert(DataSet: TDataSet);
     procedure aTblDirectorsAfterInsert(DataSet: TDataSet);
+    procedure FormCreate(Sender: TObject);
   private
     procedure TEditChange(filterText: string);
     procedure THousesEditChange(filterText: string);
@@ -302,7 +303,7 @@ var
 
 implementation
 
-uses About;
+uses About, Accdb, ini_file, Splash;
 
 {$R *.dfm}
 
@@ -356,6 +357,9 @@ begin
           Exit;
         end;
       end; // try-except
+      WriteIniString('Connection', 'ConnString',
+      ADOConnection1.ConnectionString);
+      sbCurDirs.Panels[2].Text := ADOConnection1.ConnectionString;
     end
     else
     begin
@@ -364,19 +368,53 @@ begin
       Exit
     end;
   { Success - now open the connection and connect the tables }
-  aTblDirectors.Active := True;
-  aTblPasswords.Active := True;
-  aTblEmailAccts.Active := True;
-  aTblOwners.Active := True;
-  aTblSections.Active := True;
-  aDsHouses.Active := True;
-  adsCurrentDirectors.Active := True;
-  // ShowMessage(ADOConnection1.ConnectionString);
+  MakeConnection(True);
 end;
 
 procedure TSDIAppForm.FileSave1Execute(Sender: TObject);
 begin
   SaveDialog.Execute;
+end;
+
+procedure TSDIAppForm.FormCreate(Sender: TObject);
+begin
+//  Application.OnHint := ShowHint;
+  if (IniFileExists) then
+  begin
+    try
+      ADOConnection1.Connected := False;
+      ShowMessage('trying to get connection string');
+      ADOConnection1.ConnectionString := ReadIniString('Connection',
+        'ConnString');
+    except
+      ShowMessage('Cannot reconnect to database.'
+             + ' You will have to manually connect to the database.');
+      MakeConnection(False);
+      ADOConnection1.ConnectionString := '';
+    end;
+    // show user if there is a connection
+    if (ADOConnection1.ConnectionString <> '') then
+    begin
+      frmSplashScreen.stReconnect.Visible := True;
+      sbCurDirs.Panels[2].Text := ADOConnection1.ConnectionString;
+      ShowMessage('doing the make connection 33');
+      MakeConnection(True);
+    end
+    else
+    begin
+      ShowMessage('not connected 1');
+      sbCurDirs.Panels[2].Text := 'Not Connected to Database';
+      MakeConnection(False);
+    end;
+  end
+  else
+  begin
+    ShowMessage('not connected 2');
+    sbCurDirs.Panels[2].Text := 'Not Connected to Database';
+    MakeConnection(False);
+  end;
+//  menuLettersSetDefault;
+//  statBarUpdate;
 end;
 
 procedure TSDIAppForm.adsCurrentDirectorsAfterScroll(DataSet: TDataSet);
