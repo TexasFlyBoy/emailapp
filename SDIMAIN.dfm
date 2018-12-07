@@ -239,7 +239,7 @@ object SDIAppForm: TSDIAppForm
       Left = 15
       Top = 68
       Width = 1105
-      Height = 310
+      Height = 190
       Hint = 'Sort Order'
       DataSource = dsCurrentDirectors
       DrawingStyle = gdsClassic
@@ -263,6 +263,7 @@ object SDIAppForm: TSDIAppForm
         item
           Expanded = False
           FieldName = 'lastName'
+          Title.Caption = 'Last Name'
           Title.Font.Charset = ANSI_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -12
@@ -273,16 +274,19 @@ object SDIAppForm: TSDIAppForm
         item
           Expanded = False
           FieldName = 'firstName'
+          Title.Caption = 'First Name'
           Title.Font.Charset = ANSI_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -12
           Title.Font.Name = 'Arial'
           Title.Font.Style = [fsBold]
+          Width = 67
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'houseAcct'
+          Title.Caption = 'House Acct'
           Title.Font.Charset = ANSI_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -12
@@ -303,6 +307,7 @@ object SDIAppForm: TSDIAppForm
         item
           Expanded = False
           FieldName = 'startDate'
+          Title.Caption = 'Start Date'
           Title.Font.Charset = ANSI_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -12
@@ -313,6 +318,7 @@ object SDIAppForm: TSDIAppForm
         item
           Expanded = False
           FieldName = 'stopDate'
+          Title.Caption = 'Stop Date'
           Title.Font.Charset = ANSI_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -12
@@ -324,6 +330,7 @@ object SDIAppForm: TSDIAppForm
         item
           Expanded = False
           FieldName = 'emailAcct'
+          Title.Caption = 'Email Acct'
           Title.Font.Charset = ANSI_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -12
@@ -444,7 +451,7 @@ object SDIAppForm: TSDIAppForm
     Top = 292
     Width = 1255
     Height = 470
-    ActivePage = SqlViewer
+    ActivePage = TabSheet4
     Align = alClient
     OwnerDraw = True
     TabOrder = 1
@@ -1415,11 +1422,24 @@ object SDIAppForm: TSDIAppForm
           NumGlyphs = 2
           OnClick = sbPasswordClick
         end
+        object Label4: TLabel
+          Left = 490
+          Top = 21
+          Width = 115
+          Height = 27
+          Caption = 'Passwords'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -19
+          Font.Name = 'Arial Black'
+          Font.Style = []
+          ParentFont = False
+        end
         object dbGridPasswords: TDBGrid
-          Left = 5
+          Left = 11
           Top = 85
           Width = 800
-          Height = 273
+          Height = 320
           Color = clWhite
           DataSource = dsPasswords
           DrawingStyle = gdsClassic
@@ -1476,10 +1496,10 @@ object SDIAppForm: TSDIAppForm
             end>
         end
         object dbNavPasswords: TDBNavigator
-          Left = 528
-          Top = 16
+          Left = 818
+          Top = 24
           Width = 315
-          Height = 25
+          Height = 33
           DataSource = dsPasswords
           VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbEdit, nbPost, nbCancel, nbRefresh]
           TabOrder = 1
@@ -1502,6 +1522,29 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
+        end
+        object bbClearPasswordFilter: TBitBtn
+          Left = 219
+          Top = 29
+          Width = 110
+          Height = 25
+          Caption = 'Clear Filter'
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000120B0000120B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00500005000555
+            555557777F777555F55500000000555055557777777755F75555005500055055
+            555577F5777F57555555005550055555555577FF577F5FF55555500550050055
+            5555577FF77577FF555555005050110555555577F757777FF555555505099910
+            555555FF75777777FF555005550999910555577F5F77777775F5500505509990
+            3055577F75F77777575F55005055090B030555775755777575755555555550B0
+            B03055555F555757575755550555550B0B335555755555757555555555555550
+            BBB35555F55555575F555550555555550BBB55575555555575F5555555555555
+            50BB555555555555575F555555555555550B5555555555555575}
+          NumGlyphs = 2
+          TabOrder = 3
+          OnClick = bbClearPasswordFilterClick
         end
       end
     end
@@ -1594,11 +1637,34 @@ object SDIAppForm: TSDIAppForm
           Font.Style = []
           ParentFont = False
         end
+        object sbOwnersHouseAcct: TSpeedButton
+          Tag = 4
+          Left = 53
+          Top = 85
+          Width = 25
+          Height = 25
+          Hint = 'Acct #'
+          Glyph.Data = {
+            76010000424D7601000000000000760000002800000020000000100000000100
+            04000000000000010000120B0000120B00001000000000000000000000000000
+            800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+            FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
+            333333333337F33333333333333033333333333333373F333333333333090333
+            33333333337F7F33333333333309033333333333337373F33333333330999033
+            3333333337F337F33333333330999033333333333733373F3333333309999903
+            333333337F33337F33333333099999033333333373333373F333333099999990
+            33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333309033333333333337F7F333333333333090333
+            33333333337F7F33333333333300033333333333337773333333}
+          NumGlyphs = 2
+          OnClick = sbOwnersClick
+        end
         object dbgOwners: TDBGrid
           Left = 11
           Top = 116
           Width = 1158
-          Height = 257
+          Height = 300
           DataSource = dsOwners
           DrawingStyle = gdsClassic
           FixedColor = 10804722
@@ -2233,7 +2299,7 @@ object SDIAppForm: TSDIAppForm
           Left = 11
           Top = 41
           Width = 1158
-          Height = 150
+          Height = 122
           DataSource = dsOwners
           DrawingStyle = gdsClassic
           FixedColor = 10804722
@@ -2381,7 +2447,28 @@ object SDIAppForm: TSDIAppForm
           Height = 25
           DataSource = dsOwners
           VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbEdit, nbPost, nbCancel, nbRefresh]
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 1
+        end
+        object sbOwnersOwner: TStatusBar
+          Left = 1
+          Top = 169
+          Width = 1245
+          Height = 19
+          Panels = <
+            item
+              Width = 200
+            end
+            item
+              Width = 200
+            end
+            item
+              Width = 200
+            end>
+          ExplicitLeft = 464
+          ExplicitTop = 176
+          ExplicitWidth = 0
         end
       end
     end
@@ -2426,7 +2513,6 @@ object SDIAppForm: TSDIAppForm
     end
   end
   object MainMenu1: TMainMenu
-    Images = ImageList1
     Left = 504
     Top = 16
     object File1: TMenuItem
@@ -2437,6 +2523,9 @@ object SDIAppForm: TSDIAppForm
       end
       object FileOpenItem: TMenuItem
         Action = FileOpen1
+      end
+      object Close1: TMenuItem
+        Caption = 'Close'
       end
       object FileSaveItem: TMenuItem
         Action = FileSave1
@@ -2543,10 +2632,10 @@ object SDIAppForm: TSDIAppForm
   end
   object ImageList1: TImageList
     Width = 32
-    Left = 616
-    Top = 65528
+    Left = 1144
+    Top = 64
     Bitmap = {
-      494C010102001800780020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101020018007C0020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000001000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2835,15 +2924,16 @@ object SDIAppForm: TSDIAppForm
     Connected = True
     ConnectionString = 
       'Provider=Microsoft.ACE.OLEDB.12.0;User ID=Admin;Data Source=C:\U' +
-      'sers\Admin\Documents\SscaEmail.accdb;Mode=Share Deny None;Jet OL' +
-      'EDB:System database="";Jet OLEDB:Registry Path="";Jet OLEDB:Data' +
-      'base Password="";Jet OLEDB:Engine Type=6;Jet OLEDB:Database Lock' +
-      'ing Mode=1;Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Global ' +
-      'Bulk Transactions=1;Jet OLEDB:New Database Password="";Jet OLEDB' +
-      ':Create System Database=False;Jet OLEDB:Encrypt Database=False;J' +
-      'et OLEDB:Don'#39't Copy Locale on Compact=False;Jet OLEDB:Compact Wi' +
-      'thout Replica Repair=False;Jet OLEDB:SFP=False;Jet OLEDB:Support' +
-      ' Complex Data=False;Jet OLEDB:Bypass UserInfo Validation=False;'
+      'sers\Mandy.SSCA-FRONTOFFIC\Documents\SscaEmail.accdb;Mode=Share ' +
+      'Deny None;Jet OLEDB:System database="";Jet OLEDB:Registry Path="' +
+      '";Jet OLEDB:Database Password="";Jet OLEDB:Engine Type=6;Jet OLE' +
+      'DB:Database Locking Mode=1;Jet OLEDB:Global Partial Bulk Ops=2;J' +
+      'et OLEDB:Global Bulk Transactions=1;Jet OLEDB:New Database Passw' +
+      'ord="";Jet OLEDB:Create System Database=False;Jet OLEDB:Encrypt ' +
+      'Database=False;Jet OLEDB:Don'#39't Copy Locale on Compact=False;Jet ' +
+      'OLEDB:Compact Without Replica Repair=False;Jet OLEDB:SFP=False;J' +
+      'et OLEDB:Support Complex Data=False;Jet OLEDB:Bypass UserInfo Va' +
+      'lidation=False;'
     LoginPrompt = False
     Mode = cmShareDenyNone
     Provider = 'Microsoft.ACE.OLEDB.12.0'
@@ -2901,8 +2991,11 @@ object SDIAppForm: TSDIAppForm
     end
   end
   object aTblPasswords: TADOTable
+    Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
+    Filter = 'acct = '#39'sect1b.ssca@gmail.com'#39
+    Filtered = True
     BeforeInsert = aTblPasswordsBeforeInsert
     AfterInsert = aTblPasswordsAfterInsert
     AfterScroll = aTblPasswordsAfterScroll
@@ -3036,9 +3129,9 @@ object SDIAppForm: TSDIAppForm
     Top = 96
   end
   object aTblCurrentDirectors: TADOTable
-    Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
+    AfterScroll = aTblCurrentDirectorsAfterScroll
     TableName = 'CurrentDirectors'
     Left = 208
     Top = 32

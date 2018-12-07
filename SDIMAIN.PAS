@@ -207,6 +207,11 @@ type
     dbNavCurDir: TDBNavigator;
     Label3: TLabel;
     aTblCurrentDirectors: TADOTable;
+    sbOwnersOwner: TStatusBar;
+    sbOwnersHouseAcct: TSpeedButton;
+    Label4: TLabel;
+    bbClearPasswordFilter: TBitBtn;
+    Close1: TMenuItem;
     procedure FileNew1Execute(Sender: TObject);
     procedure FileOpen1Execute(Sender: TObject);
     procedure FileSave1Execute(Sender: TObject);
@@ -273,6 +278,8 @@ type
     procedure aTblOwnersAfterInsert(DataSet: TDataSet);
     procedure aTblDirectorsAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
+    procedure aTblCurrentDirectorsAfterScroll(DataSet: TDataSet);
+    procedure bbClearPasswordFilterClick(Sender: TObject);
   private
     procedure TEditChange(filterText: string);
     procedure THousesEditChange(filterText: string);
@@ -427,6 +434,14 @@ end;
 procedure TSDIAppForm.aDsHousesAfterScroll(DataSet: TDataSet);
 begin
   sbHouses.Panels[1].Text := 'Record ' + IntToStr(aDsHouses.RecNo) + ' of ' + IntToStr(aDsHouses.RecordCount);
+  sbOwnersHouses.Panels[1].Text := 'Record ' + IntToStr(aDsHouses.RecNo) + ' of ' + IntToStr(aDsHouses.RecordCount);
+end;
+
+procedure TSDIAppForm.aTblCurrentDirectorsAfterScroll(DataSet: TDataSet);
+begin
+    aTblPasswords.Filtered := False;
+    aTblPasswords.Filter := 'acct = ''' + aTblCurrentDirectors.FieldByName('emailacct').AsString + '''';
+    aTblPasswords.Filtered := True;
 end;
 
 procedure TSDIAppForm.aTblDirectorsAfterInsert(DataSet: TDataSet);
@@ -489,6 +504,7 @@ var
   i: Integer;
 begin
   sbOwners.Panels[1].Text := 'Record ' + IntToStr(aTblOwners.RecNo) + ' of ' + IntToStr(aTblOwners.RecordCount);
+  sbOwnersOwner.Panels[1].Text := 'Record ' + IntToStr(aTblOwners.RecNo) + ' of ' + IntToStr(aTblOwners.RecordCount);
   i := aTblOwners.FieldByName('ID').AsInteger;
   aTblDirectors.Filtered := False;
   aTblDirectors.Filter := 'OwnerID = ' + IntToStr(i);
@@ -498,9 +514,10 @@ end;
 
 procedure TSDIAppForm.aTblOwnersBeforePost(DataSet: TDataSet);
 begin
-  if (aTblOwners.FieldByName('usePolicySigned').AsString = '') then begin
-    aTblOwners.FieldByName('usePolicySigned').AsBoolean := False;
-  end;
+  if (aTblOwners.FieldByName('usePolicySigned').AsString = '') then
+    aTblOwners.FieldByName('usePolicySigned').AsBoolean := False
+  else
+    aTblOwners.FieldByName('usePolicySigned').AsBoolean := True;
 end;
 
 procedure TSDIAppForm.aTblPasswordsAfterInsert(DataSet: TDataSet);
@@ -538,6 +555,12 @@ end;
 procedure TSDIAppForm.aTblSectionsAfterScroll(DataSet: TDataSet);
 begin
   sbSections.Panels[1].Text := 'Record ' + IntToStr(aTblSections.RecNo) + ' of ' + IntToStr(aTblSections.RecordCount);
+end;
+
+procedure TSDIAppForm.bbClearPasswordFilterClick(Sender: TObject);
+begin
+  aTblPasswords.Filter := '';
+  aTblPasswords.Filtered := False;
 end;
 
 procedure TSDIAppForm.cbPolicyNoClick(Sender: TObject);
@@ -1198,7 +1221,7 @@ begin
     Left := margin;
     Width := pnlOwnersOwners.Width - 3 * margin;
     Top := topGap;
-    Height := pnlOwnersOwners.Height - topGap - 2 * margin;
+    Height := pnlOwnersOwners.Height - topGap - margin - sbOwnersOwner.Height;
   end;
 end;
 
