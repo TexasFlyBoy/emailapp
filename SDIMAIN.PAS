@@ -122,17 +122,6 @@ type
     Splitter1: TSplitter;
     sbCurDirs: TStatusBar;
     dsCurrentDirectors: TDataSource;
-    adsCurrentDirectors: TADODataSet;
-    adsCurrentDirectorslastName: TWideStringField;
-    adsCurrentDirectorsfirstName: TWideStringField;
-    adsCurrentDirectorshouseAcct: TIntegerField;
-    adsCurrentDirectorsdirectorSection: TWideStringField;
-    adsCurrentDirectorsstartDate: TDateTimeField;
-    adsCurrentDirectorsstopDate: TDateTimeField;
-    adsCurrentDirectorsemailAcct: TWideStringField;
-    adsCurrentDirectorsusePolicySigned: TBooleanField;
-    adsCurrentDirectorspolicyDate: TDateTimeField;
-    adsCurrentDirectorssortOrder: TIntegerField;
     eCurDirLastName: TEdit;
     eCurDirFirstName: TEdit;
     eCurDirAcctNumber: TEdit;
@@ -217,6 +206,7 @@ type
     Splitter5: TSplitter;
     dbNavCurDir: TDBNavigator;
     Label3: TLabel;
+    aTblCurrentDirectors: TADOTable;
     procedure FileNew1Execute(Sender: TObject);
     procedure FileOpen1Execute(Sender: TObject);
     procedure FileSave1Execute(Sender: TObject);
@@ -383,7 +373,6 @@ begin
   begin
     try
       ADOConnection1.Connected := False;
-      ShowMessage('trying to get connection string');
       ADOConnection1.ConnectionString := ReadIniString('Connection',
         'ConnString');
     except
@@ -397,19 +386,16 @@ begin
     begin
       frmSplashScreen.stReconnect.Visible := True;
       sbCurDirs.Panels[2].Text := ADOConnection1.ConnectionString;
-      ShowMessage('doing the make connection 33');
       MakeConnection(True);
     end
     else
     begin
-      ShowMessage('not connected 1');
       sbCurDirs.Panels[2].Text := 'Not Connected to Database';
       MakeConnection(False);
     end;
   end
   else
   begin
-    ShowMessage('not connected 2');
     sbCurDirs.Panels[2].Text := 'Not Connected to Database';
     MakeConnection(False);
   end;
@@ -419,21 +405,21 @@ end;
 
 procedure TSDIAppForm.adsCurrentDirectorsAfterScroll(DataSet: TDataSet);
 begin
-  sbCurDirs.Panels[1].Text := 'Record ' + IntToStr(adsCurrentDirectors.RecNo) + ' of ' + IntToStr(adsCurrentDirectors.RecordCount);
+  sbCurDirs.Panels[1].Text := 'Record ' + IntToStr(aTblCurrentDirectors.RecNo) + ' of ' + IntToStr(aTblCurrentDirectors.RecordCount);
   with aTblPasswords do begin
     Filtered := False;
-    Filter := 'acct = ' + '''' + adsCurrentDirectors.FieldByName('emailAcct').Value + '''';
+    Filter := 'acct = ' + '''' + aTblCurrentDirectors.FieldByName('emailAcct').Value + '''';
     Filtered := True;
   end;
   with aTblOwners do begin
     Filtered := False;
-    Filter := 'houseAcct = ' + '''' + IntToStr(adsCurrentDirectors.FieldByName('houseAcct').Value) + '''';
+    Filter := 'houseAcct = ' + '''' + IntToStr(aTblCurrentDirectors.FieldByName('houseAcct').Value) + '''';
     Filtered := True;
   end;
   with aDsHouses
    do begin
     Filtered := False;
-    Filter := 'houseAcct = ' + '''' + IntToStr(adsCurrentDirectors.FieldByName('houseAcct').Value) + '''';
+    Filter := 'houseAcct = ' + '''' + IntToStr(aTblCurrentDirectors.FieldByName('houseAcct').Value) + '''';
     Filtered := True;
   end;
 end;
@@ -522,7 +508,7 @@ begin
   // If the stopDate is NULL then we can insert a new record
   If VarIsNull(aTblPasswords.FieldByName('stopDate').Value) then begin
     aTblPasswords.FieldByName('startdate').AsDateTime := Now;
-    aTblPasswords.FieldByName('acct').Value := adsCurrentDirectors.FieldByName('emailAcct').Value;
+    aTblPasswords.FieldByName('acct').Value := aTblCurrentDirectors.FieldByName('emailAcct').Value;
   end
   else
   begin
@@ -641,7 +627,7 @@ end;
 
 procedure TSDIAppForm.dbGridDirOwnersCellClick(Column: TColumn);
 begin
-  with adsCurrentDirectors do begin
+  with aTblCurrentDirectors do begin
     Filtered := False;
     Filter := 'houseAcct = ' + IntToStr(aTblOwners.FieldByName('houseAcct').Value);
     Filtered := True;
@@ -656,8 +642,10 @@ begin
   if (eCurDirAcctNumber.Text = '%') then
     eCurDirAcctNumber.Text := '';
   filterText := '';
-  if (length(eCurDirAcctNumber.Text) > 0) then
-    filterText := 'houseAcct = ' + '''' + eCurDirAcctNumber.Text + '''';
+  if (length(eCurDirAcctNumber.Text) > 0) then begin
+    filterText := 'houseAcct = ' +  eCurDirAcctNumber.Text;
+    ShowMessage(filterText);
+  end;
   TEditChange(filterText);
 end;
 
@@ -730,19 +718,18 @@ var
 begin
   if (length(filterText) = 0) then
   begin
-    adsCurrentDirectors.Filter := '';
-    adsCurrentDirectors.Filtered := True;
+    aTblCurrentDirectors.Filter := '';
+    aTblCurrentDirectors.Filtered := True;
   end
   else
   begin
-    adsCurrentDirectors.Filtered := False;
-    adsCurrentDirectors.Filter := filterText;
-    adsCurrentDirectors.Filtered := True;
+    aTblCurrentDirectors.Filtered := False;
+    aTblCurrentDirectors.Filter := filterText;
+    aTblCurrentDirectors.Filtered := True;
   end;
-
   sbCurDirs.Panels[0].Text := filterText;
-  numOfRecords := adsCurrentDirectors.RecordCount;
-  sbCurDirs.Panels[1].Text := 'Record ' + IntToStr(adsCurrentDirectors.RecNo) + ' of ' + IntToStr(adsCurrentDirectors.RecordCount);
+  numOfRecords := aTblCurrentDirectors.RecordCount;
+  sbCurDirs.Panels[1].Text := 'Record ' + IntToStr(aTblCurrentDirectors.RecNo) + ' of ' + IntToStr(aTblCurrentDirectors.RecordCount);
 end;
 
 
@@ -813,8 +800,8 @@ begin
   eCurDirAcctNumber.Text := '';
   eCurDirEmail.Text := '';
   eCurDirRepresents.Text := '';
-  adsCurrentDirectors.Filtered := False;
-  adsCurrentDirectors.Filter := '';
+  aTblCurrentDirectors.Filtered := False;
+  aTblCurrentDirectors.Filter := '';
 end;
 
 procedure TSDIAppForm.HousesEditColorChangeOnEnter(Sender: TObject);
@@ -1043,8 +1030,8 @@ begin
   eOwnersFName.Text := '';
   eDirOwnersLName.Text := '';
   eDirOwnersFName.Text := '';
-  adsCurrentDirectors.Filtered := False;
-  adsCurrentDirectors.Filter := '';
+  aTblCurrentDirectors.Filtered := False;
+  aTblCurrentDirectors.Filter := '';
   aTblOwners.Filtered := False;
   aTblOwners.Filter := '';
 end;
@@ -1492,7 +1479,7 @@ begin
   if (oddEven) then sortDirection := ' ASC'
   else sortDirection := ' DESC';
   // Update the IndexFieldName, Tag, Glyph
-  adsCurrentDirectors.IndexFieldNames := sortFieldName + sortDirection;
+  aTblCurrentDirectors.IndexFieldNames := sortFieldName + sortDirection;
   TSpeedButton(Sender).Tag := (buttonNumber * 2) + direction;
   ImageList1.GetBitmap(direction, TSpeedButton(Sender).Glyph);
   // Update the status bar text panels

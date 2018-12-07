@@ -27,7 +27,7 @@ begin
       aTblEmailAccts.Active := Connect;
       aTblOwners.Active := Connect;
       aTblSections.Active := Connect;
-      adsCurrentDirectors.Active := Connect;
+      aTblCurrentDirectors.Active := Connect;
 
       MakeConnection := True;
     end;

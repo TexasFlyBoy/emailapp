@@ -2546,7 +2546,7 @@ object SDIAppForm: TSDIAppForm
     Left = 616
     Top = 65528
     Bitmap = {
-      494C010102001800740020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010102001800780020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000001000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2835,16 +2835,16 @@ object SDIAppForm: TSDIAppForm
     Connected = True
     ConnectionString = 
       'Provider=Microsoft.ACE.OLEDB.12.0;User ID=Admin;Data Source=C:\U' +
-      'sers\Mandy.SSCA-FRONTOFFIC\Documents\SandBoxEmail.accdb;Mode=Sha' +
-      're Deny None;Jet OLEDB:System database="";Jet OLEDB:Registry Pat' +
-      'h="";Jet OLEDB:Database Password="";Jet OLEDB:Engine Type=6;Jet ' +
-      'OLEDB:Database Locking Mode=1;Jet OLEDB:Global Partial Bulk Ops=' +
-      '2;Jet OLEDB:Global Bulk Transactions=1;Jet OLEDB:New Database Pa' +
-      'ssword="";Jet OLEDB:Create System Database=False;Jet OLEDB:Encry' +
-      'pt Database=False;Jet OLEDB:Don'#39't Copy Locale on Compact=False;J' +
-      'et OLEDB:Compact Without Replica Repair=False;Jet OLEDB:SFP=Fals' +
-      'e;Jet OLEDB:Support Complex Data=False;Jet OLEDB:Bypass UserInfo' +
-      ' Validation=False;'
+      'sers\Admin\Documents\SscaEmail.accdb;Mode=Share Deny None;Jet OL' +
+      'EDB:System database="";Jet OLEDB:Registry Path="";Jet OLEDB:Data' +
+      'base Password="";Jet OLEDB:Engine Type=6;Jet OLEDB:Database Lock' +
+      'ing Mode=1;Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:Global ' +
+      'Bulk Transactions=1;Jet OLEDB:New Database Password="";Jet OLEDB' +
+      ':Create System Database=False;Jet OLEDB:Encrypt Database=False;J' +
+      'et OLEDB:Don'#39't Copy Locale on Compact=False;Jet OLEDB:Compact Wi' +
+      'thout Replica Repair=False;Jet OLEDB:SFP=False;Jet OLEDB:Support' +
+      ' Complex Data=False;Jet OLEDB:Bypass UserInfo Validation=False;'
+    LoginPrompt = False
     Mode = cmShareDenyNone
     Provider = 'Microsoft.ACE.OLEDB.12.0'
     Left = 984
@@ -2936,7 +2936,6 @@ object SDIAppForm: TSDIAppForm
     Top = 128
   end
   object aTblEmailAccts: TADOTable
-    Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
     Filter = 'section = '#39'12a'#39
@@ -3019,7 +3018,6 @@ object SDIAppForm: TSDIAppForm
     end
   end
   object aTblSections: TADOTable
-    Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
     AfterScroll = aTblSectionsAfterScroll
@@ -3033,63 +3031,16 @@ object SDIAppForm: TSDIAppForm
     Top = 128
   end
   object dsCurrentDirectors: TDataSource
-    DataSet = adsCurrentDirectors
+    DataSet = aTblCurrentDirectors
     Left = 232
     Top = 96
   end
-  object adsCurrentDirectors: TADODataSet
+  object aTblCurrentDirectors: TADOTable
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
-    AfterScroll = adsCurrentDirectorsAfterScroll
-    CommandText = 'select * from CurrentDirectors'
-    Parameters = <>
+    TableName = 'CurrentDirectors'
     Left = 208
     Top = 32
-    object adsCurrentDirectorslastName: TWideStringField
-      DisplayLabel = 'Last Name'
-      FieldName = 'lastName'
-      Size = 15
-    end
-    object adsCurrentDirectorsfirstName: TWideStringField
-      DisplayLabel = 'First Name'
-      FieldName = 'firstName'
-      Size = 15
-    end
-    object adsCurrentDirectorshouseAcct: TIntegerField
-      DisplayLabel = 'Acct #'
-      FieldName = 'houseAcct'
-    end
-    object adsCurrentDirectorsdirectorSection: TWideStringField
-      Alignment = taCenter
-      DisplayLabel = 'Represents'
-      FieldName = 'directorSection'
-      Size = 10
-    end
-    object adsCurrentDirectorsstartDate: TDateTimeField
-      DisplayLabel = 'Start Date'
-      FieldName = 'startDate'
-    end
-    object adsCurrentDirectorsstopDate: TDateTimeField
-      DisplayLabel = 'Stop Date'
-      FieldName = 'stopDate'
-    end
-    object adsCurrentDirectorsemailAcct: TWideStringField
-      DisplayLabel = 'Email Acct'
-      FieldName = 'emailAcct'
-      Size = 50
-    end
-    object adsCurrentDirectorsusePolicySigned: TBooleanField
-      DisplayLabel = 'Policy Signed'
-      FieldName = 'usePolicySigned'
-    end
-    object adsCurrentDirectorspolicyDate: TDateTimeField
-      DisplayLabel = 'Policy Date'
-      FieldName = 'policyDate'
-    end
-    object adsCurrentDirectorssortOrder: TIntegerField
-      DisplayLabel = 'Sort Order'
-      FieldName = 'sortOrder'
-    end
   end
 end

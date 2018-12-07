@@ -32,7 +32,6 @@ begin
   fileName := ChangeFileExt(Application.ExeName, '.INI' );
   if FileExists(fileName) then Exit;
   Ini := TIniFile.Create(fileName);
-  ShowMessage('Creating Ini File');
   try
     Ini.WriteString( 'Connection', 'ConnString', '44');
     Ini.WriteInteger( 'Form', 'Left', 50);
@@ -88,9 +87,7 @@ var
   testValue: Boolean;
 begin
   fileName := ChangeFileExt( Application.ExeName, '.INI' );
-  testValue := FileExists(fileName);
-  ShowMessage('IniFileExists:' + BoolToStr(testValue));
-  Result := testValue;
+  IniFileExists := FileExists(fileName);
 end;
 
 {--------------------------------------------------------------------------+
