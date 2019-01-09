@@ -212,6 +212,12 @@ type
     Label4: TLabel;
     bbClearPasswordFilter: TBitBtn;
     Close1: TMenuItem;
+    memoSqlText: TMemo;
+    dbGridSql: TDBGrid;
+    aSqlQuery: TADOQuery;
+    dsSqlQuery: TDataSource;
+    Button1: TButton;
+    Button2: TButton;
     procedure FileNew1Execute(Sender: TObject);
     procedure FileOpen1Execute(Sender: TObject);
     procedure FileSave1Execute(Sender: TObject);
@@ -280,6 +286,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure aTblCurrentDirectorsAfterScroll(DataSet: TDataSet);
     procedure bbClearPasswordFilterClick(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     procedure TEditChange(filterText: string);
     procedure THousesEditChange(filterText: string);
@@ -561,6 +568,13 @@ procedure TSDIAppForm.bbClearPasswordFilterClick(Sender: TObject);
 begin
   aTblPasswords.Filter := '';
   aTblPasswords.Filtered := False;
+end;
+
+procedure TSDIAppForm.Button2Click(Sender: TObject);
+var
+  i: Integer;
+begin
+
 end;
 
 procedure TSDIAppForm.cbPolicyNoClick(Sender: TObject);

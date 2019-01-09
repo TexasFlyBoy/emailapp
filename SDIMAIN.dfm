@@ -451,7 +451,7 @@ object SDIAppForm: TSDIAppForm
     Top = 292
     Width = 1255
     Height = 470
-    ActivePage = TabSheet4
+    ActivePage = SqlViewer
     Align = alClient
     OwnerDraw = True
     TabOrder = 1
@@ -2466,9 +2466,6 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitLeft = 464
-          ExplicitTop = 176
-          ExplicitWidth = 0
         end
       end
     end
@@ -2476,7 +2473,7 @@ object SDIAppForm: TSDIAppForm
       Caption = 'SqlViewer'
       ImageIndex = 7
       object Splitter4: TSplitter
-        Left = 185
+        Left = 225
         Top = 41
         Height = 400
         ExplicitLeft = 376
@@ -2491,24 +2488,72 @@ object SDIAppForm: TSDIAppForm
         Align = alTop
         Caption = 'Panel1'
         TabOrder = 0
+        object Button1: TButton
+          Left = 64
+          Top = 11
+          Width = 123
+          Height = 25
+          Caption = 'Run SQL Query'
+          TabOrder = 0
+        end
+        object Button2: TButton
+          Left = 310
+          Top = 10
+          Width = 115
+          Height = 25
+          Caption = 'Show SQL Text'
+          TabOrder = 1
+          OnClick = Button2Click
+        end
       end
       object Panel2: TPanel
         Left = 0
         Top = 41
-        Width = 185
+        Width = 225
         Height = 400
         Align = alLeft
         Caption = 'Panel2'
         TabOrder = 1
+        ExplicitLeft = -3
+        ExplicitTop = 47
+        object memoSqlText: TMemo
+          Left = 1
+          Top = 1
+          Width = 223
+          Height = 398
+          Align = alClient
+          Lines.Strings = (
+            'memoSqlText')
+          TabOrder = 0
+          ExplicitLeft = 37
+          ExplicitTop = 88
+          ExplicitWidth = 185
+          ExplicitHeight = 89
+        end
       end
       object Panel3: TPanel
-        Left = 188
+        Left = 228
         Top = 41
-        Width = 1059
+        Width = 1019
         Height = 400
         Align = alClient
         Caption = 'Panel3'
         TabOrder = 2
+        ExplicitLeft = 188
+        ExplicitWidth = 1059
+        object dbGridSql: TDBGrid
+          Left = 1
+          Top = 1
+          Width = 1017
+          Height = 398
+          Align = alClient
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -13
+          TitleFont.Name = 'System'
+          TitleFont.Style = []
+        end
       end
     end
   end
@@ -2635,7 +2680,7 @@ object SDIAppForm: TSDIAppForm
     Left = 1144
     Top = 64
     Bitmap = {
-      494C0101020018007C0020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010102001800800020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000001000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3135,5 +3180,15 @@ object SDIAppForm: TSDIAppForm
     TableName = 'CurrentDirectors'
     Left = 208
     Top = 32
+  end
+  object aSqlQuery: TADOQuery
+    Connection = ADOConnection1
+    Parameters = <>
+    Left = 784
+    Top = 609
+  end
+  object dsSqlQuery: TDataSource
+    Left = 784
+    Top = 561
   end
 end
