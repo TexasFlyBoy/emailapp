@@ -7,9 +7,10 @@ uses
   ABOUT in 'ABOUT.PAS' {AboutBox},
   ini_file in 'ini_file.pas',
   Splash in 'Splash.pas' {frmSplashScreen},
-  AccDb in 'AccDb.pas';
+  AccDb in 'AccDb.pas',
+  sql_query in 'sql_query.pas';
 
-{$R *.RES}
+
 
 begin
   Application.Initialize;
@@ -19,7 +20,7 @@ begin
   frmSplashScreen.Update;
   Application.CreateForm(TSDIAppForm, SDIAppForm);
   Application.CreateForm(TAboutBox, AboutBox);
-  while not frmSplashScreen.Completed do
+  while (frmSplashScreen.Completed) do
     Application.ProcessMessages;
   frmSplashScreen.Hide;
   frmSplashScreen.Free;

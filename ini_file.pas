@@ -26,8 +26,6 @@ procedure CreateIniFile;
 var
   Ini: TIniFile;
   fileName : string;
-  myFile   : TextFile;
-  data     : string;
 begin
   fileName := ChangeFileExt(Application.ExeName, '.INI' );
   if FileExists(fileName) then Exit;
@@ -84,7 +82,6 @@ end;
 function IniFileExists: boolean;
 var
   filename: string;
-  testValue: Boolean;
 begin
   fileName := ChangeFileExt( Application.ExeName, '.INI' );
   IniFileExists := FileExists(fileName);
@@ -97,9 +94,10 @@ end;
 function ReadIniString(section, key: string): string overload;
 var
   Ini: TIniFile;
-  fileName, value: string;
+  fileName: string;
 begin
   ReadIniString := '';
+  Ini := Nil;
   filename := ChangeFileExt(Application.ExeName, '.ini');
   if FileExists(fileName) then begin
     try
@@ -121,6 +119,7 @@ var
   fileName: string;
 begin
   ReadIniBoolean := False;
+  Ini := Nil;
   filename := ChangeFileExt(Application.ExeName, '.ini');
   if FileExists(fileName) then begin
     try
@@ -142,6 +141,7 @@ var
   fileName: string;
 begin
   ReadIniColor := 0;
+  Ini := Nil;
   filename := ChangeFileExt(Application.ExeName, '.ini');
   if FileExists(fileName) then begin
     try
@@ -172,6 +172,7 @@ var
   fileName: string;
 begin
   ReadIniDouble := 0.0;
+  Ini := Nil;
   filename := ChangeFileExt(Application.ExeName, '.ini');
   if FileExists(fileName) then begin
     try
@@ -193,6 +194,7 @@ var
   fileName: string;
 begin
   WriteIniString := False;
+  Ini := Nil;
   filename := ChangeFileExt(Application.ExeName, '.ini');
   if not(FileExists(fileName)) then
     CreateIniFile;
@@ -217,6 +219,7 @@ var
   fileName: string;
 begin
   WriteIniBoolean := False;
+  Ini := Nil;
   filename := ChangeFileExt(Application.ExeName, '.ini');
   if FileExists(fileName) then begin
     try
@@ -239,6 +242,7 @@ var
   fileName: string;
 begin
   WriteIniColor := False;
+  Ini := Nil;
   filename := ChangeFileExt(Application.ExeName, '.ini');
   if FileExists(fileName) then begin
     try
@@ -270,6 +274,7 @@ var
   fileName: string;
 begin
   WriteIniDouble := False;
+  Ini := Nil;
   filename := ChangeFileExt(Application.ExeName, '.ini');
   if FileExists(fileName) then begin
     try
@@ -287,6 +292,7 @@ var
   Ini: TIniFile;
   myFileName, sqlDirName: string;
 begin
+  Ini := Nil;
   if not(IniFileExists) then
     CreateIniFile;
 

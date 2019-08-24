@@ -22,10 +22,10 @@ begin
       sbCurDirs.Panels[2].Text := ADOConnection1.ConnectionString;
 
       aTblDirectors.Active := Connect;
-      aDsHouses.Active := Connect;
+//      aDsHouses.Active := Connect;
       aTblPasswords.Active := Connect;
       aTblEmailAccts.Active := Connect;
-      aTblOwners.Active := Connect;
+//      aTblOwners.Active := Connect;
       aTblSections.Active := Connect;
       aTblCurrentDirectors.Active := Connect;
 

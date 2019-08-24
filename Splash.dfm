@@ -2514,9 +2514,9 @@ object frmSplashScreen: TfrmSplashScreen
   object Label2: TLabel
     Left = 304
     Top = 314
-    Width = 205
+    Width = 200
     Height = 16
-    Caption = ' Copyright: Steve Arrieta 2018 '
+    Caption = ' Copyright Steve Arrieta 2019 '
     Color = clBlack
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clYellow
@@ -2564,7 +2564,7 @@ object frmSplashScreen: TfrmSplashScreen
     Visible = False
   end
   object Timer1: TTimer
-    Interval = 3000
+    Interval = 5000
     OnTimer = Timer1Timer
     Left = 120
     Top = 24

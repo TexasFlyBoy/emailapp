@@ -27,10 +27,6 @@ object AboutBox: TAboutBox
     Align = alClient
     BevelOuter = bvLowered
     TabOrder = 0
-    ExplicitLeft = 8
-    ExplicitTop = 8
-    ExplicitWidth = 281
-    ExplicitHeight = 161
     object ProgramIcon: TImage
       Left = 1
       Top = 1
@@ -3948,13 +3944,13 @@ object AboutBox: TAboutBox
     object ProductName: TLabel
       Left = 216
       Top = 152
-      Width = 283
+      Width = 291
       Height = 33
       Margins.Left = 2
       Margins.Top = 2
       Margins.Right = 2
       Margins.Bottom = 2
-      Caption = ' SSCA Email Manager'
+      Caption = ' SSCA Email Manager '
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clYellow
@@ -3969,18 +3965,20 @@ object AboutBox: TAboutBox
     object Version: TLabel
       Left = 272
       Top = 184
-      Width = 149
+      Width = 165
       Height = 33
       Margins.Left = 2
       Margins.Top = 2
       Margins.Right = 2
       Margins.Bottom = 2
-      Caption = 'Version 0.7'
+      Caption = ' Version 1.5 '
+      Color = clBlack
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clYellow
       Font.Height = -24
       Font.Name = 'Arial Black'
       Font.Style = [fsBold]
+      ParentColor = False
       ParentFont = False
       OnClick = ProgramIconClick
       IsControl = True
@@ -3995,7 +3993,7 @@ object AboutBox: TAboutBox
       Margins.Right = 2
       Margins.Bottom = 2
       Alignment = taRightJustify
-      Caption = ' Copyright 2018 Steve Arrieta '
+      Caption = ' Copyright 2019 Steve Arrieta '
       Color = clBlack
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clYellow

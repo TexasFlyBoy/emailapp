@@ -6,29 +6,15 @@ uses Winapi.Windows, System.Classes, Vcl.Graphics, Vcl.Forms, Vcl.Controls,
   Vcl.Menus, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ComCtrls,
   Vcl.ImgList, Vcl.StdActns, Vcl.ActnList, Vcl.ToolWin, System.ImageList,
   System.Actions, Data.DB, Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids, Data.Win.ADODB,
-  Vcl.WinXCtrls, SysUtils, StrUtils, Variants;
+  Vcl.WinXCtrls, SysUtils, StrUtils, Variants, Vcl.Imaging.jpeg;
 
 type
   TSDIAppForm = class(TForm)
     OpenDialog: TOpenDialog;
-    SaveDialog: TSaveDialog;
-    ActionList1: TActionList;
-    FileNew1: TAction;
-    FileOpen1: TAction;
-    FileSave1: TAction;
-    FileSaveAs1: TAction;
-    FileExit1: TAction;
-    EditCut1: TEditCut;
-    EditCopy1: TEditCopy;
-    EditPaste1: TEditPaste;
-    HelpAbout1: TAction;
     ImageList1: TImageList;
     MainMenu1: TMainMenu;
     File1: TMenuItem;
-    FileNewItem: TMenuItem;
     FileOpenItem: TMenuItem;
-    FileSaveItem: TMenuItem;
-    FileSaveAsItem: TMenuItem;
     N1: TMenuItem;
     FileExitItem: TMenuItem;
     Edit1: TMenuItem;
@@ -40,28 +26,12 @@ type
     pnlCurrentDirectors: TPanel;
     pcEmail: TPageControl;
     Directors: TTabSheet;
-    Houses: TTabSheet;
     TabSheet3: TTabSheet;
     TabSheet4: TTabSheet;
-    Owners: TTabSheet;
     Sections: TTabSheet;
     dsDirectors: TDataSource;
     ADOConnection1: TADOConnection;
     aTblDirectors: TADOTable;
-    dsHouses: TDataSource;
-    pnlDirectors: TPanel;
-    dbgDirectors: TDBGrid;
-    dbNavDirectors: TDBNavigator;
-    pnlHouses: TPanel;
-    dbNavHouses: TDBNavigator;
-    dbGridHouses: TDBGrid;
-    sbHouses: TStatusBar;
-    sbHousesAcct: TSpeedButton;
-    sbHousesAddress: TSpeedButton;
-    sbHousesStreetName: TSpeedButton;
-    sbHousesSection: TSpeedButton;
-    sbHousesStreetNumber: TSpeedButton;
-    aDsHouses: TADODataSet;
     aTblPasswords: TADOTable;
     dsPasswords: TDataSource;
     aTblPasswordsID: TAutoIncField;
@@ -77,39 +47,10 @@ type
     aTblEmailAcctsdateCreated: TDateTimeField;
     aTblEmailAcctsdateRetired: TDateTimeField;
     aTblEmailAcctsDomain: TWideStringField;
-    dsOwners: TDataSource;
-    aTblOwners: TADOTable;
-    aTblOwnersID: TAutoIncField;
-    aTblOwnersfirstName: TWideStringField;
-    aTblOwnerslastName: TWideStringField;
-    aTblOwnershouseAcct: TIntegerField;
-    aTblOwnersusePolicySigned: TBooleanField;
-    aTblOwnerspolicyDate: TDateTimeField;
-    aTblOwnersstopDate: TDateTimeField;
-    aDsHousesacctID: TAutoIncField;
-    aDsHouseshouseAcct: TIntegerField;
-    aDsHousesAddress: TWideStringField;
-    aDsHousesSection: TWideStringField;
-    aDsHousesStreetNumber: TIntegerField;
-    aDsHousesStreetName: TWideStringField;
     aTblSections: TADOTable;
     dsSections: TDataSource;
-    sbDirectors: TStatusBar;
-    pnlEmailAccts: TPanel;
-    dbNavEmailAccts: TDBNavigator;
-    dbGridEmails: TDBGrid;
-    sbEmailAccts: TStatusBar;
-    spEmailAcct: TSpeedButton;
-    spEmailSection: TSpeedButton;
-    spEmailDateCreated: TSpeedButton;
-    spEmailDateRetired: TSpeedButton;
-    spEmailDomain: TSpeedButton;
-    sbDirectorsId: TSpeedButton;
-    sbDirectorsSection: TSpeedButton;
-    sbDirectorsStartDate: TSpeedButton;
-    sbDirectorsStopDate: TSpeedButton;
-    sbDirectorsEmailAcct: TSpeedButton;
-    sbDirectorsSortOrder: TSpeedButton;
+    pnlEmailSecs: TPanel;
+    sbEmailSecs: TStatusBar;
     pnlPasswords: TPanel;
     dbGridPasswords: TDBGrid;
     dbNavPasswords: TDBNavigator;
@@ -124,12 +65,11 @@ type
     dsCurrentDirectors: TDataSource;
     eCurDirLastName: TEdit;
     eCurDirFirstName: TEdit;
-    eCurDirAcctNumber: TEdit;
     eCurDirEmail: TEdit;
     eCurDirRepresents: TEdit;
     sbCurDirLastName: TSpeedButton;
     sbCurDirFirstName: TSpeedButton;
-    sbCurDirAcctNumber: TSpeedButton;
+    sbCurDirAddress: TSpeedButton;
     sbCurDirRepresents: TSpeedButton;
     sbCurDirStartDate: TSpeedButton;
     sbCurDirEmailAcct: TSpeedButton;
@@ -140,40 +80,10 @@ type
     dbNavSections: TDBNavigator;
     dbGridSections: TDBGrid;
     sbSections: TStatusBar;
-    eHousesStreetName: TEdit;
-    eHousesStreetNumber: TEdit;
-    eHousesAcctNumber: TEdit;
-    eHousesSection: TEdit;
-    Label1: TLabel;
-    pnlOwners: TPanel;
-    sbOwnersFName: TSpeedButton;
-    sbOwnersLName: TSpeedButton;
-    sbOwnersPolicySigned: TSpeedButton;
-    sbOwnersPolicyDate: TSpeedButton;
-    sbOwnersStopDate: TSpeedButton;
-    dbgOwners: TDBGrid;
-    sbOwners: TStatusBar;
-    Label2: TLabel;
-    eOwnersLName: TEdit;
-    eOwnersFName: TEdit;
-    dbNavOwners: TDBNavigator;
-    rgPolicySigned: TRadioGroup;
-    rgSellDate: TRadioGroup;
-    TabSheet1: TTabSheet;
-    pnlOwnerHouse: TPanel;
-    Splitter2: TSplitter;
-    pnlOwnersOwners: TPanel;
-    dbGridOwnerHouse: TDBGrid;
-    dbGridAddOwner: TDBGrid;
-    DBNavigator1: TDBNavigator;
-    lblAddOwner: TLabel;
-    dbGridEmailSections: TDBGrid;
-    eEmailSection: TEdit;
-    eMailSectionSearch: TEdit;
-    pnlAllOwners: TPanel;
+    pnlDirectors: TPanel;
     dbGridDirOwners: TDBGrid;
     Splitter3: TSplitter;
-    sbDirOwners: TStatusBar;
+    sbDirectors: TStatusBar;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
     SpeedButton3: TSpeedButton;
@@ -182,19 +92,6 @@ type
     eDirOwnersLName: TEdit;
     eDirOwnersFName: TEdit;
     SpeedButton6: TSpeedButton;
-    eHousesAcct: TEdit;
-    sbOwnersAcct: TSpeedButton;
-    eHousesAddr: TEdit;
-    eHousesSec: TEdit;
-    eHousesStrNum: TEdit;
-    eHousesStrName: TEdit;
-    sbOwnersSec: TSpeedButton;
-    sbOwnersStrNum: TSpeedButton;
-    sbOwnersStrName: TSpeedButton;
-    sbOwnersAddr: TSpeedButton;
-    lblHouses: TLabel;
-    eHousesAddress: TEdit;
-    sbOwnersHouses: TStatusBar;
     SqlViewer: TTabSheet;
     Panel1: TPanel;
     Panel2: TPanel;
@@ -203,38 +100,82 @@ type
     Panel4: TPanel;
     DBGrid1: TDBGrid;
     Panel5: TPanel;
-    Splitter5: TSplitter;
     dbNavCurDir: TDBNavigator;
     Label3: TLabel;
     aTblCurrentDirectors: TADOTable;
-    sbOwnersOwner: TStatusBar;
-    sbOwnersHouseAcct: TSpeedButton;
     Label4: TLabel;
     bbClearPasswordFilter: TBitBtn;
     Close1: TMenuItem;
     memoSqlText: TMemo;
-    dbGridSql: TDBGrid;
-    aSqlQuery: TADOQuery;
+    dbGridSqlView: TDBGrid;
+    adoQryCullLetters: TADOQuery;
     dsSqlQuery: TDataSource;
     Button1: TButton;
-    Button2: TButton;
+    sb45: TButton;
+    aTblCurrentDirectorsSEMSID: TAutoIncField;
+    aTblCurrentDirectorsfirstName: TWideStringField;
+    aTblCurrentDirectorslastName: TWideStringField;
+    aTblCurrentDirectorsAddress: TWideStringField;
+    aTblCurrentDirectorsSection: TWideStringField;
+    aTblCurrentDirectorsusePolicySigned: TBooleanField;
+    aTblCurrentDirectorsstartDate: TDateTimeField;
+    aTblCurrentDirectorsstopDate: TDateTimeField;
+    aTblCurrentDirectorspolicyDate: TDateTimeField;
+    aTblCurrentDirectorsacct: TWideStringField;
+    aTblCurrentDirectorsdateCreated: TDateTimeField;
+    aTblCurrentDirectorssortOrder: TIntegerField;
+    DBNavigator2: TDBNavigator;
+    aTblSectionsID: TAutoIncField;
+    aTblSectionssection: TWideStringField;
+    aTblSectionssortOrder: TIntegerField;
+    SpeedButton7: TSpeedButton;
+    sbSection1: TSpeedButton;
+    sbSection2: TSpeedButton;
+    Splitter2: TSplitter;
+    pnlEmailAccts: TPanel;
+    SpeedButton8: TSpeedButton;
+    SpeedButton9: TSpeedButton;
+    SpeedButton10: TSpeedButton;
+    SpeedButton11: TSpeedButton;
+    SpeedButton12: TSpeedButton;
+    DBNavigator1: TDBNavigator;
+    dbGridEmails: TDBGrid;
+    sbEmailAccts: TStatusBar;
+    Edit2: TEdit;
+    eMailAcct: TEdit;
+    BitBtn2: TBitBtn;
+    dbGridEmailSections: TDBGrid;
+    sbSecSort: TSpeedButton;
+    sbSortSort: TSpeedButton;
+    eEmailSection: TEdit;
+    Splitter5: TSplitter;
+    ePwdAcct: TEdit;
+    ePwdPwd: TEdit;
+    aTblDirectorsSEMSID: TAutoIncField;
+    aTblDirectorsfirstName: TWideStringField;
+    aTblDirectorslastName: TWideStringField;
+    aTblDirectorsAddress: TWideStringField;
+    aTblDirectorsSection: TWideStringField;
+    aTblDirectorsusePolicySigned: TBooleanField;
+    aTblDirectorsstartDate: TDateTimeField;
+    aTblDirectorsstopDate: TDateTimeField;
+    aTblDirectorspolicyDate: TDateTimeField;
+    sbSqlView: TStatusBar;
+    ProgressBar1: TProgressBar;
+    StatusBar1: TStatusBar;
     procedure FileNew1Execute(Sender: TObject);
     procedure FileOpen1Execute(Sender: TObject);
-    procedure FileSave1Execute(Sender: TObject);
     procedure FileExit1Execute(Sender: TObject);
     procedure HelpAbout1Execute(Sender: TObject);
     procedure dbgDirectorsDrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure aTblDirectorsAfterScroll(DataSet: TDataSet);
-    procedure sbHousesAcctClick(Sender: TObject);
-    procedure sbOwnersClick(Sender: TObject);
     procedure sbEmailClick(Sender: TObject);
     procedure sbDirectorsClick(Sender: TObject);
     procedure sbPasswordClick(Sender: TObject);
     procedure cbPolicyYesClick(Sender: TObject);
     procedure cbPolicyNoClick(Sender: TObject);
     procedure pnlCurrentDirectorsResize(Sender: TObject);
-    procedure pnlDirectorsResize(Sender: TObject);
     procedure dbGridCurDirsColumnMoved(Sender: TObject; FromIndex,
       ToIndex: Integer);
     procedure dbGridCurDirsCellClick(Column: TColumn);
@@ -248,51 +189,46 @@ type
     procedure eCurDirEmailChange(Sender: TObject);
     procedure EditColorChangeOnEnter(Sender: TObject);
     procedure EditColorChangeOnExit(Sender: TObject);
-    procedure eCurDirAcctNumberChange(Sender: TObject);
-    procedure pnlHousesResize(Sender: TObject);
-    procedure aDsHousesAfterScroll(DataSet: TDataSet);
-    procedure eHousesAcctNumberChange(Sender: TObject);
-    procedure eHousesSectionChange(Sender: TObject);
-    procedure eHousesStreetNameChange(Sender: TObject);
-    procedure eHousesStreetNumberChange(Sender: TObject);
-    procedure HousesEditColorChangeOnEnter(Sender: TObject);
-    procedure OwnersEditColorChangeOnEnter(Sender: TObject);
-    procedure eOwnersLNameChange(Sender: TObject);
-    procedure eOwnersFNameChange(Sender: TObject);
-    procedure rgPolicySignedClick(Sender: TObject);
-    procedure rgSellDateClick(Sender: TObject);
-    procedure aTblOwnersAfterScroll(DataSet: TDataSet);
-    procedure pnlOwnerHouseResize(Sender: TObject);
-    procedure pnlOwnersOwnersResize(Sender: TObject);
     procedure eMailSectionSearchChange(Sender: TObject);
     procedure aTblEmailAcctsAfterScroll(DataSet: TDataSet);
     procedure eEmailSectionChange(Sender: TObject);
     procedure aTblEmailAcctsAfterInsert(DataSet: TDataSet);
-    procedure pnlEmailAcctsResize(Sender: TObject);
+    procedure pnlEmailSecsResize(Sender: TObject);
     procedure pnlPasswordsResize(Sender: TObject);
     procedure aTblPasswordsAfterScroll(DataSet: TDataSet);
     procedure aTblPasswordsAfterInsert(DataSet: TDataSet);
     procedure aTblPasswordsBeforeInsert(DataSet: TDataSet);
     procedure pnlAllOwnersResize(Sender: TObject);
-    procedure eHousesAcctChange(Sender: TObject);
-    procedure sbHousesAddressClick(Sender: TObject);
-    procedure eHousesAddressChange(Sender: TObject);
     procedure dbGridDirOwnersCellClick(Column: TColumn);
     procedure pcEmailDrawTab(Control: TCustomTabControl; TabIndex: Integer;
       const Rect: TRect; Active: Boolean);
-    procedure aTblOwnersBeforePost(DataSet: TDataSet);
-    procedure aTblOwnersAfterInsert(DataSet: TDataSet);
     procedure aTblDirectorsAfterInsert(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
     procedure aTblCurrentDirectorsAfterScroll(DataSet: TDataSet);
-    procedure bbClearPasswordFilterClick(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure bbClrPwdFilterClick(Sender: TObject);
+    procedure sbSectionClick(Sender: TObject);
+    procedure bbClrAcctFilterClick(Sender: TObject);
+    procedure eMailAcctChange(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure eDirOwnersFNameChange(Sender: TObject);
+    procedure eDirOwnersLNameChange(Sender: TObject);
+    procedure TDirEditColorChangeOnEnter(Sender: TObject);
+    procedure aTblDirectorsAfterPost(DataSet: TDataSet);
+    procedure PwdAcctSearch(Sender: TObject);
+    procedure PwdPwdSearch(Sender: TObject);
+    procedure DirEditChange(filterText: string);
+    procedure PwdEditChange(filterText: string);
+    procedure PwdEditColorChangeOnEnter(Sender: TObject);
+    procedure EmailEditColorChangeOnEnter(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure adoQryCullLettersAfterScroll(DataSet: TDataSet);
   private
     procedure TEditChange(filterText: string);
-    procedure THousesEditChange(filterText: string);
-    procedure TOwnersEditChange(filterText: string);
     procedure TeMailSectionChange(filterText: string);
     procedure eMailSectionChange(filterText: string);
+
+
+
 
     { Private declarations }
   public
@@ -307,7 +243,7 @@ var
 
 implementation
 
-uses About, Accdb, ini_file, Splash;
+uses About, Accdb, ini_file, Splash, System.UITypes, sql_query;
 
 {$R *.dfm}
 
@@ -375,11 +311,6 @@ begin
   MakeConnection(True);
 end;
 
-procedure TSDIAppForm.FileSave1Execute(Sender: TObject);
-begin
-  SaveDialog.Execute;
-end;
-
 procedure TSDIAppForm.FormCreate(Sender: TObject);
 begin
 //  Application.OnHint := ShowHint;
@@ -417,6 +348,12 @@ begin
 //  statBarUpdate;
 end;
 
+procedure TSDIAppForm.adoQryCullLettersAfterScroll(DataSet: TDataSet);
+begin
+  sbSqlView.Panels[0].Text := 'Record ' + IntToStr(adoQryCullLetters.RecNo) + ' of ' + IntToStr(adoQryCullLetters.RecordCount);
+  sbSqlView.Panels[1].Text := 'Num of Records: ' + IntToStr(adoQryCullLetters.RecordCount);
+end;
+
 procedure TSDIAppForm.adsCurrentDirectorsAfterScroll(DataSet: TDataSet);
 begin
   sbCurDirs.Panels[1].Text := 'Record ' + IntToStr(aTblCurrentDirectors.RecNo) + ' of ' + IntToStr(aTblCurrentDirectors.RecordCount);
@@ -425,69 +362,38 @@ begin
     Filter := 'acct = ' + '''' + aTblCurrentDirectors.FieldByName('emailAcct').Value + '''';
     Filtered := True;
   end;
-  with aTblOwners do begin
-    Filtered := False;
-    Filter := 'houseAcct = ' + '''' + IntToStr(aTblCurrentDirectors.FieldByName('houseAcct').Value) + '''';
-    Filtered := True;
-  end;
-  with aDsHouses
-   do begin
-    Filtered := False;
-    Filter := 'houseAcct = ' + '''' + IntToStr(aTblCurrentDirectors.FieldByName('houseAcct').Value) + '''';
-    Filtered := True;
-  end;
-end;
-
-procedure TSDIAppForm.aDsHousesAfterScroll(DataSet: TDataSet);
-begin
-  sbHouses.Panels[1].Text := 'Record ' + IntToStr(aDsHouses.RecNo) + ' of ' + IntToStr(aDsHouses.RecordCount);
-  sbOwnersHouses.Panels[1].Text := 'Record ' + IntToStr(aDsHouses.RecNo) + ' of ' + IntToStr(aDsHouses.RecordCount);
 end;
 
 procedure TSDIAppForm.aTblCurrentDirectorsAfterScroll(DataSet: TDataSet);
 begin
     aTblPasswords.Filtered := False;
-    aTblPasswords.Filter := 'acct = ''' + aTblCurrentDirectors.FieldByName('emailacct').AsString + '''';
+    aTblPasswords.Filter := 'acct = ''' + aTblCurrentDirectors.FieldByName('acct').AsString + '''';
     aTblPasswords.Filtered := True;
 end;
 
 procedure TSDIAppForm.aTblDirectorsAfterInsert(DataSet: TDataSet);
 var
-  emailFiltered: Boolean;
+//  emailFiltered: Boolean;
   emailFilter, emailIndexField: string;
 begin
-  aTblDirectors.FieldByName('directorSection').AsString := aTblSections.FieldByName('section').AsString;
-  aTblDirectors.FieldByName('ownerId').AsInteger := aTblOwners.FieldByName('Id').AsInteger;
+  aTblDirectors.FieldByName('section').AsString := aTblSections.FieldByName('section').AsString;
+//  aTblDirectors.FieldByName('ownerId').AsInteger := aTblOwners.FieldByName('Id').AsInteger;
   // Remember the current state
-  emailFiltered := aTblEmailAccts.Filtered;
+//  emailFiltered := aTblEmailAccts.Filtered;
   emailFilter := aTblEmailAccts.Filter;
   emailIndexField := aTblEmailAccts.IndexFieldNames;
-  // get the appropriate information
-  aTblEmailAccts.Filtered := False;
-  aTblEmailAccts.Filter := 'section = ''' + aTblSections.FieldByName('section').AsString + '''';
-  aTblEmailAccts.Filtered := True;
+end;
 
-  aTblEmailAccts.First;
-  while (aTblEmailAccts.RecNo <= aTblEmailAccts.RecordCount) do begin
-    If (VarIsNull(aTblEmailAccts.FieldByName('dateRetired').Value)) then begin
-      aTblDirectors.FieldByName('emailAcct').AsString := aTblEmailAccts.FieldByName('acct').AsString;
-      Break;
-    end
-    else
-    begin
-      aTblEmailAccts.Next;
-    end;
-  end;
-  // Return to previous state
-  aTblEmailAccts.Filtered := False;
-  aTblEmailAccts.Filter := emailFilter;
-  aTblEmailAccts.IndexFieldNames := emailIndexField;
-  aTblEmailAccts.Filtered := emailFiltered;
+procedure TSDIAppForm.aTblDirectorsAfterPost(DataSet: TDataSet);
+begin
+  aTblCurrentDirectors.Active := False;
+  aTblCurrentDirectors.Active := True;
 end;
 
 procedure TSDIAppForm.aTblDirectorsAfterScroll(DataSet: TDataSet);
 begin
-  sbDirectors.Panels[1].Text := 'Record ' + IntToStr(aTblDirectors.RecNo) + ' of ' + IntToStr(aTblDirectors.RecordCount);
+  sbDirectors.Panels[0].Text := 'Record ' + IntToStr(aTblDirectors.RecNo) + ' of ' + IntToStr(aTblDirectors.RecordCount);
+  sbDirectors.Panels[1].Text := 'Num of Records: ' + IntToStr(aTblDirectors.RecordCount);
 end;
 
 procedure TSDIAppForm.aTblEmailAcctsAfterInsert(DataSet: TDataSet);
@@ -498,33 +404,8 @@ end;
 
 procedure TSDIAppForm.aTblEmailAcctsAfterScroll(DataSet: TDataSet);
 begin
-  sbEmailAccts.Panels[1].Text := 'Record ' + IntToStr(aTblEmailAccts.RecNo) + ' of ' + IntToStr(aTblEmailAccts.RecordCount);
-end;
-
-procedure TSDIAppForm.aTblOwnersAfterInsert(DataSet: TDataSet);
-begin
-  aTblOwners.FieldByName('houseAcct').AsInteger := aDsHouses.FieldByName('houseAcct').AsInteger;
-end;
-
-procedure TSDIAppForm.aTblOwnersAfterScroll(DataSet: TDataSet);
-var
-  i: Integer;
-begin
-  sbOwners.Panels[1].Text := 'Record ' + IntToStr(aTblOwners.RecNo) + ' of ' + IntToStr(aTblOwners.RecordCount);
-  sbOwnersOwner.Panels[1].Text := 'Record ' + IntToStr(aTblOwners.RecNo) + ' of ' + IntToStr(aTblOwners.RecordCount);
-  i := aTblOwners.FieldByName('ID').AsInteger;
-  aTblDirectors.Filtered := False;
-  aTblDirectors.Filter := 'OwnerID = ' + IntToStr(i);
-  aTblDirectors.Filtered := True;
-end;
-
-
-procedure TSDIAppForm.aTblOwnersBeforePost(DataSet: TDataSet);
-begin
-  if (aTblOwners.FieldByName('usePolicySigned').AsString = '') then
-    aTblOwners.FieldByName('usePolicySigned').AsBoolean := False
-  else
-    aTblOwners.FieldByName('usePolicySigned').AsBoolean := True;
+  sbEmailAccts.Panels[0].Text := 'Record ' + IntToStr(aTblEmailAccts.RecNo) + ' of ' + IntToStr(aTblEmailAccts.RecordCount);
+  sbEmailAccts.Panels[1].Text := 'Num of Records: ' + IntToStr(aTblEmailAccts.RecordCount);
 end;
 
 procedure TSDIAppForm.aTblPasswordsAfterInsert(DataSet: TDataSet);
@@ -532,7 +413,8 @@ begin
   // If the stopDate is NULL then we can insert a new record
   If VarIsNull(aTblPasswords.FieldByName('stopDate').Value) then begin
     aTblPasswords.FieldByName('startdate').AsDateTime := Now;
-    aTblPasswords.FieldByName('acct').Value := aTblCurrentDirectors.FieldByName('emailAcct').Value;
+    aTblPasswords.FieldByName('acct').Value := aTblCurrentDirectors.FieldByName('acct').Value;
+    aTblPasswords.FieldByName('password').Value := 'DummyPassword5678';
   end
   else
   begin
@@ -542,39 +424,49 @@ end;
 
 procedure TSDIAppForm.aTblPasswordsAfterScroll(DataSet: TDataSet);
 begin
-  sbPasswords.Panels[1].Text := 'Record ' + IntToStr(aTblPasswords.RecNo) + ' of ' + IntToStr(aTblPasswords.RecordCount);
+  sbPasswords.Panels[0].Text := 'Record ' + IntToStr(aTblPasswords.RecNo) + ' of ' + IntToStr(aTblPasswords.RecordCount);
+  sbPasswords.Panels[1].Text := 'Num of Records: ' + IntToStr(aTblPasswords.RecordCount);
   pnlPasswordsResize(sbPasswordAcct);
 end;
 
 procedure TSDIAppForm.aTblPasswordsBeforeInsert(DataSet: TDataSet);
 begin
+  if (aTblPasswords.RecordCount = 0) then
+  begin
+    exit;
+  end ;
   If VarIsNull(aTblPasswords.FieldByName('stopDate').Value) then begin
     aTblPasswords.Edit;
     aTblPasswords.FieldByName('stopDate').Value := Now;
     aTblPasswords.Post;
-  end
-  else
-  begin
-    Abort;
-  end;
+  end ;
 end;
 
 procedure TSDIAppForm.aTblSectionsAfterScroll(DataSet: TDataSet);
 begin
-  sbSections.Panels[1].Text := 'Record ' + IntToStr(aTblSections.RecNo) + ' of ' + IntToStr(aTblSections.RecordCount);
+  sbSections.Panels[0].Text := 'Record ' + IntToStr(aTblSections.RecNo) + ' of ' + IntToStr(aTblSections.RecordCount);
+  sbSections.Panels[1].Text := 'Num of Records: ' + IntToStr(aTblSections.RecordCount);
+  sbEmailSecs.Panels[0].Text := 'Record ' + IntToStr(aTblSections.RecNo) + ' of ' + IntToStr(aTblSections.RecordCount);
+  sbEmailSecs.Panels[1].Text := 'Num of Records: ' + IntToStr(aTblSections.RecordCount);
 end;
 
-procedure TSDIAppForm.bbClearPasswordFilterClick(Sender: TObject);
+procedure TSDIAppForm.bbClrAcctFilterClick(Sender: TObject);
+begin
+  aTblEmailAccts.Filter := '';
+  aTblEmailAccts.Filtered := False;
+  eMailAcct.Text := '';
+  eEmailSection.Text := '';
+end;
+
+procedure TSDIAppForm.bbClrPwdFilterClick(Sender: TObject);
 begin
   aTblPasswords.Filter := '';
   aTblPasswords.Filtered := False;
 end;
 
-procedure TSDIAppForm.Button2Click(Sender: TObject);
-var
-  i: Integer;
+procedure TSDIAppForm.Button1Click(Sender: TObject);
 begin
-
+  sql_query.btnRunSqlClick;
 end;
 
 procedure TSDIAppForm.cbPolicyNoClick(Sender: TObject);
@@ -606,16 +498,14 @@ end;
    //This is to stop columns being moved whilst allowing them to be resized
 procedure TSDIAppForm.dbGridCurDirsCellClick(Column: TColumn);
 var
-  sbHalfWidth, nextLeft, i, spacing: Integer;
+  nextLeft, i, spacing: Integer;
 begin
-  nextLeft := 13;
-  i := 0;
+  nextLeft := dbGridCurDirs.Columns[0].Width + 20;
+  i := 1;
   spacing := 3;
 
-  sbHalfWidth := sbCurDirLastName.Width div 2;
-
-  eCurDirLastName.Left := dbGridCurDirs.Left + nextLeft;
-  sbCurDirLastName.Left := nextLeft + (dbGridCurDirs.Columns[i].Width div 2);
+  eCurDirLastName.Left := nextLeft;
+  sbCurDirLastName.Left := eCurDirLastName.Left + eCurDirLastName.Width + 10;
   nextLeft := nextLeft + dbGridCurDirs.Columns[i].Width;
   Inc(i);
 
@@ -624,8 +514,7 @@ begin
   nextLeft := nextLeft + dbGridCurDirs.Columns[i].Width;
   Inc(i);
 
-  eCurDirAcctNumber.Left := nextLeft + (i * spacing);
-  sbCurDirAcctNumber.Left := nextLeft + (dbGridCurDirs.Columns[i].Width div 2);
+  sbCurDirAddress.Left := nextLeft + (dbGridCurDirs.Columns[i].Width div 2);
   nextLeft := nextLeft + dbGridCurDirs.Columns[i].Width;
   Inc(i);
 
@@ -634,7 +523,14 @@ begin
   nextLeft := nextLeft + dbGridCurDirs.Columns[i].Width;
   Inc(i);
 
+  sbCurDirUsePolicy.Left := nextLeft + (dbGridCurDirs.Columns[i].Width div 2);
+  nextLeft := nextLeft + dbGridCurDirs.Columns[i].Width;
+  Inc(i);
+
   sbCurDirStartDate.Left := nextLeft + (dbGridCurDirs.Columns[i].Width div 2);
+  nextLeft := nextLeft + dbGridCurDirs.Columns[i].Width;
+  Inc(i);
+
   nextLeft := nextLeft + dbGridCurDirs.Columns[i].Width;
   Inc(i);
 
@@ -646,14 +542,7 @@ begin
   nextLeft := nextLeft + dbGridCurDirs.Columns[i].Width;
   Inc(i);
 
-  sbCurDirUsePolicy.Left := nextLeft + (dbGridCurDirs.Columns[i].Width div 2);
-  nextLeft := nextLeft + dbGridCurDirs.Columns[i].Width;
-  Inc(i);
-
-  nextLeft := nextLeft + dbGridCurDirs.Columns[i].Width;
-  Inc(i);
-
-  sbCurDirSortOrder.Left := nextLeft + (dbGridCurDirs.Columns[i].Width div 2);
+  sbCurDirSortOrder.Left := nextLeft + (i * spacing) + (dbGridCurDirs.Columns[i].Width div 2);
 end;
 
 procedure TSDIAppForm.dbGridCurDirsColumnMoved(Sender: TObject; FromIndex,
@@ -666,25 +555,11 @@ procedure TSDIAppForm.dbGridDirOwnersCellClick(Column: TColumn);
 begin
   with aTblCurrentDirectors do begin
     Filtered := False;
-    Filter := 'houseAcct = ' + IntToStr(aTblOwners.FieldByName('houseAcct').Value);
+//    Filter := 'houseAcct = ' + IntToStr(aTblOwners.FieldByName('houseAcct').Value);
     Filtered := True;
   end;
 end;
 
-procedure TSDIAppForm.eCurDirAcctNumberChange(Sender: TObject);
-var
-  filterText: string;
-begin
-  // First we ignore the wildcard as the first character
-  if (eCurDirAcctNumber.Text = '%') then
-    eCurDirAcctNumber.Text := '';
-  filterText := '';
-  if (length(eCurDirAcctNumber.Text) > 0) then begin
-    filterText := 'houseAcct = ' +  eCurDirAcctNumber.Text;
-    ShowMessage(filterText);
-  end;
-  TEditChange(filterText);
-end;
 
 procedure TSDIAppForm.eCurDirEmailChange(Sender: TObject);
 var
@@ -695,7 +570,7 @@ begin
     Exit;
   filterText := '';
   if (length(eCurDirEmail.Text) > 0) then
-    filterText := 'emailAcct like ' + '''' + eCurDirEmail.Text +
+    filterText := 'acct like ' + '''' + eCurDirEmail.Text +
       '%' + '''';
   TEditChange(filterText);
 end;
@@ -737,12 +612,120 @@ begin
     Exit;
   filterText := '';
   if (length(eCurDirRepresents.Text) > 0) then
-    filterText := 'directorSection like ' + '''' + eCurDirRepresents.Text +
+    filterText := 'section like ' + '''' + eCurDirRepresents.Text +
       '%' + '''';
   TEditChange(filterText);
 end;
 
-{ ----------------------------------------------------------------------+
+procedure TSDIAppForm.eDirOwnersFNameChange(Sender: TObject);
+var
+  filterText: string;
+begin
+  // First we ignore the wildcard as the first character
+  if (eDirOwnersFName.Text = '%') then
+    Exit;
+  filterText := '';
+  if (length(eDirOwnersFName.Text) > 0) then
+    filterText := 'firstName like ' + '''' + eDirOwnersFName.Text +
+      '%' + '''';
+  DirEditChange(filterText);
+end;
+
+procedure TSDIAppForm.eDirOwnersLNameChange(Sender: TObject);
+var
+  filterText: string;
+begin
+  // First we ignore the wildcard as the first character
+  if (eDirOwnersLName.Text = '%') then
+    Exit;
+  filterText := '';
+  if (length(eDirOwnersLName.Text) > 0) then
+    filterText := 'lastName like ' + '''' + eDirOwnersLName.Text +
+      '%' + '''';
+  DirEditChange(filterText);
+end;
+
+
+procedure TSDIAppForm.PwdAcctSearch(Sender: TObject);
+var
+  filterText: string;
+begin
+  // First we ignore the wildcard as the first character
+  if (ePwdAcct.Text = '%') then
+    Exit;
+  filterText := '';
+  if (length(ePwdAcct.Text) > 0) then
+    filterText := 'Acct like ' + '''' + ePwdAcct.Text +
+      '%' + '''';
+  PwdEditChange(filterText);
+end;
+
+
+procedure TSDIAppForm.PwdPwdSearch(Sender: TObject);
+var
+  filterText: string;
+begin
+  // First we ignore the wildcard as the first character
+  if (ePwdPwd.Text = '%') then
+    Exit;
+  filterText := '';
+  if (length(ePwdPwd.Text) > 0) then
+    filterText := 'Acct like ' + '''' + ePwdPwd.Text +
+      '%' + '''';
+  PwdEditChange(filterText);
+end;
+
+
+ {----------------------------------------------------------------------+
+  TPwdEditChange:
+  This procedure is called when the user changes the search TEdit
+  boxes. It changes the filters to the Directors dbGrid. It
+  also updates the status bars on the Directors panel.
+  +----------------------------------------------------------------------- }
+procedure TSDIAppForm.PwdEditChange(filterText: string);
+begin
+  if (length(filterText) = 0) then
+  begin
+    aTblPasswords.Filter := '';
+    aTblPasswords.Filtered := True;
+  end
+  else
+  begin
+    aTblPasswords.Filtered := False;
+    aTblPasswords.Filter := filterText;
+    aTblPasswords.Filtered := True;
+  end;
+  sbPasswords.Panels[0].Text := filterText;
+  sbPasswords.Panels[1].Text := 'Record ' + IntToStr(aTblPasswords.RecNo) + ' of ' + IntToStr(aTblPasswords.RecordCount);
+end;
+
+
+ {----------------------------------------------------------------------+
+  TDirEditChange:
+  This procedure is called when the user changes the search TEdit
+  boxes. It changes the filters to the Directors dbGrid. It
+  also updates the status bars on the Directors panel.
+  +----------------------------------------------------------------------- }
+procedure TSDIAppForm.DirEditChange(filterText: string);
+begin
+  if (length(filterText) = 0) then
+  begin
+    aTblDirectors.Filter := '';
+    aTblDirectors.Filtered := True;
+  end
+  else
+  begin
+    aTblDirectors.Filtered := False;
+    aTblDirectors.Filter := filterText;
+    aTblDirectors.Filtered := True;
+  end;
+  sbDirectors.Panels[0].Text := filterText;
+  sbDirectors.Panels[1].Text := 'Record ' + IntToStr(aTblDirectors.RecNo) + ' of ' + IntToStr(aTblDirectors.RecordCount);
+end;
+
+
+
+  {----------------------------------------------------------------------+
   TeditChange:
   This procedure is called when the user changes the search TEdit
   boxes. It changes the filters to the CurrentOwners dbGrid. It
@@ -750,8 +733,6 @@ end;
   Owners panels.
   +----------------------------------------------------------------------- }
 procedure TSDIAppForm.TEditChange(filterText: string);
-var
-  numOfRecords: integer;
 begin
   if (length(filterText) = 0) then
   begin
@@ -765,67 +746,7 @@ begin
     aTblCurrentDirectors.Filtered := True;
   end;
   sbCurDirs.Panels[0].Text := filterText;
-  numOfRecords := aTblCurrentDirectors.RecordCount;
   sbCurDirs.Panels[1].Text := 'Record ' + IntToStr(aTblCurrentDirectors.RecNo) + ' of ' + IntToStr(aTblCurrentDirectors.RecordCount);
-end;
-
-
-{ ----------------------------------------------------------------------+
-  THousesEditChange:
-  This procedure is called when the user changes the search TEdit
-  boxes. It changes the filters to the CurrentOwners dbGrid. It
-  also updates the status bars on both the CurrentOwners and the
-  Owners panels.
-  +----------------------------------------------------------------------- }
-procedure TSDIAppForm.THousesEditChange(filterText: string);
-var
-  numOfRecords: integer;
-begin
-  if (length(filterText) = 0) then
-  begin
-    aDsHouses.Filter := '';
-    aDsHouses.Filtered := True;
-  end
-  else
-  begin
-    aDsHouses.Filtered := False;
-    aDsHouses.Filter := filterText;
-    aDsHouses.Filtered := True;
-  end;
-
-  sbHouses.Panels[0].Text := filterText;
-  sbOwnersHouses.Panels[0].Text := filterText;
-  numOfRecords := aDsHouses.RecordCount;
-  sbHouses.Panels[1].Text := 'Record ' + IntToStr(aDsHouses.RecNo) + ' of ' + IntToStr(aDsHouses.RecordCount);
-  sbOwnersHouses.Panels[1].Text := 'Record ' + IntToStr(aDsHouses.RecNo) + ' of ' + IntToStr(aDsHouses.RecordCount);
-end;
-
-{ ----------------------------------------------------------------------+
-  TOwnersEditChange:
-  This procedure is called when the user changes the search TEdit
-  boxes. It changes the filters to the CurrentOwners dbGrid. It
-  also updates the status bars on both the CurrentOwners and the
-  Owners panels.
-  +----------------------------------------------------------------------- }
-procedure TSDIAppForm.TOwnersEditChange(filterText: string);
-var
-  numOfRecords: integer;
-begin
-  if (length(filterText) = 0) then
-  begin
-    aTblOwners.Filter := '';
-    aTblOwners.Filtered := True;
-  end
-  else
-  begin
-    aTblOwners.Filtered := False;
-    aTblOwners.Filter := filterText;
-    aTblOwners.Filtered := True;
-  end;
-
-  sbOwners.Panels[0].Text := filterText;
-  numOfRecords := aTblOwners.RecordCount;
-  sbOwners.Panels[1].Text := 'Record ' + IntToStr(aTblOwners.RecNo) + ' of ' + IntToStr(aTblOwners.RecordCount);
 end;
 
 procedure TSDIAppForm.EditColorChangeOnEnter(Sender: TObject);
@@ -834,30 +755,47 @@ begin
   TEdit(Sender).Text := '';
   eCurDirLastName.Text := '';
   eCurDirFirstName.Text := '';
-  eCurDirAcctNumber.Text := '';
   eCurDirEmail.Text := '';
   eCurDirRepresents.Text := '';
+  eMailAcct.Text := '';
   aTblCurrentDirectors.Filtered := False;
   aTblCurrentDirectors.Filter := '';
 end;
 
-procedure TSDIAppForm.HousesEditColorChangeOnEnter(Sender: TObject);
+
+procedure TSDIAppForm.EmailEditColorChangeOnEnter(Sender: TObject);
 begin
   TEdit(Sender).Color := clMoneyGreen;
   TEdit(Sender).Text := '';
-  eHousesAddress.Text := '';
-  eHousesStreetName.Text := '';
-  eHousesStreetNumber.Text := '';
-  eHousesAcctNumber.Text := '';
-  eHousesSection.Text := '';
-  eHousesAcct.Text := '';
-  eHousesAddr.Text := '';
-  eHousesSec.Text := '';
-  eHousesStrNum.Text := '';
-  eHousesStrName.Text := '';
-  aDsHouses.Filtered := False;
-  aDsHouses.Filter := '';
+  eEmailSection.Text := '';
+  eMailAcct.Text := '';
+  aTblEmailAccts.Filtered := False;
+  aTblEmailAccts.Filter := '';
 end;
+
+
+
+procedure TSDIAppForm.TDirEditColorChangeOnEnter(Sender: TObject);
+begin
+  TEdit(Sender).Color := clMoneyGreen;
+  TEdit(Sender).Text := '';
+  eDirOwnersFName.Text := '';
+  eDirOwnersLName.Text := '';
+  aTblDirectors.Filtered := False;
+  aTblDirectors.Filter := '';
+end;
+
+
+procedure TSDIAppForm.PwdEditColorChangeOnEnter(Sender: TObject);
+begin
+  TEdit(Sender).Color := clMoneyGreen;
+  TEdit(Sender).Text := '';
+  ePwdAcct.Text := '';
+  ePwdPwd.Text := '';
+  aTblPasswords.Filtered := False;
+  aTblPasswords.Filter := '';
+end;
+
 
 procedure TSDIAppForm.EditColorChangeOnExit(Sender: TObject);
 begin
@@ -878,9 +816,21 @@ begin
   eMailSectionChange(filterText);
 end;
 
-procedure TSDIAppForm.eMailSectionChange(filterText: string);
+procedure TSDIAppForm.eMailAcctChange(Sender: TObject);
 var
-  numOfRecords: integer;
+  filterText: string;
+begin
+  // First we ignore the wildcard as the first character
+  if (TEdit(Sender).Text = '%') then
+    Exit;
+  filterText := '';
+  if (length(TEdit(Sender).Text) > 0) then
+    filterText := 'Acct like ' + '''' + TEdit(Sender).Text +
+      '%' + '''';
+  TeMailSectionChange(filterText);
+end;
+
+procedure TSDIAppForm.eMailSectionChange(filterText: string);
 begin
   if (length(filterText) = 0) then
   begin
@@ -893,87 +843,6 @@ begin
     aTblSections.Filter := filterText;
     aTblSections.Filtered := True;
   end;
-end;
-
-procedure TSDIAppForm.eHousesAcctChange(Sender: TObject);
-var
-  filterText: string;
-begin
-  // First we ignore the wildcard as the first character
-  if (TEdit(Sender).Text = '%') then
-    TEdit(Sender).Text := '';
-  filterText := '';
-  if (length(TEdit(Sender).Text) > 0) then
-    filterText := 'houseAcct = ' + '''' + TEdit(Sender).Text + '''';
-  THousesEditChange(filterText);
-end;
-
-procedure TSDIAppForm.eHousesAcctNumberChange(Sender: TObject);
-var
-  filterText: string;
-begin
-  // First we ignore the wildcard as the first character
-  if (TEdit(Sender).Text = '%') then
-    TEdit(Sender).Text := '';
-  filterText := '';
-  if (length(TEdit(Sender).Text) > 0) then
-    filterText := 'houseAcct = ' + '''' + TEdit(Sender).Text + '''';
-  THousesEditChange(filterText);
-end;
-
-procedure TSDIAppForm.eHousesAddressChange(Sender: TObject);
-var
-  filterText: string;
-begin
-  // First we ignore the wildcard as the first character
-  if (TEdit(Sender).Text = '%') then
-    Exit;
-  filterText := '';
-  if (length(TEdit(Sender).Text) > 0) then
-    filterText := 'address like ' + '''' + TEdit(Sender).Text +
-      '%' + '''';
-  THousesEditChange(filterText);
-end;
-
-procedure TSDIAppForm.eHousesSectionChange(Sender: TObject);
-var
-  filterText: string;
-begin
-  // First we ignore the wildcard as the first character
-  if (TEdit(Sender).Text = '%') then
-    Exit;
-  filterText := '';
-  if (length(TEdit(Sender).Text) > 0) then
-    filterText := 'Section like ' + '''' + TEdit(Sender).Text +
-      '%' + '''';
-  THousesEditChange(filterText);
-end;
-
-procedure TSDIAppForm.eHousesStreetNameChange(Sender: TObject);
-var
-  filterText: string;
-begin
-  // First we ignore the wildcard as the first character
-  if (TEdit(Sender).Text = '%') then
-    Exit;
-  filterText := '';
-  if (length(TEdit(Sender).Text) > 0) then
-    filterText := 'streetName like ' + '''' + TEdit(Sender).Text +
-      '%' + '''';
-  THousesEditChange(filterText);
-end;
-
-procedure TSDIAppForm.eHousesStreetNumberChange(Sender: TObject);
-var
-  filterText: string;
-begin
-  // First we ignore the wildcard as the first character
-  if (TEdit(Sender).Text = '%') then
-    TEdit(Sender).Text := '';
-  filterText := '';
-  if (length(TEdit(Sender).Text) > 0) then
-    filterText := 'streetNumber = ' + '''' + TEdit(Sender).Text + '''';
-  THousesEditChange(filterText);
 end;
 
 procedure TSDIAppForm.eMailSectionSearchChange(Sender: TObject);
@@ -990,7 +859,12 @@ begin
   TeMailSectionChange(filterText);
 end;
 
-{ ----------------------------------------------------------------------+
+{procedure TSDIAppForm.ePwdPwdEnter(Sender: TObject);
+begin
+
+end;
+
+ ----------------------------------------------------------------------+
   TeMailSectionChange:
   This procedure is called when the user changes the search TEdit
   boxes. It changes the filters to the CurrentOwners dbGrid. It
@@ -998,8 +872,6 @@ end;
   Owners panels.
   +----------------------------------------------------------------------- }
 procedure TSDIAppForm.TeMailSectionChange(filterText: string);
-var
-  numOfRecords: integer;
 begin
   if (length(filterText) = 0) then
   begin
@@ -1016,61 +888,11 @@ begin
   end;
 
   sbEmailAccts.Panels[0].Text := filterText;
-  numOfRecords := aTblEmailAccts.RecordCount;
   sbEmailAccts.Panels[1].Text := 'Record ' + IntToStr(aTblEmailAccts.RecNo) + ' of ' + IntToStr(aTblEmailAccts.RecordCount);
 
 //  StatusBar1.Panels[0].Text := filterText;
 //  numOfRecords := adoTableOwners.RecordCount;
 //  StatusBar1.Panels[1].Text := 'Record Count: ' + IntToStr(numOfRecords);
-end;
-
-
-
-procedure TSDIAppForm.eOwnersFNameChange(Sender: TObject);
-var
-  filterText: string;
-begin
-  // First we ignore the wildcard as the first character
-  rgPolicySigned.ItemIndex := 2;
-  rgSellDate.ItemIndex := 0;
-  if (Tedit(Sender).Text = '%') then
-    Exit;
-  filterText := '';
-  if (length(Tedit(Sender).Text) > 0) then
-    filterText := 'firstName like ' + '''' + Tedit(Sender).Text +
-      '%' + '''';
-  TOwnersEditChange(filterText);
-end;
-
-procedure TSDIAppForm.eOwnersLNameChange(Sender: TObject);
-var
-  filterText: string;
-begin
-  rgPolicySigned.ItemIndex := 2;
-  rgSellDate.ItemIndex := 0;
-  // First we ignore the wildcard as the first character
-  if (Tedit(Sender).Text = '%') then
-    Exit;
-  filterText := '';
-  if (length(Tedit(Sender).Text) > 0) then
-    filterText := 'lastName like ' + '''' + Tedit(Sender).Text +
-      '%' + '''';
-  TOwnersEditChange(filterText);
-end;
-
-
-procedure TSDIAppForm.OwnersEditColorChangeOnEnter(Sender: TObject);
-begin
-  TEdit(Sender).Color := clMoneyGreen;
-  TEdit(Sender).Text := '';
-  eOwnersLName.Text := '';
-  eOwnersFName.Text := '';
-  eDirOwnersLName.Text := '';
-  eDirOwnersFName.Text := '';
-  aTblCurrentDirectors.Filtered := False;
-  aTblCurrentDirectors.Filter := '';
-  aTblOwners.Filtered := False;
-  aTblOwners.Filter := '';
 end;
 
 procedure TSDIAppForm.FileExit1Execute(Sender: TObject);
@@ -1106,11 +928,11 @@ begin
   // Color the tab the same as the Major panel
   iTabTag := TPageControl(oControl).Pages[TabIndex].Tag;
   case iTabTag of
-    0:  cTabColor := $0086ce80;  // Directors
+    0:  cTabColor := $0020a5da;  // Directors
     1:  cTabColor := $00f8a3c9;  // Email Accounts
-    2:  cTabColor := $00ffae8c;  // Houses
+    2:  cTabColor := $00ffae8c;  // Not Used
     3:  cTabColor := $0077bbff;  // Passwords
-    4:  cTabColor := $00a4ddf2;  // Owners
+    4:  cTabColor := $00eec29b;  // SQL Viewer
     5:  cTabColor := $00ffffc1;  // Sections
     6:  cTabColor := $00b0E0b0 ;
     7:  cTabColor := $00eec29b;
@@ -1135,19 +957,16 @@ end;
 
 
 
-//////////////////////////////////////////////////////
-
-
 procedure TSDIAppForm.pnlAllOwnersResize(Sender: TObject);
 Const
   margin = 5;
-  topGap = 65;
+  topGap = 106;
 begin
   with dbGridDirOwners do begin
     Left := margin;
-    Width := pnlAllOwners.Width - 2 * margin;
+    Width := pnlDirectors.Width - 2 * margin;
     Top := topGap;
-    Height := pnlAllOwners.Height - topGap - 2 * margin - sbDirOwners.Height;
+    Height := pnlDirectors.Height - topGap - 2 * margin - sbDirectors.Height;
   end;
 end;
 
@@ -1166,83 +985,29 @@ begin
   dbNavCurDir.Left := pnlCurrentDirectors.Width - dbNavCurDir.Width - 10;
 end;
 
-procedure TSDIAppForm.pnlDirectorsResize(Sender: TObject);
+procedure TSDIAppForm.pnlEmailSecsResize(Sender: TObject);
 Const
   margin = 5;
-  topGap = 80;
-begin
-  with dbgDirectors do begin
-    Left := margin;
-    Width := pnlDirectors.Width - 3 * margin;
-    Top := topGap;
-    Height := pnlDirectors.Height - topGap - 2 * margin - sbDirectors.Height;
-  end;
-end;
-
-procedure TSDIAppForm.pnlEmailAcctsResize(Sender: TObject);
-Const
-  margin = 5;
-  topGap = 85;
+  topGap = 120;
 begin
   with dbGridEmailSections do begin
-    Left := pnlEmailAccts.Width - 145 - margin;
+    Left := margin;
     Top := topGap;
-    Height := sbEmailAccts.Top - topGap - margin;
+    Width := pnlEmailSecs.Width - (3 * margin);
+    Height := sbEmailSecs.Top - topGap - margin;
   end;
   with dbGridEmails do begin
     Left := margin;
-    Width := dbGridEmailSections.Left - (3 * margin);
+    Width := pnlEmailAccts.Width - (3 * margin);
     Top := topGap;
     Height := sbEmailAccts.Top - topGap - margin;
-  end;
-  eEmailSection.Left := dbGridEmailSections.Left + (eEmailSection.Width div 2);
-
-end;
-
-procedure TSDIAppForm.pnlHousesResize(Sender: TObject);
-Const
-  margin = 5;
-  topGap = 90;
-begin
-  with dbGridHouses do begin
-    Left := margin;
-    Width := pnlHouses.Width - 3 * margin;
-    Top := topGap;
-    Height := pnlHouses.Height - topGap - 2 * margin - sbHouses.Height;
-  end;
-end;
-
-
-procedure TSDIAppForm.pnlOwnerHouseResize(Sender: TObject);
-Const
-  margin = 5;
-  topGap = 61;
-begin
-  with dbGridOwnerHouse do begin
-    Left := margin;
-    Width := pnlOwnerHouse.Width - 3 * margin;
-    Top := topGap;
-    Height := pnlOwnerHouse.Height - topGap - 2 * margin - sbOwnersHouses.Height;
-  end;
-end;
-
-procedure TSDIAppForm.pnlOwnersOwnersResize(Sender: TObject);
-Const
-  margin = 5;
-  topGap = 45;
-begin
-  with dbGridAddOwner do begin
-    Left := margin;
-    Width := pnlOwnersOwners.Width - 3 * margin;
-    Top := topGap;
-    Height := pnlOwnersOwners.Height - topGap - margin - sbOwnersOwner.Height;
   end;
 end;
 
 procedure TSDIAppForm.pnlPasswordsResize(Sender: TObject);
 Const
   margin = 5;
-  topGap = 85;
+  topGap = 120;
 var
   i, j: Integer;
 begin
@@ -1273,7 +1038,7 @@ end;
 procedure TSDIAppForm.pnlSectionsResize(Sender: TObject);
 Const
   margin = 5;
-  topGap = 40;
+  topGap = 55;
 begin
   lblSections.Left := (pnlSections.Width - lblSections.Width) div 2;
   dbNavSections.Left := pnlSections.Width - dbNavSections.Width - 3 * margin;
@@ -1283,156 +1048,6 @@ begin
     Top := topGap;
     Height := pnlSections.Height - topGap - 2 * margin - sbSections.Height;
   end;
-end;
-
-procedure TSDIAppForm.rgPolicySignedClick(Sender: TObject);
-var
-  policySelect: string;
-begin
-  eOwnersLName.Text := '';
-  eOwnersFName.Text := '';
-  case rgPolicySigned.ItemIndex of
-    0: policySelect := 'True';        //  Yes
-    1: policySelect := 'False';       //  No
-  end;
-  aTblOwners.Filtered := False;
-  aTblOwners.Filter := 'usePolicySigned = ' + policySelect;
-  if (rgPolicySigned.ItemIndex < 2) then
-    aTblOwners.Filtered := True;
-  sbOwners.Panels[0].Text := aTblOwners.Filter;
-  sbOwners.Panels[1].Text := 'Record ' + inttostr(dsOwners.DataSet.RecNo)
-              + ' of ' + IntToStr(dsOwners.DataSet.RecordCount);
-  rgSellDate.ItemIndex := 0;
-end;
-
-procedure TSDIAppForm.rgSellDateClick(Sender: TObject);
-var
-  sellDateSelect: string;
-begin
-  eOwnersLName.Text := '';
-  eOwnersFName.Text := '';
-  case rgSellDate.ItemIndex of
-    0: sellDateSelect := ' = %';        //  ALL
-    1: sellDateSelect := ' = NULL';       //  NULL
-    2: sellDateSelect := ' <> NULL';   //  NOT NULL
-  end;
-  aTblOwners.Filtered := False;
-  aTblOwners.Filter := 'stopDate ' + sellDateSelect;
-  if (rgSellDate.ItemIndex > 0) then
-    aTblOwners.Filtered := True;
-
-  // Update the status bar text panels
-  sbOwners.Panels[0].Text := aTblOwners.Filter;
-  sbOwners.Panels[1].Text := 'Record ' + inttostr(dsOwners.DataSet.RecNo)
-              + ' of ' + IntToStr(dsOwners.DataSet.RecordCount);
-  rgPolicySigned.ItemIndex := 2;
-end;
-
-procedure TSDIAppForm.sbHousesAcctClick(Sender: TObject);
-var
-  sortFieldName, sortDirection: string;
-  oddEven: Boolean;
-  buttonNumber, tagNumber, direction: integer;
-  i: integer;
-begin
-  tagNumber := TSpeedButton(Sender).Tag;
-  buttonNumber := tagNumber div 2;
-  // Blank the glyphs on all the TSpeedButtons
-  for i := 0 to (pnlHouses.ControlCount - 1) do
-  begin
-    if (pnlHouses.Controls[i].ClassName = 'TSpeedButton')then
-      TSpeedButton(pnlHouses.Controls[i]).Glyph := nil;
-  end;
-    for i := 0 to (pnlOwnerHouse.ControlCount - 1) do
-  begin
-    if (pnlOwnerHouse.Controls[i].ClassName = 'TSpeedButton')then
-      TSpeedButton(pnlOwnerHouse.Controls[i]).Glyph := nil;
-  end;
-  // Determine sort direction and glyph
-  if odd(tagNumber) then begin
-    oddEven := True;
-    direction := 0;
-  end else begin
-    oddEven := False;
-    direction := 1;
-  end;
-  // Determine indexFieldName
-    case buttonNumber of
-    0: sortFieldName := 'houseAcct';
-    1: sortFieldName := 'address';
-    2: sortFieldName := 'section';
-    3: sortFieldName := 'streetName';
-    4: sortFieldName := 'streetNumber';
-  end;
-  // Step the text for the sort direction
-  if (oddEven) then sortDirection := ' ASC'
-  else sortDirection := ' DESC';
-  // Update the IndexFieldName, Tag, Glyph
-  aDsHouses.IndexFieldNames := sortFieldName + sortDirection;
-  TSpeedButton(Sender).Tag := (buttonNumber * 2) + direction;
-  ImageList1.GetBitmap(direction, TSpeedButton(Sender).Glyph);
-  // Update the status bar text panels
-  sbHouses.Panels[1].Text := 'Record ' + inttostr(dsHouses.DataSet.RecNo)
-              + ' of ' + IntToStr(dsHouses.DataSet.RecordCount);
-  sbHouses.Panels[2].Text := 'Index: ' + TADOTable(dsHouses.DataSet).IndexFieldNames;
-end;
-
-
-procedure TSDIAppForm.sbHousesAddressClick(Sender: TObject);
-begin
-
-end;
-
-{------------------------------------------------------------------+
-| sbOwnersClick(Sender: TObject)
-| This procedure operates when the user click on any of the
-| TSpeedButtons on the Owners TTabSheet.
-|  direction: 1 -->
-|                                                                |
-+------------------------------------------------------------------}
-procedure TSDIAppForm.sbOwnersClick(Sender: TObject);
-var
-  sortFieldName, sortDirection: string;
-  oddEven: Boolean;
-  buttonNumber, tagNumber, direction: integer;
-  i: integer;
-begin
-  tagNumber := TSpeedButton(Sender).Tag;
-  buttonNumber := tagNumber div 2;
-  // Blank the glyphs on all the TSpeedButtons
-  for i := 0 to (pnlOwners.ControlCount - 1) do
-  begin
-    if (pnlOwners.Controls[i].ClassName = 'TSpeedButton')then
-      TSpeedButton(pnlOwners.Controls[i]).Glyph := nil;
-  end;
-  // Determine sort direction and glyph
-  if odd(tagNumber) then begin
-    oddEven := True;
-    direction := 0;
-  end else begin
-    oddEven := False;
-    direction := 1;
-  end;
-  // Determine indexFieldName
-  case buttonNumber of
-    0: sortFieldName := 'firstName';
-    1: sortFieldName := 'lastName';
-    2: sortFieldName := 'houseAcct';
-    3: sortFieldName := 'usePolicySigned';
-    4: sortFieldName := 'policyDate';
-    5: sortFieldName := 'stopDate';
-  end;
-  // Step the text for the sort direction
-  if (oddEven) then sortDirection := ' ASC'
-  else sortDirection := ' DESC';
-  // Update the IndexFieldName, Tag, Glyph
-  aTblOwners.IndexFieldNames := sortFieldName + sortDirection;
-  TSpeedButton(Sender).Tag := (buttonNumber * 2) + direction;
-  ImageList1.GetBitmap(direction, TSpeedButton(Sender).Glyph);
-  // Update the status bar text panels
-  sbOwners.Panels[1].Text := 'Record ' + inttostr(dsOwners.DataSet.RecNo)
-              + ' of ' + IntToStr(dsOwners.DataSet.RecordCount);
-  sbOwners.Panels[2].Text := 'Index: ' + TADOTable(dsOwners.DataSet).IndexFieldNames;
 end;
 
 procedure TSDIAppForm.sbPasswordClick(Sender: TObject);
@@ -1478,6 +1093,116 @@ begin
   sbPasswords.Panels[2].Text := 'Index: ' + TADOTable(dsPasswords.DataSet).IndexFieldNames;
 end;
 
+procedure TSDIAppForm.sbSectionClick(Sender: TObject);
+var
+  sortFieldName, sortDirection: string;
+  oddEven: Boolean;
+  buttonNumber, tagNumber, direction: integer;
+  i: integer;
+begin
+  tagNumber := TSpeedButton(Sender).Tag;
+  buttonNumber := tagNumber div 2;
+  // Blank the glyphs on all the TSpeedButtons
+  for i := 0 to (pnlSections.ControlCount - 1) do
+  begin
+    if (pnlSections.Controls[i].ClassName = 'TSpeedButton')then
+      TSpeedButton(pnlSections.Controls[i]).Glyph := nil;
+  end;
+  for i := 0 to (pnlEmailSecs.ControlCount - 1) do
+  begin
+    if (pnlEmailSecs.Controls[i].ClassName = 'TSpeedButton')then
+      TSpeedButton(pnlEmailSecs.Controls[i]).Glyph := nil;
+  end;
+    // Determine sort direction and glyph
+  if odd(tagNumber) then begin
+    oddEven := True;
+    direction := 0;
+  end else begin
+    oddEven := False;
+    direction := 1;
+  end;
+  // Determine indexFieldName
+  case buttonNumber of
+    0: sortFieldName := 'section';
+    1: sortFieldName := 'sortOrder';
+  end;
+  // Step the text for the sort direction
+  if (oddEven) then sortDirection := ' ASC'
+  else sortDirection := ' DESC';
+  // Update the IndexFieldName, Tag, Glyph
+  aTblSections.IndexFieldNames := sortFieldName + sortDirection;
+
+  for i := 0 to (pnlSections.ControlCount - 1) do
+  begin
+  if (pnlSections.Controls[i].ClassName = 'TSpeedButton') and (pnlSections.Controls[i].Tag = tagNumber) then
+    begin
+      pnlSections.Controls[i].Tag := (buttonNumber * 2) + direction;
+      ImageList1.GetBitmap(direction, TSpeedButton(pnlSections.Controls[i]).Glyph);
+    end;
+  end;
+  for i := 0 to (pnlEmailSecs.ControlCount - 1)do
+  begin
+  if (pnlEmailSecs.Controls[i].ClassName = 'TSpeedButton') and (pnlEmailSecs.Controls[i].Tag = tagNumber) then
+    begin
+      pnlEmailSecs.Controls[i].Tag := (buttonNumber * 2) + direction;
+      ImageList1.GetBitmap(direction, TSpeedButton(pnlEmailSecs.Controls[i]).Glyph);
+    end;
+  end;
+
+  // Update the status bar text panels
+  sbSections.Panels[1].Text := 'Record ' + inttostr(dsSections.DataSet.RecNo)
+              + ' of ' + IntToStr(dsSections.DataSet.RecordCount);
+  sbSections.Panels[2].Text := 'Index: ' + TADOTable(dsSections.DataSet).IndexFieldNames;
+  sbEmailSecs.Panels[0].Text := 'Record ' + inttostr(dsSections.DataSet.RecNo)
+              + ' of ' + IntToStr(dsSections.DataSet.RecordCount);
+  sbEmailSecs.Panels[1].Text := 'Index: ' + TADOTable(dsSections.DataSet).IndexFieldNames;end;
+
+procedure TSDIAppForm.SpeedButton1Click(Sender: TObject);
+var
+  sortFieldName, sortDirection: string;
+  oddEven: Boolean;
+  buttonNumber, tagNumber, direction: integer;
+  i: integer;
+begin
+  tagNumber := TSpeedButton(Sender).Tag;
+  buttonNumber := tagNumber div 2;
+  // Blank the glyphs on all the TSpeedButtons
+  for i := 0 to (pnlDirectors.ControlCount - 1) do
+  begin
+    if (pnlDirectors.Controls[i].ClassName = 'TSpeedButton')then
+      TSpeedButton(pnlDirectors.Controls[i]).Glyph := nil;
+  end;
+  // Determine sort direction and glyph
+  if odd(tagNumber) then begin
+    oddEven := True;
+    direction := 0;
+  end else begin
+    oddEven := False;
+    direction := 1;
+  end;
+  // Determine indexFieldName
+  case buttonNumber of
+    0: sortFieldName := 'firstName';
+    1: sortFieldName := 'lastName';
+    2: sortFieldName := 'section';
+    3: sortFieldName := 'usePolicySigned';
+    4: sortFieldName := 'startDate';
+    5: sortFieldName := 'stopDate';
+    6: sortFieldName := 'policyDate';
+  end;
+  // Step the text for the sort direction
+  if (oddEven) then sortDirection := ' ASC'
+  else sortDirection := ' DESC';
+  // Update the IndexFieldName, Tag, Glyph
+  aTblDirectors.IndexFieldNames := sortFieldName + sortDirection;
+  TSpeedButton(Sender).Tag := (buttonNumber * 2) + direction;
+  ImageList1.GetBitmap(direction, TSpeedButton(Sender).Glyph);
+  // Update the status bar text panels
+  sbDirectors.Panels[1].Text := 'Record ' + inttostr(dsDirectors.DataSet.RecNo)
+              + ' of ' + IntToStr(dsDirectors.DataSet.RecordCount);
+  sbDirectors.Panels[2].Text := 'Index: ' + TADOTable(dsDirectors.DataSet).IndexFieldNames;
+end;
+
 procedure TSDIAppForm.sbCurDirLastNameClick(Sender: TObject);
 var
   sortFieldName, sortDirection: string;
@@ -1505,10 +1230,10 @@ begin
   case buttonNumber of
     0: sortFieldName := 'lastName';
     1: sortFieldName := 'firstName';
-    2: sortFieldName := 'houseAcct';
-    3: sortFieldName := 'directorSection';
+    2: sortFieldName := 'address';
+    3: sortFieldName := 'section';
     4: sortFieldName := 'startDate';
-    5: sortFieldName := 'emailAcct';
+    5: sortFieldName := 'acct';
     6: sortFieldName := 'usePolicySigned';
     7: sortFieldName := 'sortOrder';
   end;
@@ -1520,9 +1245,9 @@ begin
   TSpeedButton(Sender).Tag := (buttonNumber * 2) + direction;
   ImageList1.GetBitmap(direction, TSpeedButton(Sender).Glyph);
   // Update the status bar text panels
-  sbCurDirs.Panels[1].Text := 'Record ' + inttostr(dsCurrentDirectors.DataSet.RecNo)
-              + ' of ' + IntToStr(dsCurrentDirectors.DataSet.RecordCount);
-  sbCurDirs.Panels[2].Text := 'Index: ' + TADOTable(dsCurrentDirectors.DataSet).IndexFieldNames;
+  sbDirectors.Panels[1].Text := 'Record ' + inttostr(dsDirectors.DataSet.RecNo)
+              + ' of ' + IntToStr(dsDirectors.DataSet.RecordCount);
+  sbDirectors.Panels[2].Text := 'Index: ' + TADOTable(dsDirectors.DataSet).IndexFieldNames;
 end;
 
 
@@ -1531,16 +1256,15 @@ var
   sortFieldName, sortDirection: string;
   oddEven: Boolean;
   buttonNumber, tagNumber, direction: integer;
-  i: integer;
 begin
   tagNumber := TSpeedButton(Sender).Tag;
   buttonNumber := tagNumber div 2;
   // Blank the glyphs on all the TSpeedButtons
-  for i := 0 to (pnlDirectors.ControlCount - 1) do
-  begin
-    if (pnlDirectors.Controls[i].ClassName = 'TSpeedButton')then
-      TSpeedButton(pnlDirectors.Controls[i]).Glyph := nil;
-  end;
+//  for i := 0 to (pnlDirectors.ControlCount - 1) do
+//  begin
+//    if (pnlDirectors.Controls[i].ClassName = 'TSpeedButton')then
+//      TSpeedButton(pnlDirectors.Controls[i]).Glyph := nil;
+//  end;
   // Determine sort direction and glyph
   if odd(tagNumber) then begin
     oddEven := True;
@@ -1566,11 +1290,11 @@ begin
   TSpeedButton(Sender).Tag := (buttonNumber * 2) + direction;
   ImageList1.GetBitmap(direction, TSpeedButton(Sender).Glyph);
   // Update the status bar text panels
-  sbDirectors.Panels[0].Text := 'Record ' + inttostr(dsDirectors.DataSet.RecNo)
-              + ' of ' + IntToStr(dsDirectors.DataSet.RecordCount);
-  sbDirectors.Panels[1].Text := 'Index: ' + TADOTable(dsDirectors.DataSet).IndexFieldNames;
-  sbDirectors.Panels[2].Text := '';
-  sbDirectors.Panels[3].Text := '';
+//  sbDirectors.Panels[0].Text := 'Record ' + inttostr(dsDirectors.DataSet.RecNo)
+//              + ' of ' + IntToStr(dsDirectors.DataSet.RecordCount);
+//  sbDirectors.Panels[1].Text := 'Index: ' + TADOTable(dsDirectors.DataSet).IndexFieldNames;
+//  sbDirectors.Panels[2].Text := '';
+//  sbDirectors.Panels[3].Text := '';
 end;
 
 procedure TSDIAppForm.sbEmailClick(Sender: TObject);
