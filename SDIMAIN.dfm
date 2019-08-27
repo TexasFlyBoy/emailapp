@@ -262,7 +262,7 @@ object SDIAppForm: TSDIAppForm
       OnClick = sbCurDirLastNameClick
     end
     object dbGridCurDirs: TDBGrid
-      Left = 5
+      Left = 6
       Top = 68
       Width = 1226
       Height = 190
@@ -495,19 +495,15 @@ object SDIAppForm: TSDIAppForm
     Top = 292
     Width = 1255
     Height = 460
-    ActivePage = Directors
+    ActivePage = TabSheet4
     Align = alClient
     OwnerDraw = True
     TabOrder = 1
     TabPosition = tpBottom
     OnDrawTab = pcEmailDrawTab
-    ExplicitLeft = 1
-    ExplicitTop = 294
-    ExplicitHeight = 479
     object Directors: TTabSheet
       Caption = 'Directors'
       Highlighted = True
-      ExplicitHeight = 450
       object Splitter3: TSplitter
         Left = 1055
         Top = 0
@@ -524,7 +520,6 @@ object SDIAppForm: TSDIAppForm
         Align = alRight
         Caption = 'Panel4'
         TabOrder = 0
-        ExplicitHeight = 450
         object DBGrid1: TDBGrid
           Left = 1
           Top = 1
@@ -570,7 +565,6 @@ object SDIAppForm: TSDIAppForm
         Align = alClient
         Caption = 'Panel5'
         TabOrder = 1
-        ExplicitHeight = 450
         object pnlDirectors: TPanel
           Left = 1
           Top = 1
@@ -581,7 +575,6 @@ object SDIAppForm: TSDIAppForm
           ParentBackground = False
           TabOrder = 0
           OnResize = pnlAllOwnersResize
-          ExplicitHeight = 448
           object SpeedButton1: TSpeedButton
             Left = 162
             Top = 67
@@ -779,7 +772,6 @@ object SDIAppForm: TSDIAppForm
               item
                 Width = 50
               end>
-            ExplicitTop = 428
           end
           object eDirOwnersLName: TEdit
             Left = 233
@@ -818,7 +810,6 @@ object SDIAppForm: TSDIAppForm
       Tag = 1
       Caption = 'Email Accts'
       ImageIndex = 3
-      ExplicitHeight = 450
       object Splitter2: TSplitter
         Left = 0
         Top = 0
@@ -847,7 +838,6 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlEmailSecsResize
-        ExplicitHeight = 450
         object sbSecSort: TSpeedButton
           Left = 43
           Top = 80
@@ -883,7 +873,6 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitTop = 430
         end
         object dbGridEmailSections: TDBGrid
           Left = 6
@@ -942,7 +931,6 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 1
         OnResize = pnlEmailSecsResize
-        ExplicitHeight = 450
         object SpeedButton8: TSpeedButton
           Left = 141
           Top = 80
@@ -1106,7 +1094,6 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitTop = 430
         end
         object Edit2: TEdit
           Left = 1021
@@ -1167,7 +1154,6 @@ object SDIAppForm: TSDIAppForm
       Tag = 3
       Caption = 'Passwords'
       ImageIndex = 2
-      ExplicitHeight = 450
       object pnlPasswords: TPanel
         Left = 0
         Top = 0
@@ -1179,7 +1165,6 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlPasswordsResize
-        ExplicitHeight = 450
         object sbPasswordAcct: TSpeedButton
           Left = 304
           Top = 89
@@ -1328,8 +1313,6 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitLeft = 0
-          ExplicitTop = 430
         end
         object bbClearPasswordFilter: TBitBtn
           Left = 283
@@ -1380,7 +1363,6 @@ object SDIAppForm: TSDIAppForm
       Tag = 5
       Caption = 'Sections'
       ImageIndex = 5
-      ExplicitHeight = 450
       object pnlSections: TPanel
         Left = 0
         Top = 0
@@ -1391,8 +1373,6 @@ object SDIAppForm: TSDIAppForm
         ParentBackground = False
         TabOrder = 0
         OnResize = pnlSectionsResize
-        ExplicitTop = 2
-        ExplicitHeight = 450
         object lblSections: TLabel
           Left = 536
           Top = 7
@@ -1510,7 +1490,6 @@ object SDIAppForm: TSDIAppForm
             item
               Width = 200
             end>
-          ExplicitTop = 430
         end
       end
     end
@@ -1518,9 +1497,6 @@ object SDIAppForm: TSDIAppForm
       Tag = 4
       Caption = 'SqlViewer'
       ImageIndex = 7
-      ExplicitLeft = 5
-      ExplicitTop = 6
-      ExplicitHeight = 450
       object Splitter4: TSplitter
         Left = 225
         Top = 41
@@ -1565,9 +1541,6 @@ object SDIAppForm: TSDIAppForm
         Align = alLeft
         Caption = 'Panel2'
         TabOrder = 1
-        ExplicitLeft = 64
-        ExplicitTop = 35
-        ExplicitHeight = 390
         object memoSqlText: TMemo
           Left = 1
           Top = 1
@@ -1577,8 +1550,6 @@ object SDIAppForm: TSDIAppForm
           Lines.Strings = (
             'memoSqlText')
           TabOrder = 0
-          ExplicitLeft = 0
-          ExplicitHeight = 388
         end
       end
       object Panel3: TPanel
@@ -1589,10 +1560,6 @@ object SDIAppForm: TSDIAppForm
         Align = alClient
         Caption = 'Panel3'
         TabOrder = 2
-        ExplicitLeft = 320
-        ExplicitTop = 57
-        ExplicitWidth = 873
-        ExplicitHeight = 344
         object dbGridSqlView: TDBGrid
           Left = 1
           Top = 1
@@ -1632,9 +1599,6 @@ object SDIAppForm: TSDIAppForm
           item
             Width = 200
           end>
-        ExplicitLeft = 224
-        ExplicitTop = 440
-        ExplicitWidth = 0
       end
     end
   end
@@ -1644,9 +1608,6 @@ object SDIAppForm: TSDIAppForm
     Width = 1255
     Height = 19
     Panels = <>
-    ExplicitLeft = 640
-    ExplicitTop = 408
-    ExplicitWidth = 0
   end
   object MainMenu1: TMainMenu
     Left = 504
@@ -1712,7 +1673,7 @@ object SDIAppForm: TSDIAppForm
     Left = 1144
     Top = 64
     Bitmap = {
-      494C010102001800980020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101020018009C0020001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000001000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

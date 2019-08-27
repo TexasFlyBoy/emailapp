@@ -369,6 +369,9 @@ begin
     aTblPasswords.Filtered := False;
     aTblPasswords.Filter := 'acct = ''' + aTblCurrentDirectors.FieldByName('acct').AsString + '''';
     aTblPasswords.Filtered := True;
+    aTblDirectors.Filtered := False;
+    aTblEmailAccts.Filter := 'acct = ''' + aTblCurrentDirectors.FieldByName('acct').AsString + '''';
+    aTblEmailAccts.Filtered := True;
 end;
 
 procedure TSDIAppForm.aTblDirectorsAfterInsert(DataSet: TDataSet);
@@ -543,6 +546,8 @@ begin
   Inc(i);
 
   sbCurDirSortOrder.Left := nextLeft + (i * spacing) + (dbGridCurDirs.Columns[i].Width div 2);
+  aTblDirectors.Filter := 'semsid = ' + IntToStr(aTblCurrentDirectors.FieldByName('semsid').Value);
+  aTblDirectors.Filtered := True;
 end;
 
 procedure TSDIAppForm.dbGridCurDirsColumnMoved(Sender: TObject; FromIndex,
